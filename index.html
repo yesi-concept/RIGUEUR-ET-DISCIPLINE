@@ -2,24 +2,13 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nutrition du Sportif — Y.E.S.I CONCEPT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>Y.E.S.I PERFORMANCE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
-:root{
---gold:#C9A84C;
---gold-dark:#8B6B2B;
---bg:#0D0D0D;
---bg2:#171717;
---bg3:#202020;
---text:#F5F2EC;
---text2:#A8A093;
---green:#46B07A;
---red:#D95B5B;
-}
 
 *{
 margin:0;
@@ -28,273 +17,310 @@ box-sizing:border-box;
 -webkit-tap-highlight-color:transparent;
 }
 
-html{
-scroll-behavior:smooth;
+:root{
+--gold:#D4AF37;
+--black:#0d0d0d;
+--dark:#171717;
+--dark2:#1f1f1f;
+--line:#2c2c2c;
+--white:#f5f5f5;
+--gray:#9d9d9d;
+--green:#2ecc71;
+--red:#e74c3c;
 }
 
 body{
-background:var(--bg);
-color:var(--text);
-font-family:'DM Sans',sans-serif;
+background:var(--black);
+font-family:'Inter',sans-serif;
+color:var(--white);
+padding-bottom:90px;
 overflow-x:hidden;
 }
 
-.hero{
-min-height:100vh;
-padding:40px 22px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-position:relative;
-overflow:hidden;
+/* HEADER */
+
+.top{
+padding:22px 18px;
+background:linear-gradient(180deg,#1b1b1b 0%, #111 100%);
+border-bottom:1px solid #262626;
+position:sticky;
+top:0;
+z-index:999;
 }
 
-.hero::before{
-content:'';
-position:absolute;
-inset:0;
-background:radial-gradient(circle at top, rgba(201,168,76,0.12), transparent 60%);
-pointer-events:none;
-}
-
-.bg-word{
-position:absolute;
-top:-20px;
-left:-10px;
-font-size:170px;
+.logo{
 font-family:'Bebas Neue',sans-serif;
-color:rgba(201,168,76,0.04);
-line-height:1;
-pointer-events:none;
+font-size:2rem;
+letter-spacing:4px;
+color:var(--gold);
 }
 
-.hero-tag{
-font-size:10px;
-letter-spacing:3px;
-color:var(--gold);
+.sub{
+font-size:.7rem;
+letter-spacing:2px;
+color:#8b8b8b;
+margin-top:2px;
 text-transform:uppercase;
-margin-bottom:20px;
-position:relative;
-z-index:2;
-}
-
-.hero h1{
-font-family:'Bebas Neue',sans-serif;
-font-size:82px;
-line-height:0.88;
-letter-spacing:2px;
-margin-bottom:16px;
-position:relative;
-z-index:2;
-}
-
-.hero h1 span{
-color:var(--gold);
-}
-
-.hero-text{
-font-size:14px;
-line-height:1.8;
-color:var(--text2);
-max-width:520px;
-margin-bottom:30px;
-position:relative;
-z-index:2;
-}
-
-.hero-btn{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-height:58px;
-padding:0 28px;
-background:var(--gold);
-color:#000;
-text-decoration:none;
-font-family:'Bebas Neue',sans-serif;
-font-size:18px;
-letter-spacing:2px;
-width:100%;
-max-width:320px;
-position:relative;
-z-index:2;
-}
-
-.section{
-padding:70px 22px;
-border-top:1px solid rgba(255,255,255,0.06);
-}
-
-.section-title{
-font-family:'Bebas Neue',sans-serif;
-font-size:56px;
-line-height:0.92;
-margin-bottom:28px;
-}
-
-.section-title span{
-color:var(--gold);
-}
-
-.card{
-background:var(--bg2);
-border:1px solid rgba(255,255,255,0.05);
-padding:22px;
-margin-bottom:16px;
-}
-
-.card-top{
-display:flex;
-align-items:center;
-gap:12px;
-margin-bottom:14px;
-}
-
-.icon{
-width:42px;
-height:42px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:rgba(201,168,76,0.10);
-font-size:20px;
-}
-
-.card h3{
-font-family:'Bebas Neue',sans-serif;
-font-size:28px;
-letter-spacing:1px;
-}
-
-.card p{
-font-size:14px;
-line-height:1.8;
-color:var(--text2);
-}
-
-.highlight{
-color:var(--gold);
 font-weight:700;
 }
 
-.grid{
-display:grid;
-grid-template-columns:1fr;
-gap:16px;
+.player{
+padding:16px 18px;
+display:flex;
+gap:10px;
 }
 
-.mini-card{
-background:var(--bg2);
-padding:20px;
-border-left:3px solid var(--gold);
+.player input,
+.player select{
+flex:1;
+background:var(--dark);
+border:1.5px solid var(--line);
+border-radius:14px;
+padding:14px;
+color:var(--white);
+font-weight:700;
+outline:none;
 }
 
-.mini-card h4{
+/* SCORE */
+
+.scorebox{
+margin:0 18px 18px;
+background:linear-gradient(135deg,#1e1e1e,#141414);
+border:1px solid #2d2d2d;
+border-radius:24px;
+padding:22px;
+}
+
+.scoretop{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:16px;
+}
+
+.scoretitle{
 font-family:'Bebas Neue',sans-serif;
-font-size:24px;
-margin-bottom:10px;
-letter-spacing:1px;
-}
-
-.mini-card p{
-font-size:13px;
-line-height:1.7;
-color:var(--text2);
-}
-
-.warning{
-background:rgba(217,91,91,0.08);
-border:1px solid rgba(217,91,91,0.20);
-padding:18px;
-margin-top:18px;
-}
-
-.warning-title{
-font-family:'Bebas Neue',sans-serif;
-font-size:24px;
-margin-bottom:8px;
-color:var(--red);
-}
-
-.warning p{
-font-size:13px;
-line-height:1.7;
-color:var(--text2);
-}
-
-.footer{
-padding:50px 22px 100px;
-text-align:center;
-border-top:1px solid rgba(255,255,255,0.05);
-}
-
-.footer-logo{
-font-family:'Bebas Neue',sans-serif;
-font-size:24px;
-letter-spacing:5px;
-color:var(--gold);
-margin-bottom:10px;
-}
-
-.footer p{
-font-size:11px;
+font-size:1.4rem;
 letter-spacing:2px;
-text-transform:uppercase;
-color:#7E786F;
-line-height:1.8;
 }
 
-.bottom-nav{
+.scorevalue{
+font-family:'Bebas Neue',sans-serif;
+font-size:3.5rem;
+color:var(--gold);
+line-height:1;
+}
+
+.progress{
+height:10px;
+background:#252525;
+border-radius:20px;
+overflow:hidden;
+margin-top:12px;
+}
+
+.progress span{
+display:block;
+height:100%;
+width:72%;
+background:linear-gradient(90deg,var(--gold),#ffe082);
+border-radius:20px;
+}
+
+/* TABS */
+
+.tabs{
+display:flex;
+overflow-x:auto;
+padding:0 12px 14px;
+gap:10px;
+scrollbar-width:none;
+}
+
+.tabs::-webkit-scrollbar{
+display:none;
+}
+
+.tab{
+flex-shrink:0;
+padding:12px 18px;
+border-radius:14px;
+background:var(--dark);
+border:1px solid var(--line);
+font-weight:800;
+font-size:.82rem;
+letter-spacing:1px;
+color:#777;
+cursor:pointer;
+}
+
+.tab.active{
+background:var(--gold);
+color:#111;
+border-color:var(--gold);
+}
+
+/* MODULES */
+
+.module{
+display:none;
+padding:0 18px;
+}
+
+.module.active{
+display:block;
+}
+
+.card{
+background:var(--dark);
+border:1px solid var(--line);
+border-radius:24px;
+padding:18px;
+margin-bottom:16px;
+}
+
+.cardtitle{
+font-family:'Bebas Neue',sans-serif;
+font-size:1.2rem;
+letter-spacing:2px;
+color:var(--gold);
+margin-bottom:16px;
+}
+
+.field{
+margin-bottom:14px;
+}
+
+.label{
+font-size:.72rem;
+text-transform:uppercase;
+letter-spacing:1px;
+font-weight:800;
+color:#888;
+margin-bottom:8px;
+display:block;
+}
+
+.input,
+.textarea,
+.select{
+width:100%;
+background:var(--dark2);
+border:1.5px solid #333;
+border-radius:14px;
+padding:14px;
+color:var(--white);
+font-weight:700;
+outline:none;
+}
+
+.textarea{
+min-height:90px;
+resize:none;
+}
+
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.range{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.range input{
+flex:1;
+accent-color:var(--gold);
+}
+
+.rangevalue{
+font-family:'Bebas Neue',sans-serif;
+font-size:2rem;
+color:var(--gold);
+width:40px;
+text-align:center;
+}
+
+/* BUTTON */
+
+.save{
+width:100%;
+padding:18px;
+border:none;
+border-radius:18px;
+background:var(--gold);
+color:#111;
+font-family:'Bebas Neue',sans-serif;
+font-size:1.2rem;
+letter-spacing:3px;
+cursor:pointer;
+}
+
+/* HISTORY */
+
+.history{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.hitem{
+background:#1a1a1a;
+border:1px solid #2b2b2b;
+border-radius:16px;
+padding:14px;
+}
+
+.htitle{
+font-weight:800;
+font-size:.9rem;
+color:var(--gold);
+margin-bottom:6px;
+}
+
+.hdesc{
+font-size:.8rem;
+color:#999;
+line-height:1.6;
+}
+
+/* BOTTOM NAV */
+
+.bottom{
 position:fixed;
 bottom:0;
 left:0;
 right:0;
-height:72px;
-background:#111;
-border-top:1px solid rgba(201,168,76,0.15);
+height:74px;
+background:#121212;
+border-top:1px solid #252525;
 display:flex;
 z-index:999;
-backdrop-filter:blur(10px);
 }
 
-.nav-item{
+.bnav{
 flex:1;
 display:flex;
 flex-direction:column;
-justify-content:center;
 align-items:center;
-text-decoration:none;
-color:#888;
-font-size:11px;
-gap:4px;
+justify-content:center;
+font-size:.7rem;
+font-weight:800;
+color:#666;
+cursor:pointer;
 }
 
-.nav-item.active{
+.bnav.active{
 color:var(--gold);
 }
 
-.nav-icon{
-font-size:18px;
-}
-
-@media(min-width:768px){
-
-.hero{
-padding:60px;
-}
-
-.section{
-padding:90px 60px;
-}
-
-.grid{
-grid-template-columns:repeat(2,1fr);
-}
-
-.hero h1{
-font-size:120px;
-}
-
+.bicon{
+font-size:1.2rem;
+margin-bottom:4px;
 }
 
 </style>
@@ -302,230 +328,191 @@ font-size:120px;
 
 <body>
 
-<section class="hero">
-
-<div class="bg-word">FOOD</div>
-
-<div class="hero-tag">
-Y.E.S.I CONCEPT — PERFORMANCE
+<div class="top">
+<div class="logo">Y.E.S.I PERFORMANCE</div>
+<div class="sub">OUTIL AUTONOME DE SUIVI SPORTIF</div>
 </div>
 
-<h1>
-NUTRITION<br>
-<span>DU</span><br>
-SPORTIF
-</h1>
+<div class="player">
+<input type="text" placeholder="Nom du joueur">
+<select>
+<option>Football</option>
+<option>Basket</option>
+<option>Tennis</option>
+<option>Handball</option>
+<option>Rugby</option>
+</select>
+</div>
 
-<p class="hero-text">
-Ton alimentation influence ton énergie, ta récupération, ta concentration et tes performances.
-Ce guide a été pensé pour les sportifs qui veulent progresser durablement.
-</p>
+<div class="scorebox">
+<div class="scoretop">
+<div>
+<div class="scoretitle">DISCIPLINE GLOBALE</div>
+<div style="font-size:.8rem;color:#888;">Semaine actuelle</div>
+</div>
 
-<a href="#guide" class="hero-btn">
-COMMENCER ↓
-</a>
+<div class="scorevalue">72%</div>
+</div>
 
-</section>
+<div class="progress">
+<span></span>
+</div>
+</div>
 
-<section class="section" id="guide">
+<div class="tabs">
+<div class="tab active">ENTRAINEMENT</div>
+<div class="tab">MATCH</div>
+<div class="tab">MENTAL</div>
+<div class="tab">NUTRITION</div>
+<div class="tab">HISTORIQUE</div>
+</div>
 
-<h2 class="section-title">
-LES BASES<br>
-<span>ESSENTIELLES</span>
-</h2>
+<!-- MODULE -->
+
+<div class="module active">
 
 <div class="card">
 
-<div class="card-top">
-<div class="icon">⚡</div>
-<h3>GLUCIDES</h3>
+<div class="cardtitle">SESSION DU JOUR</div>
+
+<div class="field">
+<label class="label">Date</label>
+<input class="input" type="date">
 </div>
 
-<p>
-Le carburant principal du sportif.
-Les glucides remplissent les réserves de <span class="highlight">glycogène</span> nécessaires pour tenir l'intensité pendant un match ou un entraînement.
-</p>
+<div class="row">
 
+<div class="field">
+<label class="label">Type</label>
+<select class="select">
+<option>Technique</option>
+<option>Tactique</option>
+<option>Physique</option>
+<option>Mixte</option>
+</select>
 </div>
 
-<div class="card">
-
-<div class="card-top">
-<div class="icon">🔧</div>
-<h3>PROTÉINES</h3>
-</div>
-
-<p>
-Essentielles pour réparer les fibres musculaires et soutenir la récupération après l'effort.
-</p>
-
-</div>
-
-<div class="card">
-
-<div class="card-top">
-<div class="icon">🛡️</div>
-<h3>LIPIDES</h3>
-</div>
-
-<p>
-Les bonnes graisses participent au fonctionnement hormonal, à l'énergie longue durée et à la récupération globale.
-</p>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2 class="section-title">
-AVANT<br>
-<span>LE MATCH</span>
-</h2>
-
-<div class="grid">
-
-<div class="mini-card">
-<h4>J-2 / J-1</h4>
-<p>
-Augmenter progressivement les glucides complexes et maintenir une hydratation régulière.
-</p>
-</div>
-
-<div class="mini-card">
-<h4>H-3</h4>
-<p>
-Repas digeste, connu et équilibré. Éviter les aliments gras et difficiles à digérer.
-</p>
-</div>
-
-<div class="mini-card">
-<h4>H-1</h4>
-<p>
-Petites quantités d'eau régulières et éventuellement une boisson d'attente adaptée.
-</p>
-</div>
-
-<div class="mini-card">
-<h4>IMPORTANT</h4>
-<p>
-Ne jamais tester un nouvel aliment le jour du match.
-</p>
+<div class="field">
+<label class="label">Durée</label>
+<select class="select">
+<option>45 min</option>
+<option>1h</option>
+<option>1h30</option>
+<option>2h</option>
+</select>
 </div>
 
 </div>
 
-</section>
+<div class="field">
+<label class="label">Concentration</label>
 
-<section class="section">
-
-<h2 class="section-title">
-APRÈS<br>
-<span>L'EFFORT</span>
-</h2>
-
-<div class="card">
-
-<div class="card-top">
-<div class="icon">🔄</div>
-<h3>RÉCUPÉRATION</h3>
+<div class="range">
+<input type="range" min="0" max="10" value="5" oninput="document.getElementById('r1').innerHTML=this.value">
+<div class="rangevalue" id="r1">5</div>
 </div>
-
-<p>
-Les 30 premières minutes après l'effort sont essentielles.
-Associer glucides + protéines + hydratation permet une récupération plus rapide et plus efficace.
-</p>
 
 </div>
 
-<div class="warning">
-
-<div class="warning-title">
-À ÉVITER
+<div class="field">
+<label class="label">Ressenti</label>
+<textarea class="textarea" placeholder="Décris ton entraînement..."></textarea>
 </div>
 
-<p>
-Alcool, boissons énergisantes, sodas et repas trop gras après l'effort.
-Ils ralentissent la récupération et augmentent la fatigue.
-</p>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2 class="section-title">
-HYDRA-<br>
-<span>TATION</span>
-</h2>
-
-<div class="card">
-
-<div class="card-top">
-<div class="icon">💧</div>
-<h3>EAU & ÉLECTROLYTES</h3>
-</div>
-
-<p>
-Boire uniquement quand la soif apparaît est déjà trop tard.
-L'hydratation doit être régulière avant, pendant et après l'effort.
-</p>
+<button class="save">VALIDER LA SESSION</button>
 
 </div>
 
 <div class="card">
 
-<div class="card-top">
-<div class="icon">🏆</div>
-<h3>LES 3 PILIERS</h3>
+<div class="cardtitle">OBJECTIFS SEMAINE</div>
+
+<div class="field">
+<input class="input" placeholder="Objectif 1">
 </div>
 
-<p>
-Nutrition. Hydratation. Sommeil.
-Négliger un seul de ces piliers réduit les performances globales du sportif.
-</p>
+<div class="field">
+<input class="input" placeholder="Objectif 2">
+</div>
+
+<div class="field">
+<input class="input" placeholder="Objectif 3">
+</div>
 
 </div>
 
-</section>
+<div class="card">
 
-<footer class="footer">
+<div class="cardtitle">AXE Y.E.S.I À RENFORCER</div>
 
-<div class="footer-logo">
-Y.E.S.I CONCEPT
+<div class="row">
+
+<button class="save" style="background:#1f1f1f;color:var(--gold);border:1px solid var(--gold);">YES</button>
+
+<button class="save" style="background:#1f1f1f;color:var(--gold);border:1px solid var(--gold);">ESTIME</button>
+
+<button class="save" style="background:#1f1f1f;color:var(--gold);border:1px solid var(--gold);">SMART</button>
+
+<button class="save" style="background:#1f1f1f;color:var(--gold);border:1px solid var(--gold);">INVEST</button>
+
 </div>
 
-<p>
-Préparateur Mental Diplômé<br>
-Performance & Progression du Sportif
-</p>
+</div>
 
-</footer>
+<div class="card">
 
-<nav class="bottom-nav">
+<div class="cardtitle">HISTORIQUE RAPIDE</div>
 
-<a class="nav-item active" href="#">
-<div class="nav-icon">🏠</div>
-<div>Accueil</div>
-</a>
+<div class="history">
 
-<a class="nav-item" href="#guide">
-<div class="nav-icon">⚡</div>
-<div>Bases</div>
-</a>
+<div class="hitem">
+<div class="htitle">ENTRAINEMENT — 18/05</div>
+<div class="hdesc">
+Bonne intensité générale. Concentration correcte.
+</div>
+</div>
 
-<a class="nav-item" href="#guide">
-<div class="nav-icon">🥗</div>
-<div>Nutrition</div>
-</a>
+<div class="hitem">
+<div class="htitle">MATCH — 16/05</div>
+<div class="hdesc">
+Gestion émotionnelle positive malgré la pression.
+</div>
+</div>
 
-<a class="nav-item" href="#guide">
-<div class="nav-icon">💧</div>
-<div>Eau</div>
-</a>
+</div>
 
-</nav>
+</div>
+
+</div>
+
+<div class="bottom">
+
+<div class="bnav active">
+<div class="bicon">🏋️</div>
+TRAIN
+</div>
+
+<div class="bnav">
+<div class="bicon">⚽</div>
+MATCH
+</div>
+
+<div class="bnav">
+<div class="bicon">🧠</div>
+MENTAL
+</div>
+
+<div class="bnav">
+<div class="bicon">🍽️</div>
+NUTRI
+</div>
+
+<div class="bnav">
+<div class="bicon">📊</div>
+DATA
+</div>
+
+</div>
 
 </body>
 </html>

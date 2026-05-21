@@ -2,1156 +2,530 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Nutrition du Sportif – Y.E.S.I CONCEPT</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nutrition du Sportif — Y.E.S.I CONCEPT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
 <style>
-:root {
-  --gold: #C9A84C;
-  --gold-light: #E8C97A;
-  --gold-dim: #7A6230;
-  --dark: #0D0D0D;
-  --dark-2: #141414;
-  --dark-3: #1C1C1C;
-  --dark-4: #252525;
-  --white: #F5F2EC;
-  --white-dim: #9A9488;
-  --green: #4CAF7D;
-  --red: #E05252;
-  --blue: #4A90C4;
-  --nav-h: 60px;
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-}
-
-* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--dark);
-  color: var(--white);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  line-height: 1.65;
-  overflow-x: hidden;
-  padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 12px);
-}
-
-/* ── HERO COMPACT ── */
-.hero {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 28px 20px calc(28px + var(--nav-h));
-  position: relative;
-  overflow: hidden;
-  background: var(--dark);
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 90% 60% at 50% 30%, rgba(201,168,76,0.09) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-.hero-bg-text {
-  position: absolute;
-  top: -10px;
-  left: -8px;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(100px, 38vw, 220px);
-  color: rgba(201,168,76,0.035);
-  line-height: 1;
-  pointer-events: none;
-  letter-spacing: -3px;
-  user-select: none;
-}
-
-.hero-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.1s forwards;
-}
-
-.hero-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(68px, 22vw, 100px);
-  line-height: 0.88;
-  letter-spacing: 1px;
-  color: var(--white);
-  margin-bottom: 8px;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.25s forwards;
-}
-
-.hero-title em { color: var(--gold); font-style: normal; }
-
-.hero-sub {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(18px, 5.5vw, 28px);
-  letter-spacing: 3px;
-  color: var(--white-dim);
-  margin-bottom: 24px;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.35s forwards;
-}
-
-.hero-desc {
-  font-size: 13px;
-  color: var(--white-dim);
-  border-left: 2px solid var(--gold);
-  padding-left: 14px;
-  line-height: 1.7;
-  margin-bottom: 20px;
-  max-width: 340px;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.45s forwards;
-}
-
-.hero-source {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  color: var(--gold-dim);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.55s forwards;
-}
-
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 24px;
-  padding: 14px 24px;
-  background: var(--gold);
-  color: var(--dark);
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 16px;
-  letter-spacing: 2px;
-  border: none;
-  cursor: pointer;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.65s forwards;
-  width: fit-content;
-}
-
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(16px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-
-/* ── BOTTOM NAV ── */
-.bottom-nav {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 200;
-  background: var(--dark-2);
-  border-top: 1px solid rgba(201,168,76,0.15);
-  display: flex;
-  padding-bottom: var(--safe-bottom);
-  height: calc(var(--nav-h) + var(--safe-bottom));
-}
-
-.bn-item {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  padding: 8px 4px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: var(--white-dim);
-  transition: color 0.2s;
-  position: relative;
-}
-
-.bn-item::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 20%; right: 20%;
-  height: 2px;
-  background: var(--gold);
-  transform: scaleX(0);
-  transition: transform 0.2s;
-}
-
-.bn-item.active { color: var(--gold); }
-.bn-item.active::before { transform: scaleX(1); }
-
-.bn-icon { font-size: 18px; line-height: 1; }
-.bn-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 8px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-/* ── PAGES ── */
-.page {
-  display: none;
-  padding: 24px 18px 16px;
-  max-width: 480px;
-  margin: 0 auto;
-  animation: fadeUp 0.3s ease forwards;
-}
-.page.active { display: block; }
-
-/* ── PAGE HEADER ── */
-.page-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: var(--gold-dim);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-.page-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(44px, 13vw, 60px);
-  line-height: 0.9;
-  color: var(--white);
-  margin-bottom: 20px;
-}
-.page-title em { color: var(--gold); font-style: normal; }
-
-/* ── INTRO BOX ── */
-.intro-box {
-  background: var(--dark-3);
-  border-left: 3px solid var(--gold);
-  padding: 16px 18px;
-  margin-bottom: 24px;
-  font-size: 13px;
-  color: var(--white-dim);
-  line-height: 1.75;
-}
-.intro-box strong { color: var(--white); font-weight: 600; }
-
-/* ── MACRO CARDS (swipeable scroll) ── */
-.macro-scroll {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  margin: 0 -18px 24px;
-  padding: 0 18px 12px;
-  scrollbar-width: none;
-  scroll-snap-type: x mandatory;
-}
-.macro-scroll::-webkit-scrollbar { display: none; }
-
-.macro-card {
-  background: var(--dark-3);
-  border: 1px solid var(--dark-4);
-  padding: 20px 18px;
-  flex-shrink: 0;
-  width: 240px;
-  scroll-snap-align: start;
-  position: relative;
-  overflow: hidden;
-}
-.macro-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-}
-.macro-card.glucides::before { background: var(--gold); }
-.macro-card.proteines::before { background: var(--green); }
-.macro-card.lipides::before { background: var(--blue); }
-
-.mc-icon { font-size: 24px; margin-bottom: 10px; }
-.mc-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 26px;
-  letter-spacing: 2px;
-  margin-bottom: 3px;
-}
-.macro-card.glucides .mc-name { color: var(--gold); }
-.macro-card.proteines .mc-name { color: var(--green); }
-.macro-card.lipides .mc-name { color: var(--blue); }
-
-.mc-role {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--white-dim);
-  margin-bottom: 12px;
-}
-
-.mc-text { font-size: 12.5px; color: var(--white-dim); line-height: 1.65; margin-bottom: 12px; }
-
-.mc-dose {
-  background: var(--dark-4);
-  padding: 8px 12px;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: var(--white);
-  line-height: 1.5;
-}
-
-.scroll-hint {
-  text-align: center;
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  color: var(--gold-dim);
-  letter-spacing: 2px;
-  margin-top: -16px;
-  margin-bottom: 20px;
-}
-
-/* ── ACCORDION ── */
-.acc-item {
-  border: 1px solid var(--dark-4);
-  margin-bottom: 10px;
-  overflow: hidden;
-}
-
-.acc-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 18px;
-  cursor: pointer;
-  background: var(--dark-3);
-  user-select: none;
-  gap: 12px;
-}
-
-.acc-left { display: flex; align-items: center; gap: 12px; }
-
-.acc-dot {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 1.5px solid var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  color: var(--gold);
-  flex-shrink: 0;
-}
-
-.acc-title-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 18px;
-  letter-spacing: 1.5px;
-  color: var(--gold);
-}
-.acc-subtitle {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  color: var(--white-dim);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-top: 1px;
-}
-
-.acc-arrow {
-  font-size: 14px;
-  color: var(--gold-dim);
-  transition: transform 0.25s;
-  flex-shrink: 0;
-}
-.acc-item.open .acc-arrow { transform: rotate(180deg); }
-
-.acc-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-  background: var(--dark-2);
-}
-.acc-item.open .acc-body { max-height: 800px; }
-
-.acc-inner {
-  padding: 16px 18px 20px;
-}
-
-.acc-text { font-size: 13px; color: var(--white-dim); line-height: 1.75; margin-bottom: 14px; }
-.acc-text strong { color: var(--white); font-weight: 600; }
-
-.acc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.acc-list li {
-  font-size: 13px;
-  color: var(--white-dim);
-  padding-left: 14px;
-  position: relative;
-  line-height: 1.55;
-}
-.acc-list li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--gold);
-  font-size: 11px;
-  top: 1px;
-}
-
-/* ── CONCEPT BLOCK ── */
-.concept-block {
-  background: var(--dark-3);
-  border: 1px solid var(--dark-4);
-  padding: 18px 18px;
-  margin-bottom: 12px;
-}
-
-.cb-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 20px;
-  letter-spacing: 1.5px;
-  color: var(--gold);
-  margin-bottom: 10px;
-  line-height: 1.1;
-}
-
-.cb-text { font-size: 13px; color: var(--white-dim); line-height: 1.75; }
-.cb-text strong { color: var(--white); font-weight: 600; }
-
-/* ── ALERT ── */
-.alert {
-  display: flex;
-  gap: 12px;
-  padding: 14px 16px;
-  margin-bottom: 12px;
-  border: 1px solid;
-}
-.alert.warn { border-color: rgba(224,82,82,0.35); background: rgba(224,82,82,0.05); }
-.alert.tip  { border-color: rgba(201,168,76,0.28); background: rgba(201,168,76,0.05); }
-
-.alert-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
-.alert-text { font-size: 12.5px; color: var(--white-dim); line-height: 1.7; }
-.alert-text strong { color: var(--white); font-weight: 600; }
-
-/* ── REPAS BLOCK ── */
-.repas-block {
-  background: var(--dark-3);
-  border: 1px solid var(--dark-4);
-  padding: 18px;
-  margin-bottom: 12px;
-}
-
-.rb-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 20px;
-  letter-spacing: 1.5px;
-  color: var(--gold);
-  margin-bottom: 3px;
-}
-
-.rb-timing {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  color: var(--white-dim);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-
-.rb-items {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-
-.rb-item {
-  background: var(--dark-4);
-  padding: 9px 13px;
-  font-size: 12.5px;
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.rb-item .dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--gold);
-  flex-shrink: 0;
-}
-
-.rb-note {
-  font-size: 12px;
-  color: var(--white-dim);
-  font-style: italic;
-  border-top: 1px solid var(--dark-4);
-  padding-top: 12px;
-  line-height: 1.6;
-}
-
-/* ── HYDRO CARDS ── */
-.hydro-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.hydro-card {
-  flex: 1;
-  background: var(--dark-3);
-  border: 1px solid var(--dark-4);
-  padding: 16px 10px;
-  text-align: center;
-}
-
-.hc-phase {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 16px;
-  letter-spacing: 2px;
-  color: var(--gold);
-  margin-bottom: 6px;
-}
-
-.hc-qty {
-  font-family: 'DM Mono', monospace;
-  font-size: 14px;
-  color: var(--white);
-  margin-bottom: 6px;
-}
-
-.hc-text { font-size: 10.5px; color: var(--white-dim); line-height: 1.55; }
-
-/* ── CHECKLIST ── */
-.cl-section-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 18px;
-  letter-spacing: 2px;
-  color: var(--gold);
-  margin: 20px 0 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.cl-section-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: rgba(201,168,76,0.2);
-}
-
-.checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 6px; }
-
-.checklist li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 13px;
-  color: var(--white-dim);
-  line-height: 1.55;
-  padding: 10px 14px;
-  background: var(--dark-3);
-  border: 1px solid var(--dark-4);
-  cursor: pointer;
-  transition: background 0.15s;
-  user-select: none;
-}
-
-.checklist li.done {
-  background: rgba(201,168,76,0.06);
-  border-color: rgba(201,168,76,0.2);
-  color: var(--white-dim);
-  text-decoration: line-through;
-  text-decoration-color: var(--gold-dim);
-}
-
-.cb {
-  width: 22px;
-  height: 22px;
-  border: 1.5px solid var(--gold-dim);
-  background: var(--dark-4);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  color: var(--gold);
-  transition: all 0.2s;
-  margin-top: 0px;
-}
-.checklist li.done .cb {
-  background: var(--gold);
-  color: var(--dark);
-  border-color: var(--gold);
-}
-
-.cl-progress {
-  background: var(--dark-4);
-  height: 3px;
-  margin-bottom: 20px;
-  overflow: hidden;
-}
-.cl-progress-bar {
-  height: 100%;
-  background: var(--gold);
-  transition: width 0.3s ease;
-  width: 0%;
-}
-
-.cl-score {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--gold-dim);
-  letter-spacing: 2px;
-  text-align: right;
-  margin-bottom: 4px;
-}
-
-/* ── FOOTER ── */
-.page-footer {
-  margin-top: 32px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(201,168,76,0.1);
-  text-align: center;
-}
-.pf-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 18px;
-  letter-spacing: 5px;
-  color: var(--gold);
-  margin-bottom: 6px;
-}
-.pf-text {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  color: var(--gold-dim);
-  letter-spacing: 1px;
-  line-height: 1.7;
-}
-
-/* ── SECTION DIVIDER ── */
-.sdiv {
-  height: 1px;
-  background: rgba(201,168,76,0.08);
-  margin: 20px 0;
+
+:root{
+--gold:#C9A84C;
+--gold-dark:#8B6B2B;
+--bg:#0D0D0D;
+--bg2:#171717;
+--bg3:#202020;
+--text:#F5F2EC;
+--text2:#A8A093;
+--green:#46B07A;
+--red:#D95B5B;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+font-family:'DM Sans',sans-serif;
+overflow-x:hidden;
+}
+
+.hero{
+min-height:100vh;
+padding:40px 22px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+inset:0;
+background:radial-gradient(circle at top, rgba(201,168,76,0.12), transparent 60%);
+pointer-events:none;
+}
+
+.bg-word{
+position:absolute;
+top:-20px;
+left:-10px;
+font-size:170px;
+font-family:'Bebas Neue',sans-serif;
+color:rgba(201,168,76,0.04);
+line-height:1;
+pointer-events:none;
+}
+
+.hero-tag{
+font-size:10px;
+letter-spacing:3px;
+color:var(--gold);
+text-transform:uppercase;
+margin-bottom:20px;
+position:relative;
+z-index:2;
+}
+
+.hero h1{
+font-family:'Bebas Neue',sans-serif;
+font-size:82px;
+line-height:0.88;
+letter-spacing:2px;
+margin-bottom:16px;
+position:relative;
+z-index:2;
+}
+
+.hero h1 span{
+color:var(--gold);
+}
+
+.hero-text{
+font-size:14px;
+line-height:1.8;
+color:var(--text2);
+max-width:520px;
+margin-bottom:30px;
+position:relative;
+z-index:2;
+}
+
+.hero-btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+height:58px;
+padding:0 28px;
+background:var(--gold);
+color:#000;
+text-decoration:none;
+font-family:'Bebas Neue',sans-serif;
+font-size:18px;
+letter-spacing:2px;
+width:100%;
+max-width:320px;
+position:relative;
+z-index:2;
+}
+
+.section{
+padding:70px 22px;
+border-top:1px solid rgba(255,255,255,0.06);
+}
+
+.section-title{
+font-family:'Bebas Neue',sans-serif;
+font-size:56px;
+line-height:0.92;
+margin-bottom:28px;
+}
+
+.section-title span{
+color:var(--gold);
+}
+
+.card{
+background:var(--bg2);
+border:1px solid rgba(255,255,255,0.05);
+padding:22px;
+margin-bottom:16px;
+}
+
+.card-top{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:14px;
+}
+
+.icon{
+width:42px;
+height:42px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(201,168,76,0.10);
+font-size:20px;
+}
+
+.card h3{
+font-family:'Bebas Neue',sans-serif;
+font-size:28px;
+letter-spacing:1px;
+}
+
+.card p{
+font-size:14px;
+line-height:1.8;
+color:var(--text2);
+}
+
+.highlight{
+color:var(--gold);
+font-weight:700;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr;
+gap:16px;
+}
+
+.mini-card{
+background:var(--bg2);
+padding:20px;
+border-left:3px solid var(--gold);
+}
+
+.mini-card h4{
+font-family:'Bebas Neue',sans-serif;
+font-size:24px;
+margin-bottom:10px;
+letter-spacing:1px;
 }
+
+.mini-card p{
+font-size:13px;
+line-height:1.7;
+color:var(--text2);
+}
+
+.warning{
+background:rgba(217,91,91,0.08);
+border:1px solid rgba(217,91,91,0.20);
+padding:18px;
+margin-top:18px;
+}
+
+.warning-title{
+font-family:'Bebas Neue',sans-serif;
+font-size:24px;
+margin-bottom:8px;
+color:var(--red);
+}
+
+.warning p{
+font-size:13px;
+line-height:1.7;
+color:var(--text2);
+}
+
+.footer{
+padding:50px 22px 100px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,0.05);
+}
+
+.footer-logo{
+font-family:'Bebas Neue',sans-serif;
+font-size:24px;
+letter-spacing:5px;
+color:var(--gold);
+margin-bottom:10px;
+}
+
+.footer p{
+font-size:11px;
+letter-spacing:2px;
+text-transform:uppercase;
+color:#7E786F;
+line-height:1.8;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+height:72px;
+background:#111;
+border-top:1px solid rgba(201,168,76,0.15);
+display:flex;
+z-index:999;
+backdrop-filter:blur(10px);
+}
+
+.nav-item{
+flex:1;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-decoration:none;
+color:#888;
+font-size:11px;
+gap:4px;
+}
+
+.nav-item.active{
+color:var(--gold);
+}
+
+.nav-icon{
+font-size:18px;
+}
+
+@media(min-width:768px){
+
+.hero{
+padding:60px;
+}
+
+.section{
+padding:90px 60px;
+}
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.hero h1{
+font-size:120px;
+}
+
+}
+
 </style>
 </head>
+
 <body>
 
-<!-- ═══════════════ HERO ═══════════════ -->
-<section class="hero" id="home">
-  <div class="hero-bg-text">FOOD</div>
-  <div class="hero-tag">Y.E.S.I CONCEPT — Guide Pratique</div>
-  <h1 class="hero-title">NUTRITION<br><em>DU</em><br>SPORTIF</h1>
-  <p class="hero-sub">Ce que tu manges, c'est ce que tu deviens</p>
-  <p class="hero-desc">Un guide complet pour alimenter ton corps avant, pendant et après l'effort — basé sur les travaux de Nicolas Aubineau, Diététicien Nutritionniste du sport.</p>
-  <p class="hero-source">nicolas-aubineau.com</p>
-  <button class="hero-cta" onclick="goTo('bases')">COMMENCER ↓</button>
+<section class="hero">
+
+<div class="bg-word">FOOD</div>
+
+<div class="hero-tag">
+Y.E.S.I CONCEPT — PERFORMANCE
+</div>
+
+<h1>
+NUTRITION<br>
+<span>DU</span><br>
+SPORTIF
+</h1>
+
+<p class="hero-text">
+Ton alimentation influence ton énergie, ta récupération, ta concentration et tes performances.
+Ce guide a été pensé pour les sportifs qui veulent progresser durablement.
+</p>
+
+<a href="#guide" class="hero-btn">
+COMMENCER ↓
+</a>
+
 </section>
 
-<!-- ═══════════════ PAGE : BASES ═══════════════ -->
-<div id="bases" class="page">
-  <p class="page-label">01 — Fondamentaux</p>
-  <h2 class="page-title">Les <em>3 Macros</em><br>du Sportif</h2>
+<section class="section" id="guide">
 
-  <div class="intro-box">
-    <strong>Pourquoi l'alimentation change tout.</strong><br>
-    Ton corps transforme ce que tu manges en énergie mécanique. Sans carburant adapté, même le meilleur entraînement ne donnera pas de résultats. Les glucides, protéines et lipides sont les 3 piliers — chacun a un rôle distinct, aucun ne s'improvise.
-  </div>
+<h2 class="section-title">
+LES BASES<br>
+<span>ESSENTIELLES</span>
+</h2>
 
-  <!-- Macro cards scroll horizontal -->
-  <div class="macro-scroll">
-    <div class="macro-card glucides">
-      <div class="mc-icon">⚡</div>
-      <div class="mc-name">Glucides</div>
-      <div class="mc-role">Carburant principal</div>
-      <p class="mc-text">Le macro le plus important pour le sportif. Ils alimentent les muscles sous forme de glycogène. Sans eux, la performance s'effondre.</p>
-      <div class="mc-dose">Endurance : 10–12 g/kg/jour<br>Effort intense : priorité absolue</div>
-    </div>
-    <div class="macro-card proteines">
-      <div class="mc-icon">🔧</div>
-      <div class="mc-name">Protéines</div>
-      <div class="mc-role">Construction & Réparation</div>
-      <p class="mc-text">Réparent les fibres musculaires endommagées, limitent la casse et favorisent la reconstruction. Ni trop, ni trop peu.</p>
-      <div class="mc-dose">Endurance : 1.2–1.5 g/kg/jour<br>Force : jusqu'à 2 g/kg/jour</div>
-    </div>
-    <div class="macro-card lipides">
-      <div class="mc-icon">🛡</div>
-      <div class="mc-name">Lipides</div>
-      <div class="mc-role">Énergie durable & Protection</div>
-      <p class="mc-text">Souvent mal-aimés, mais essentiels. Associés aux glucides + protéines après l'effort, ils boostent la synthèse protéique.</p>
-      <div class="mc-dose">Ne jamais supprimer<br>Oméga 3 : olive, colza, noix</div>
-    </div>
-  </div>
-  <p class="scroll-hint">← GLISSE POUR VOIR TOUT →</p>
+<div class="card">
 
-  <div class="concept-block">
-    <div class="cb-title">Le Glycogène — Ta batterie</div>
-    <p class="cb-text">C'est la forme stockée des glucides dans tes muscles et ton foie. Quand elle se vide → jambes lourdes, tête vide, performance qui s'effondre.<br><br><strong>À retenir :</strong> plus les réserves sont pleines au départ, plus tu tiens longtemps à haute intensité. Ça se prépare 2 jours avant, pas juste la veille.</p>
-  </div>
-
-  <div class="concept-block">
-    <div class="cb-title">L'Index Glycémique (IG)</div>
-    <p class="cb-text">L'IG mesure la vitesse à laquelle un aliment fait monter ta glycémie. La notion "sucre lent / sucre rapide" est obsolète.<br><br><strong>IG bas/modéré</strong> (pâtes complètes, riz brun) → énergie progressive → avant l'effort<br><strong>IG élevé</strong> (fruits, miel, boissons sport) → énergie rapide → pendant et juste après</p>
-  </div>
-
-  <div class="alert warn">
-    <div class="alert-icon">⚠️</div>
-    <div class="alert-text"><strong>Erreur fréquente :</strong> apport glucidique trop faible + apport lipidique trop élevé = glycogène insuffisant, récupération ratée, sous-performance.</div>
-  </div>
-
-  <div class="page-footer">
-    <div class="pf-logo">Y.E.S.I CONCEPT</div>
-    <p class="pf-text">Source : Nicolas Aubineau · nicolas-aubineau.com</p>
-  </div>
+<div class="card-top">
+<div class="icon">⚡</div>
+<h3>GLUCIDES</h3>
 </div>
 
-<!-- ═══════════════ PAGE : AVANT ═══════════════ -->
-<div id="avant" class="page">
-  <p class="page-label">02 — Préparation</p>
-  <h2 class="page-title">Avant<br><em>l'Effort</em></h2>
+<p>
+Le carburant principal du sportif.
+Les glucides remplissent les réserves de <span class="highlight">glycogène</span> nécessaires pour tenir l'intensité pendant un match ou un entraînement.
+</p>
 
-  <div class="intro-box">
-    <strong>Objectif :</strong> arriver avec les réservoirs pleins, sans inconfort digestif, bien hydraté. Ce qui se passe dans les <strong>48h avant</strong> un match compte autant que le repas d'avant-match.
-  </div>
-
-  <!-- Accordion timeline -->
-  <div class="acc-item open" onclick="toggleAcc(this)">
-    <div class="acc-header">
-      <div class="acc-left">
-        <div class="acc-dot">J-2</div>
-        <div>
-          <div class="acc-title-text">2 jours avant</div>
-          <div class="acc-subtitle">Charge glycogénique</div>
-        </div>
-      </div>
-      <span class="acc-arrow">▾</span>
-    </div>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p class="acc-text">Augmenter progressivement les glucides complexes pour saturer les réserves musculaires et hépatiques.</p>
-        <ul class="acc-list">
-          <li>Pâtes complètes, riz brun, pain aux céréales</li>
-          <li>Limiter les graisses lourdes et les fibres en excès</li>
-          <li>Hydratation régulière toute la journée</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="acc-item" onclick="toggleAcc(this)">
-    <div class="acc-header">
-      <div class="acc-left">
-        <div class="acc-dot">J-1</div>
-        <div>
-          <div class="acc-title-text">La veille</div>
-          <div class="acc-subtitle">8 à 12h avant l'effort</div>
-        </div>
-      </div>
-      <span class="acc-arrow">▾</span>
-    </div>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p class="acc-text">Repas principal de charge. Connu, toléré digestivement, sans surprise. C'est la base de tes réserves pour demain.</p>
-        <ul class="acc-list">
-          <li>Pâtes complètes al dente (cuire trop = IG augmente)</li>
-          <li>Protéines maigres : poulet, dinde, poisson</li>
-          <li>Légumes cuits (plus digestes que les crudités)</li>
-          <li>Éviter : friture, alcool, aliments non habituels</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="acc-item" onclick="toggleAcc(this)">
-    <div class="acc-header">
-      <div class="acc-left">
-        <div class="acc-dot">H-3</div>
-        <div>
-          <div class="acc-title-text">Repas pré-match</div>
-          <div class="acc-subtitle">3 heures avant l'effort</div>
-        </div>
-      </div>
-      <span class="acc-arrow">▾</span>
-    </div>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p class="acc-text">Dernier vrai repas. Maintenir les réserves, hydrater, sans surcharger. Le stress pré-compétitif ralentit la digestion — aliments légers uniquement.</p>
-        <ul class="acc-list">
-          <li>Aliments à IG bas/modéré uniquement</li>
-          <li>Pain complet, riz, pâtes légères — quantité raisonnable</li>
-          <li>Protéines légères : œuf, blanc de poulet</li>
-          <li>Eau : 150–200 ml toutes les 15–20 min</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="acc-item" onclick="toggleAcc(this)">
-    <div class="acc-header">
-      <div class="acc-left">
-        <div class="acc-dot">H-1</div>
-        <div>
-          <div class="acc-title-text">Boisson d'attente</div>
-          <div class="acc-subtitle">Dernière heure avant</div>
-        </div>
-      </div>
-      <span class="acc-arrow">▾</span>
-    </div>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p class="acc-text">Le stress pré-compétitif crée un risque d'hypoglycémie dans la dernière heure. La boisson d'attente maintient la glycémie sans solliciter la digestion.</p>
-        <ul class="acc-list">
-          <li>Boisson d'attente (eau + maltodextrine + minéraux)</li>
-          <li>Petites quantités régulières — ne pas avaler d'un coup</li>
-          <li>Alternative : compote, banane très mûre</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="sdiv"></div>
-
-  <div class="repas-block">
-    <div class="rb-title">Exemple Petit-Déj Pré-Match</div>
-    <div class="rb-timing">Match en fin de matinée — pris 3h avant</div>
-    <div class="rb-items">
-      <div class="rb-item"><div class="dot"></div> Pain complet ou céréales peu sucrées</div>
-      <div class="rb-item"><div class="dot"></div> Miel ou confiture (IG modéré)</div>
-      <div class="rb-item"><div class="dot"></div> Fromage blanc ou yaourt nature</div>
-      <div class="rb-item"><div class="dot"></div> Banane bien mûre</div>
-      <div class="rb-item"><div class="dot"></div> Petit verre de jus 100% pur jus</div>
-      <div class="rb-item"><div class="dot"></div> Eau en petites quantités régulières</div>
-    </div>
-    <p class="rb-note">💡 Alternative : le Gâteau Sport maison — très digeste, pratique pour les lève-tard.</p>
-  </div>
-
-  <div class="alert tip">
-    <div class="alert-icon">💡</div>
-    <div class="alert-text"><strong>Règle absolue :</strong> zéro aliment nouveau le jour du match. Ce qui n'a pas été testé à l'entraînement ne se teste pas en compétition.</div>
-  </div>
-
-  <div class="page-footer">
-    <div class="pf-logo">Y.E.S.I CONCEPT</div>
-    <p class="pf-text">Source : Nicolas Aubineau · nicolas-aubineau.com</p>
-  </div>
 </div>
 
-<!-- ═══════════════ PAGE : PENDANT ═══════════════ -->
-<div id="pendant" class="page">
-  <p class="page-label">03 — En Action</p>
-  <h2 class="page-title">Pendant<br><em>l'Effort</em></h2>
+<div class="card">
 
-  <div class="intro-box">
-    <strong>Objectif :</strong> soutenir l'énergie, retarder l'épuisement du glycogène, maintenir la glycémie et prévenir la déshydratation. Pour un match de foot (90 min), cette phase est souvent sous-estimée.
-  </div>
-
-  <div class="concept-block">
-    <div class="cb-title">⚡ La Boisson Énergétique</div>
-    <p class="cb-text">L'outil le plus complet pendant l'effort. Elle apporte simultanément glucides (maltodextrine, glucose, fructose) + électrolytes + parfois vitamines.<br><br><strong>1 boisson de l'effort = 2 à 3 gels ou barres énergétiques.</strong><br><br>Tolérance digestive individuelle — toujours tester à l'entraînement d'abord.</p>
-  </div>
-
-  <div class="concept-block">
-    <div class="cb-title">⏱ Mi-temps — Ne pas rater</div>
-    <p class="cb-text">Opportunité de recharger partiellement. Quantité individuelle selon tolérance digestive, mais ne pas négliger cette phase.<br><br>Une boisson glucidique + hydratation = seconde mi-temps à niveau.<br><br>Éviter : solides lourds, boissons gazeuses, sodas colas.</p>
-  </div>
-
-  <div class="alert warn">
-    <div class="alert-icon">⚠️</div>
-    <div class="alert-text"><strong>Effort &gt; 1h :</strong> apport glucidique toutes les 30–60 min. Attendre d'avoir faim ou soif = trop tard. L'hypoglycémie s'installe avant que tu la ressentes.</div>
-  </div>
-
-  <div class="concept-block">
-    <div class="cb-title">❌ À ne JAMAIS faire</div>
-    <p class="cb-text">
-      <strong>Alcool</strong> — déshydrate, perturbe le métabolisme<br>
-      <strong>Boissons énergisantes</strong> (Red Bull…) — non adaptées<br>
-      <strong>Sodas colas</strong> — acidifient, inconfort digestif<br>
-      <strong>Aliments gras ou fibreux</strong> — lents à digérer<br>
-      <strong>Grosses quantités d'un coup</strong> — favoriser le fractionné
-    </p>
-  </div>
-
-  <div class="page-footer">
-    <div class="pf-logo">Y.E.S.I CONCEPT</div>
-    <p class="pf-text">Source : Nicolas Aubineau · nicolas-aubineau.com</p>
-  </div>
+<div class="card-top">
+<div class="icon">🔧</div>
+<h3>PROTÉINES</h3>
 </div>
 
-<!-- ═══════════════ PAGE : APRÈS ═══════════════ -->
-<div id="apres" class="page">
-  <p class="page-label">04 — Récupération</p>
-  <h2 class="page-title">Après<br><em>l'Effort</em></h2>
+<p>
+Essentielles pour réparer les fibres musculaires et soutenir la récupération après l'effort.
+</p>
 
-  <div class="intro-box">
-    <strong>La récupération est aussi importante que l'entraînement.</strong> Ce qui se passe dans les 30 premières minutes et les 3 heures suivantes détermine ta capacité à reperformer rapidement.
-  </div>
-
-  <div class="acc-item open" onclick="toggleAcc(this)">
-    <div class="acc-header">
-      <div class="acc-left">
-        <div class="acc-dot">+30'</div>
-        <div>
-          <div class="acc-title-text">Fenêtre métabolique</div>
-          <div class="acc-subtitle">PRIORITÉ ABSOLUE</div>
-        </div>
-      </div>
-      <span class="acc-arrow">▾</span>
-    </div>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p class="acc-text">Ton corps est au maximum de son efficacité pour absorber glucides et protéines. Passé 30 min, la fenêtre se ferme et la resynthèse chute.</p>
-        <ul class="acc-list">
-          <li>Boisson de récupération : glucides + protéines végétales + oméga 3</li>
-          <li>10 à 20g de protéines (footballeur) — 10 à 30g selon intensité</li>
-          <li>Glucides simultanés pour potentialiser la synthèse protéique</li>
-          <li>Hydratation intensive — l'effort n'a compensé que la moitié des pertes</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="acc-item" onclick="toggleAcc(this)">
-    <div class="acc-header">
-      <div class="acc-left">
-        <div class="acc-dot">+3h</div>
-        <div>
-          <div class="acc-title-text">Repas de récupération</div>
-          <div class="acc-subtitle">Dans les 3h après l'effort</div>
-        </div>
-      </div>
-      <span class="acc-arrow">▾</span>
-    </div>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p class="acc-text">Plus riche que le repas d'avant-match, toujours digeste. L'association glucides + protéines + lipides maximise la récupération globale.</p>
-        <ul class="acc-list">
-          <li>Légumes de saison + vinaigrette huile olive/colza</li>
-          <li>Viande peu grasse (poulet, dinde) ou poisson ou œufs</li>
-          <li>Féculents : riz, quinoa, pâtes complètes</li>
-          <li>Fruits frais ou secs (raisins, abricots, figues)</li>
-          <li>Produit laitier : yaourt, fromage blanc, lait végétal</li>
-          <li>Continuer à s'hydrater jusqu'au repas</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="sdiv"></div>
-
-  <div class="repas-block">
-    <div class="rb-title">Aliments stars récupération</div>
-    <div class="rb-timing">À intégrer dans les heures post-effort</div>
-    <div class="rb-items">
-      <div class="rb-item"><div class="dot"></div> Fruits secs (raisins, abricots, figues)</div>
-      <div class="rb-item"><div class="dot"></div> Noix, amandes, noisettes</div>
-      <div class="rb-item"><div class="dot"></div> Riz, quinoa, tapioca</div>
-      <div class="rb-item"><div class="dot"></div> Miel, sirop d'agave</div>
-      <div class="rb-item"><div class="dot"></div> Fromage blanc 0% MG</div>
-      <div class="rb-item"><div class="dot"></div> Boisson bicarbonatée (gazeuse)</div>
-    </div>
-    <p class="rb-note">⛔ Pas de bière, soda ou boisson énergisante après le match — même si c'est tentant.</p>
-  </div>
-
-  <div class="alert tip">
-    <div class="alert-icon">🏆</div>
-    <div class="alert-text"><strong>Trio gagnant :</strong> glucides (recharge glycogène) + protéines (répare le muscle) + lipides (potentialise la synthèse). Les 3 ensemble sont plus efficaces que séparément.</div>
-  </div>
-
-  <div class="page-footer">
-    <div class="pf-logo">Y.E.S.I CONCEPT</div>
-    <p class="pf-text">Source : Nicolas Aubineau · nicolas-aubineau.com</p>
-  </div>
 </div>
 
-<!-- ═══════════════ PAGE : HYDRATATION ═══════════════ -->
-<div id="hydratation" class="page">
-  <p class="page-label">05 — Eau & Électrolytes</p>
-  <h2 class="page-title"><em>Hydra-</em><br>tation</h2>
+<div class="card">
 
-  <div class="intro-box">
-    <strong>Aussi importante que l'alimentation, voire plus.</strong> Gérer son hydratation, c'est anticiper les pertes — pas juste remplir une gourde.
-  </div>
-
-  <div class="hydro-row">
-    <div class="hydro-card">
-      <div class="hc-phase">Avant</div>
-      <div class="hc-qty">150–200 ml</div>
-      <div class="hc-text">Toutes les 15–20 min. Min. 500 ml/heure. Ne pas attendre la soif.</div>
-    </div>
-    <div class="hydro-card">
-      <div class="hc-phase">Pendant</div>
-      <div class="hc-qty">Fractionné</div>
-      <div class="hc-text">Petites quantités régulières. Boisson sport pour efforts longs.</div>
-    </div>
-    <div class="hydro-card">
-      <div class="hc-phase">Après</div>
-      <div class="hc-qty">Intensif</div>
-      <div class="hc-text">Réhydratation continue jusqu'au repas. Boisson bicarbonatée idéale.</div>
-    </div>
-  </div>
-
-  <div class="concept-block">
-    <div class="cb-title">Eau + Électrolytes</div>
-    <p class="cb-text">La transpiration fait perdre de l'eau mais aussi des <strong>électrolytes</strong> (sodium, potassium, magnésium). Boire que de l'eau après un effort intense déséquilibre ce ratio. Une boisson de récupération ou un bouillon de légumes compense les deux.<br><br><strong>À bannir :</strong> alcool, boissons énergisantes, sodas — déshydratent ou perturbent l'équilibre.</p>
-  </div>
-
-  <div class="concept-block">
-    <div class="cb-title">Les 3 Piliers Vitaux</div>
-    <p class="cb-text">
-      <strong>1. Alimentation</strong> — carburant et matériaux de construction<br>
-      <strong>2. Hydratation</strong> — régulation thermique, transport des nutriments<br>
-      <strong>3. Sommeil</strong> — régénération globale, consolidation motrice<br><br>
-      Négliger l'un dégrade les deux autres. Le sommeil insuffisant annule les bénéfices d'une bonne nutrition.
-    </p>
-  </div>
-
-  <div class="alert warn">
-    <div class="alert-icon">⚠️</div>
-    <div class="alert-text"><strong>1–2% de déshydratation</strong> suffit à diminuer la concentration, la coordination et l'endurance. La sensation de soif arrive trop tard — anticiper toujours.</div>
-  </div>
-
-  <div class="page-footer">
-    <div class="pf-logo">Y.E.S.I CONCEPT</div>
-    <p class="pf-text">Source : Nicolas Aubineau · nicolas-aubineau.com</p>
-  </div>
+<div class="card-top">
+<div class="icon">🛡️</div>
+<h3>LIPIDES</h3>
 </div>
 
-<!-- ═══════════════ PAGE : CHECKLIST ═══════════════ -->
-<div id="checklist" class="page">
-  <p class="page-label">06 — Action</p>
-  <h2 class="page-title">Check<br><em>Match</em></h2>
+<p>
+Les bonnes graisses participent au fonctionnement hormonal, à l'énergie longue durée et à la récupération globale.
+</p>
 
-  <div class="intro-box">
-    Coche chaque étape au fil du temps. Tout ce que tu ne prépares pas, ton adversaire en bénéficiera.
-  </div>
-
-  <div class="cl-score" id="cl-score">0 / 18 complétés</div>
-  <div class="cl-progress"><div class="cl-progress-bar" id="cl-bar"></div></div>
-
-  <div class="cl-section-title">J-2 / J-1</div>
-  <ul class="checklist" id="cl">
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Augmenter les glucides complexes (pâtes, riz, pain complet)</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Limiter graisses saturées et aliments difficiles à digérer</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Zéro alcool dans les 48h avant le match</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Hydratation régulière toute la journée</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Préparer la boisson d'attente et/ou le Gâteau Sport</span></li>
-  </ul>
-
-  <div class="cl-section-title">Jour du match</div>
-  <ul class="checklist" id="cl">
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Repas pré-compétitif 3h avant (IG bas, digeste, connu)</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Hydratation : 150–200 ml toutes les 15–20 min dès H-2</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Zéro aliment nouveau ou non testé</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Boisson d'attente dans la dernière heure</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Boisson énergétique disponible pour la mi-temps</span></li>
-  </ul>
-
-  <div class="cl-section-title">Post-match — 30 min</div>
-  <ul class="checklist" id="cl">
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Boisson de récupération dans les 30 min (fenêtre métabolique)</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Hydratation intensive — eau ou boisson bicarbonatée</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Fruits secs ou frais en attendant le repas</span></li>
-  </ul>
-
-  <div class="cl-section-title">Repas récupération</div>
-  <ul class="checklist" id="cl">
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Légumes + féculents (riz, quinoa, pâtes) + protéines maigres</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Matières grasses de qualité (olive, noix, amandes)</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Dessert fruité ou yaourt</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Continuer à s'hydrater</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Zéro alcool, soda ou boisson énergisante</span></li>
-  </ul>
-
-  <div class="alert tip" style="margin-top:16px;">
-    <div class="alert-icon">🏆</div>
-    <div class="alert-text"><strong>Rappel :</strong> chaque athlète est unique. Ce qui fonctionne pour ton coéquipier ne fonctionnera pas forcément pour toi. Teste, observe, ajuste.</div>
-  </div>
-
-  <div class="page-footer">
-    <div class="pf-logo">Y.E.S.I CONCEPT</div>
-    <p class="pf-text">Source : Nicolas Aubineau · nicolas-aubineau.com<br>Document pédagogique — bénéficiaires Y.E.S.I</p>
-  </div>
 </div>
 
-<!-- ═══════════════ BOTTOM NAV ═══════════════ -->
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+AVANT<br>
+<span>LE MATCH</span>
+</h2>
+
+<div class="grid">
+
+<div class="mini-card">
+<h4>J-2 / J-1</h4>
+<p>
+Augmenter progressivement les glucides complexes et maintenir une hydratation régulière.
+</p>
+</div>
+
+<div class="mini-card">
+<h4>H-3</h4>
+<p>
+Repas digeste, connu et équilibré. Éviter les aliments gras et difficiles à digérer.
+</p>
+</div>
+
+<div class="mini-card">
+<h4>H-1</h4>
+<p>
+Petites quantités d'eau régulières et éventuellement une boisson d'attente adaptée.
+</p>
+</div>
+
+<div class="mini-card">
+<h4>IMPORTANT</h4>
+<p>
+Ne jamais tester un nouvel aliment le jour du match.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+APRÈS<br>
+<span>L'EFFORT</span>
+</h2>
+
+<div class="card">
+
+<div class="card-top">
+<div class="icon">🔄</div>
+<h3>RÉCUPÉRATION</h3>
+</div>
+
+<p>
+Les 30 premières minutes après l'effort sont essentielles.
+Associer glucides + protéines + hydratation permet une récupération plus rapide et plus efficace.
+</p>
+
+</div>
+
+<div class="warning">
+
+<div class="warning-title">
+À ÉVITER
+</div>
+
+<p>
+Alcool, boissons énergisantes, sodas et repas trop gras après l'effort.
+Ils ralentissent la récupération et augmentent la fatigue.
+</p>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+HYDRA-<br>
+<span>TATION</span>
+</h2>
+
+<div class="card">
+
+<div class="card-top">
+<div class="icon">💧</div>
+<h3>EAU & ÉLECTROLYTES</h3>
+</div>
+
+<p>
+Boire uniquement quand la soif apparaît est déjà trop tard.
+L'hydratation doit être régulière avant, pendant et après l'effort.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="card-top">
+<div class="icon">🏆</div>
+<h3>LES 3 PILIERS</h3>
+</div>
+
+<p>
+Nutrition. Hydratation. Sommeil.
+Négliger un seul de ces piliers réduit les performances globales du sportif.
+</p>
+
+</div>
+
+</section>
+
+<footer class="footer">
+
+<div class="footer-logo">
+Y.E.S.I CONCEPT
+</div>
+
+<p>
+Préparateur Mental Diplômé<br>
+Performance & Progression du Sportif
+</p>
+
+</footer>
+
 <nav class="bottom-nav">
-  <button class="bn-item" onclick="goTo('bases')">
-    <span class="bn-icon">⚡</span>
-    <span class="bn-label">Bases</span>
-  </button>
-  <button class="bn-item" onclick="goTo('avant')">
-    <span class="bn-icon">🕐</span>
-    <span class="bn-label">Avant</span>
-  </button>
-  <button class="bn-item" onclick="goTo('pendant')">
-    <span class="bn-icon">▶</span>
-    <span class="bn-label">Pendant</span>
-  </button>
-  <button class="bn-item" onclick="goTo('apres')">
-    <span class="bn-icon">🔄</span>
-    <span class="bn-label">Après</span>
-  </button>
-  <button class="bn-item" onclick="goTo('hydratation')">
-    <span class="bn-icon">💧</span>
-    <span class="bn-label">Eau</span>
-  </button>
-  <button class="bn-item" onclick="goTo('checklist')">
-    <span class="bn-icon">✓</span>
-    <span class="bn-label">Check</span>
-  </button>
+
+<a class="nav-item active" href="#">
+<div class="nav-icon">🏠</div>
+<div>Accueil</div>
+</a>
+
+<a class="nav-item" href="#guide">
+<div class="nav-icon">⚡</div>
+<div>Bases</div>
+</a>
+
+<a class="nav-item" href="#guide">
+<div class="nav-icon">🥗</div>
+<div>Nutrition</div>
+</a>
+
+<a class="nav-item" href="#guide">
+<div class="nav-icon">💧</div>
+<div>Eau</div>
+</a>
+
 </nav>
 
-<script>
-const pages = ['bases','avant','pendant','apres','hydratation','checklist'];
-
-function goTo(id) {
-  // Hide hero
-  document.getElementById('home').style.display = 'none';
-
-  // Deactivate all
-  pages.forEach(p => {
-    document.getElementById(p).classList.remove('active');
-  });
-  document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
-
-  // Activate target
-  document.getElementById(id).classList.add('active');
-  const idx = pages.indexOf(id);
-  document.querySelectorAll('.bn-item')[idx].classList.add('active');
-
-  // Scroll top
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function toggleAcc(item) {
-  item.classList.toggle('open');
-}
-
-function toggleCheck(li) {
-  li.classList.toggle('done');
-  li.querySelector('.cb').textContent = li.classList.contains('done') ? '✓' : '';
-  updateProgress();
-}
-
-function updateProgress() {
-  const all = document.querySelectorAll('.checklist li');
-  const done = document.querySelectorAll('.checklist li.done');
-  const pct = all.length ? (done.length / all.length * 100) : 0;
-  document.getElementById('cl-bar').style.width = pct + '%';
-  document.getElementById('cl-score').textContent = done.length + ' / ' + all.length + ' complétés';
-}
-
-// Init: show hero, no page active
-document.getElementById('home').style.display = '';
-</script>
 </body>
 </html>

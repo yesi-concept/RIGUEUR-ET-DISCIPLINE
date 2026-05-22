@@ -37,7 +37,6 @@ body {
   padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 12px);
 }
 
-/* ── HERO COMPACT ── */
 .hero {
   min-height: 100svh;
   display: flex;
@@ -149,7 +148,6 @@ body {
   to   { opacity:1; transform:translateY(0); }
 }
 
-/* ── BOTTOM NAV ── */
 .bottom-nav {
   position: fixed;
   bottom: 0; left: 0; right: 0;
@@ -199,7 +197,6 @@ body {
   white-space: nowrap;
 }
 
-/* ── PAGES ── */
 .page {
   display: none;
   padding: 24px 18px 16px;
@@ -209,7 +206,6 @@ body {
 }
 .page.active { display: block; }
 
-/* ── PAGE HEADER ── */
 .page-label {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
@@ -228,7 +224,6 @@ body {
 }
 .page-title em { color: var(--gold); font-style: normal; }
 
-/* ── INTRO BOX ── */
 .intro-box {
   background: var(--dark-3);
   border-left: 3px solid var(--gold);
@@ -240,7 +235,6 @@ body {
 }
 .intro-box strong { color: var(--white); font-weight: 600; }
 
-/* ── MACRO CARDS (swipeable scroll) ── */
 .macro-scroll {
   display: flex;
   gap: 12px;
@@ -313,7 +307,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* ── ACCORDION ── */
 .acc-item {
   border: 1px solid var(--dark-4);
   margin-bottom: 10px;
@@ -402,7 +395,6 @@ body {
   top: 1px;
 }
 
-/* ── CONCEPT BLOCK ── */
 .concept-block {
   background: var(--dark-3);
   border: 1px solid var(--dark-4);
@@ -422,7 +414,6 @@ body {
 .cb-text { font-size: 13px; color: var(--white-dim); line-height: 1.75; }
 .cb-text strong { color: var(--white); font-weight: 600; }
 
-/* ── ALERT ── */
 .alert {
   display: flex;
   gap: 12px;
@@ -437,7 +428,6 @@ body {
 .alert-text { font-size: 12.5px; color: var(--white-dim); line-height: 1.7; }
 .alert-text strong { color: var(--white); font-weight: 600; }
 
-/* ── REPAS BLOCK ── */
 .repas-block {
   background: var(--dark-3);
   border: 1px solid var(--dark-4);
@@ -496,7 +486,6 @@ body {
   line-height: 1.6;
 }
 
-/* ── HYDRO CARDS ── */
 .hydro-row {
   display: flex;
   gap: 8px;
@@ -528,7 +517,6 @@ body {
 
 .hc-text { font-size: 10.5px; color: var(--white-dim); line-height: 1.55; }
 
-/* ── CHECKLIST ── */
 .cl-section-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 18px;
@@ -614,7 +602,6 @@ body {
   margin-bottom: 4px;
 }
 
-/* ── FOOTER ── */
 .page-footer {
   margin-top: 32px;
   padding-top: 20px;
@@ -636,7 +623,6 @@ body {
   line-height: 1.7;
 }
 
-/* ── SECTION DIVIDER ── */
 .sdiv {
   height: 1px;
   background: rgba(201,168,76,0.08);
@@ -646,7 +632,7 @@ body {
 </head>
 <body>
 
-<!-- ═══════════════ HERO ═══════════════ -->
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg-text">FOOD</div>
   <div class="hero-tag">Y.E.S.I CONCEPT — Guide Pratique</div>
@@ -657,17 +643,16 @@ body {
   <button class="hero-cta" onclick="goTo('bases')">COMMENCER ↓</button>
 </section>
 
-<!-- ═══════════════ PAGE : BASES ═══════════════ -->
+<!-- PAGE : BASES -->
 <div id="bases" class="page">
   <p class="page-label">01 — Fondamentaux</p>
-  <h2 class="page-title">Les <em>3 Macros</em><br>du Sportif</h2>
+  <h2 class="page-title">Les <em>3 Types</em><br>d'Aliments</h2>
 
   <div class="intro-box">
     <strong>Pourquoi ce que tu manges change tout.</strong><br>
     Ton corps c'est un moteur. Ce que tu manges, c'est l'essence. Sans le bon carburant, même le meilleur entraînement ne sert à rien. Il y a 3 types d'aliments qui comptent vraiment — et chacun a un rôle précis.
   </div>
 
-  <!-- Macro cards scroll horizontal -->
   <div class="macro-scroll">
     <div class="macro-card glucides">
       <div class="mc-icon">⚡</div>
@@ -724,7 +709,7 @@ body {
   </div>
 </div>
 
-<!-- ═══════════════ PAGE : AVANT ═══════════════ -->
+<!-- PAGE : AVANT -->
 <div id="avant" class="page">
   <p class="page-label">02 — Préparation</p>
   <h2 class="page-title">Avant<br><em>l'Effort</em></h2>
@@ -733,7 +718,6 @@ body {
     <strong>Objectif :</strong> arriver avec les réservoirs pleins, sans inconfort digestif, bien hydraté. Ce qui se passe dans les <strong>48h avant</strong> un match compte autant que le repas d'avant-match.
   </div>
 
-  <!-- Accordion timeline -->
   <div class="acc-item open" onclick="toggleAcc(this)">
     <div class="acc-header">
       <div class="acc-left">
@@ -750,7 +734,7 @@ body {
         <p class="acc-text">Tu commences à charger ta batterie musculaire. L'idée c'est d'augmenter les sucres lents progressivement pour que tes muscles soient pleins le jour J.</p>
         <ul class="acc-list">
           <li>Pâtes complètes, riz brun, pain aux céréales</li>
-          <li>Limiter les graisses lourdes et les fibres en excès</li>
+          <li>Limiter les graisses lourdes et trop de fibres</li>
           <li>Hydratation régulière toute la journée</li>
         </ul>
       </div>
@@ -772,9 +756,9 @@ body {
       <div class="acc-inner">
         <p class="acc-text">Le repas principal de charge. Tu manges ce que tu connais, ce qui passe bien. C'est ce repas qui définit le niveau de ta batterie pour le match.</p>
         <ul class="acc-list">
-          <li>Pâtes complètes al dente (cuire trop = IG augmente)</li>
-          <li>Protéines maigres : poulet, dinde, poisson</li>
-          <li>Légumes cuits (plus digestes que les crudités)</li>
+          <li>Pâtes complètes al dente (trop cuites = digérées trop vite)</li>
+          <li>Protéines légères : poulet, dinde, poisson</li>
+          <li>Légumes cuits (plus faciles à digérer que les crudités)</li>
           <li>Éviter : friture, alcool, aliments non habituels</li>
         </ul>
       </div>
@@ -820,7 +804,7 @@ body {
       <div class="acc-inner">
         <p class="acc-text">Le stress avant le match peut faire chuter ton énergie dans la dernière heure. La boisson d'attente maintient ton niveau sans avoir à digérer quoi que ce soit.</p>
         <ul class="acc-list">
-          <li>Boisson d'attente (eau + maltodextrine + minéraux)</li>
+          <li>Boisson d'attente (eau + sucre lent en poudre + minéraux)</li>
           <li>Petites quantités régulières — ne pas avaler d'un coup</li>
           <li>Alternative : compote, banane très mûre</li>
         </ul>
@@ -835,7 +819,7 @@ body {
     <div class="rb-timing">Match en fin de matinée — pris 3h avant</div>
     <div class="rb-items">
       <div class="rb-item"><div class="dot"></div> Pain complet ou céréales peu sucrées</div>
-      <div class="rb-item"><div class="dot"></div> Miel ou confiture (IG modéré)</div>
+      <div class="rb-item"><div class="dot"></div> Miel ou confiture</div>
       <div class="rb-item"><div class="dot"></div> Fromage blanc ou yaourt nature</div>
       <div class="rb-item"><div class="dot"></div> Banane bien mûre</div>
       <div class="rb-item"><div class="dot"></div> Petit verre de jus 100% pur jus</div>
@@ -855,7 +839,7 @@ body {
   </div>
 </div>
 
-<!-- ═══════════════ PAGE : PENDANT ═══════════════ -->
+<!-- PAGE : PENDANT -->
 <div id="pendant" class="page">
   <p class="page-label">03 — En Action</p>
   <h2 class="page-title">Pendant<br><em>l'Effort</em></h2>
@@ -871,7 +855,7 @@ body {
 
   <div class="concept-block">
     <div class="cb-title">⏱ Mi-temps — Ne pas rater</div>
-    <p class="cb-text">Opportunité de recharger partiellement. Quantité individuelle selon tolérance digestive, mais ne pas négliger cette phase.<br><br>Une boisson glucidique + hydratation = seconde mi-temps à niveau.<br><br>Éviter : solides lourds, boissons gazeuses, sodas colas.</p>
+    <p class="cb-text">Opportunité de recharger partiellement. Quantité selon ce que tu tolères, mais ne pas négliger cette phase.<br><br>Une boisson sucrée + hydratation = seconde mi-temps à niveau.<br><br>Éviter : aliments lourds, boissons gazeuses, sodas.</p>
   </div>
 
   <div class="alert warn">
@@ -882,11 +866,11 @@ body {
   <div class="concept-block">
     <div class="cb-title">❌ À ne JAMAIS faire</div>
     <p class="cb-text">
-      <strong>Alcool</strong> — déshydrate, perturbe le métabolisme<br>
-      <strong>Boissons énergisantes</strong> (Red Bull…) — non adaptées<br>
-      <strong>Sodas colas</strong> — acidifient, inconfort digestif<br>
-      <strong>Aliments gras ou fibreux</strong> — lents à digérer<br>
-      <strong>Grosses quantités d'un coup</strong> — favoriser le fractionné
+      <strong>Alcool</strong> — déshydrate, perturbe le corps<br>
+      <strong>Boissons énergisantes</strong> (Red Bull…) — non adaptées au sport<br>
+      <strong>Sodas</strong> — inconfort digestif garanti<br>
+      <strong>Aliments gras ou très fibreux</strong> — lents à digérer<br>
+      <strong>Grosses quantités d'un coup</strong> — toujours fractionner
     </p>
   </div>
 
@@ -896,7 +880,7 @@ body {
   </div>
 </div>
 
-<!-- ═══════════════ PAGE : APRÈS ═══════════════ -->
+<!-- PAGE : APRÈS -->
 <div id="apres" class="page">
   <p class="page-label">04 — Récupération</p>
   <h2 class="page-title">Après<br><em>l'Effort</em></h2>
@@ -944,9 +928,9 @@ body {
       <div class="acc-inner">
         <p class="acc-text">Plus complet que le repas d'avant-match, mais toujours digeste. Associer sucres lents + protéines + bonnes graisses dans le même repas, c'est le combo qui maximise la récupération.</p>
         <ul class="acc-list">
-          <li>Légumes de saison + vinaigrette huile olive/colza</li>
-          <li>Viande peu grasse (poulet, dinde) ou poisson ou œufs</li>
-          <li>Féculents : riz, quinoa, pâtes complètes</li>
+          <li>Légumes de saison + vinaigrette huile olive</li>
+          <li>Viande légère (poulet, dinde) ou poisson ou œufs</li>
+          <li>Sucres lents : riz, quinoa, pâtes complètes</li>
           <li>Fruits frais ou secs (raisins, abricots, figues)</li>
           <li>Produit laitier : yaourt, fromage blanc, lait végétal</li>
           <li>Continuer à s'hydrater jusqu'au repas</li>
@@ -982,7 +966,7 @@ body {
   </div>
 </div>
 
-<!-- ═══════════════ PAGE : HYDRATATION ═══════════════ -->
+<!-- PAGE : HYDRATATION -->
 <div id="hydratation" class="page">
   <p class="page-label">05 — Eau & Sels minéraux</p>
   <h2 class="page-title"><em>Hydra-</em><br>tation</h2>
@@ -1035,53 +1019,37 @@ body {
   </div>
 </div>
 
-<!-- ═══════════════ PAGE : CHECKLIST ═══════════════ -->
+<!-- PAGE : CHECKLIST (REDIRECTION) -->
 <div id="checklist" class="page">
   <p class="page-label">06 — Action</p>
   <h2 class="page-title">Check<br><em>Match</em></h2>
 
   <div class="intro-box">
-    Coche chaque étape au fil du temps. Tout ce que tu ne prépares pas, ton adversaire en bénéficiera.
+    La checklist match jour est intégrée à ton outil de suivi personnalisé. Retrouve-la directement dans ton espace Y.E.S.I.
   </div>
 
-  <div class="cl-score" id="cl-score">0 / 18 complétés</div>
-  <div class="cl-progress"><div class="cl-progress-bar" id="cl-bar"></div></div>
+  <div style="background:var(--dark-3);border:1px solid rgba(201,168,76,0.25);padding:28px 20px;text-align:center;margin-bottom:24px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:3px;color:var(--gold-dim);margin-bottom:10px;">OÙ LA TROUVER</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);line-height:1.1;margin-bottom:16px;">Suivi Joueur<br><span style="color:var(--gold);">Y.E.S.I</span></div>
+    <p style="font-size:12px;color:var(--white-dim);line-height:1.7;margin-bottom:20px;">
+      Ta checklist nutrition match — J-2 à post-match — est disponible dans ton outil de suivi joueur. Elle est liée à ton profil et à tes sessions.
+    </p>
+    <a href="suivi-joueur.html" style="display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:var(--gold);color:var(--dark);font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;text-decoration:none;">
+      ACCÉDER AU SUIVI ▶
+    </a>
+  </div>
 
-  <div class="cl-section-title">J-2 / J-1</div>
-  <ul class="checklist" id="cl">
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Augmenter les glucides complexes (pâtes, riz, pain complet)</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Limiter graisses saturées et aliments difficiles à digérer</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Zéro alcool dans les 48h avant le match</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Hydratation régulière toute la journée</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Préparer la boisson d'attente et/ou le Gâteau Sport</span></li>
-  </ul>
+  <div style="background:var(--dark-3);border-left:3px solid var(--gold-dim);padding:16px 18px;margin-bottom:24px;">
+    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;margin-bottom:8px;">Dans ton suivi joueur</div>
+    <ul style="list-style:none;font-size:12px;color:var(--white-dim);line-height:2;">
+      <li>→ Checklist J-2 / J-1</li>
+      <li>→ Checklist jour du match</li>
+      <li>→ Checklist post-match & récupération</li>
+      <li>→ Suivi nutrition couplé à tes bilans de séance</li>
+    </ul>
+  </div>
 
-  <div class="cl-section-title">Jour du match</div>
-  <ul class="checklist" id="cl">
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Repas pré-compétitif 3h avant (IG bas, digeste, connu)</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Hydratation : 150–200 ml toutes les 15–20 min dès H-2</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Zéro aliment nouveau ou non testé</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Boisson d'attente dans la dernière heure</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Boisson énergétique disponible pour la mi-temps</span></li>
-  </ul>
-
-  <div class="cl-section-title">Post-match — 30 min</div>
-  <ul class="checklist" id="cl">
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Boisson de récupération dans les 30 min (fenêtre métabolique)</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Hydratation intensive — eau ou boisson bicarbonatée</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Fruits secs ou frais en attendant le repas</span></li>
-  </ul>
-
-  <div class="cl-section-title">Repas récupération</div>
-  <ul class="checklist" id="cl">
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Légumes + féculents (riz, quinoa, pâtes) + protéines maigres</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Matières grasses de qualité (olive, noix, amandes)</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Dessert fruité ou yaourt</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Continuer à s'hydrater</span></li>
-    <li onclick="toggleCheck(this)"><div class="cb"></div><span>Zéro alcool, soda ou boisson énergisante</span></li>
-  </ul>
-
-  <div class="alert tip" style="margin-top:16px;">
+  <div class="alert tip">
     <div class="alert-icon">🏆</div>
     <div class="alert-text"><strong>Rappel :</strong> chaque athlète est unique. Ce qui fonctionne pour ton coéquipier ne fonctionnera pas forcément pour toi. Teste, observe, ajuste.</div>
   </div>
@@ -1092,7 +1060,7 @@ body {
   </div>
 </div>
 
-<!-- ═══════════════ BOTTOM NAV ═══════════════ -->
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
   <button class="bn-item" onclick="goTo('bases')">
     <span class="bn-icon">⚡</span>
@@ -1124,21 +1092,14 @@ body {
 const pages = ['bases','avant','pendant','apres','hydratation','checklist'];
 
 function goTo(id) {
-  // Hide hero
   document.getElementById('home').style.display = 'none';
-
-  // Deactivate all
   pages.forEach(p => {
     document.getElementById(p).classList.remove('active');
   });
   document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
-
-  // Activate target
   document.getElementById(id).classList.add('active');
   const idx = pages.indexOf(id);
   document.querySelectorAll('.bn-item')[idx].classList.add('active');
-
-  // Scroll top
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -1146,21 +1107,6 @@ function toggleAcc(item) {
   item.classList.toggle('open');
 }
 
-function toggleCheck(li) {
-  li.classList.toggle('done');
-  li.querySelector('.cb').textContent = li.classList.contains('done') ? '✓' : '';
-  updateProgress();
-}
-
-function updateProgress() {
-  const all = document.querySelectorAll('.checklist li');
-  const done = document.querySelectorAll('.checklist li.done');
-  const pct = all.length ? (done.length / all.length * 100) : 0;
-  document.getElementById('cl-bar').style.width = pct + '%';
-  document.getElementById('cl-score').textContent = done.length + ' / ' + all.length + ' complétés';
-}
-
-// Init: show hero, no page active
 document.getElementById('home').style.display = '';
 </script>
 </body>

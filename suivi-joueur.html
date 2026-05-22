@@ -7,150 +7,312 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;800;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{background:#111;font-family:'Nunito',sans-serif;color:#f0f0f0;padding-bottom:60px;}
-.hdr{background:#f5c842;padding:16px;text-align:center;position:sticky;top:0;z-index:99;}
-.hdr h1{font-family:'Bebas Neue',cursive;font-size:1.8rem;color:#111;letter-spacing:4px;}
-.hdr p{font-size:.65rem;font-weight:800;color:#5a4200;letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
-.pband{display:flex;gap:8px;padding:10px 14px;background:#1a1a1a;border-bottom:1px solid #2a2a2a;}
-.pband input,.pband select{background:#222;border:1.5px solid #333;border-radius:10px;padding:8px 12px;color:#f0f0f0;font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;outline:none;}
-.pband input{flex:1;}
-.tabs{display:flex;overflow-x:auto;scrollbar-width:none;background:#1a1a1a;border-bottom:1px solid #2a2a2a;}
+body{background:#f8f8f6;font-family:'Nunito',sans-serif;color:#111;padding-bottom:80px;}
+
+.hdr{background:#f5c842;padding:14px 16px 12px;text-align:center;position:sticky;top:0;z-index:99;border-bottom:3px solid #d4a817;}
+.hdr h1{font-family:'Bebas Neue',cursive;font-size:1.9rem;color:#111;letter-spacing:4px;line-height:1;}
+.hdr p{font-size:.6rem;font-weight:900;color:#5a4200;letter-spacing:2.5px;text-transform:uppercase;margin-top:3px;}
+
+.pband{display:flex;gap:8px;padding:10px 12px;background:#fff;border-bottom:2px solid #e8e8e8;align-items:center;}
+.pband input{flex:1;background:#f0f0ee;border:1.5px solid #ddd;border-radius:10px;padding:9px 12px;color:#111;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:800;outline:none;}
+.pband input::placeholder{color:#aaa;font-weight:700;}
+
+.tabs{display:flex;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:2px solid #e8e8e8;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{flex-shrink:0;padding:12px 14px;font-family:'Bebas Neue',cursive;font-size:.95rem;letter-spacing:1.5px;color:#555;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;}
+.tab{flex-shrink:0;padding:12px 13px;font-family:'Bebas Neue',cursive;font-size:.9rem;letter-spacing:1.5px;color:#bbb;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s;}
 .tab.on{color:#f5c842;border-bottom-color:#f5c842;}
+
 .mod{display:none;padding:12px;flex-direction:column;gap:10px;}
 .mod.on{display:flex;}
-.card{background:#1a1a1a;border:1.5px solid #2a2a2a;border-radius:14px;overflow:hidden;}
-.ch{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#222;border-bottom:1px solid #2a2a2a;}
-.ch .i{font-size:1.1rem;}
+
+.card{background:#fff;border:1.5px solid #e8e8e8;border-radius:14px;overflow:hidden;}
+.ch{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#fafaf8;border-bottom:1px solid #ebebeb;}
+.ch .i{font-size:1.05rem;}
 .ch .t{font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:2px;color:#f5c842;}
 .cb{padding:12px;display:flex;flex-direction:column;gap:9px;}
-.lbl{font-size:.62rem;font-weight:900;color:#555;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:4px;}
-.fi input,.fi textarea,.fi select{width:100%;background:#222;border:1.5px solid #333;border-radius:10px;padding:10px 12px;color:#f0f0f0;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;outline:none;}
+.lbl{font-size:.6rem;font-weight:900;color:#999;text-transform:uppercase;letter-spacing:1.2px;display:block;margin-bottom:4px;}
+.fi input,.fi textarea,.fi select{width:100%;background:#f5f5f3;border:1.5px solid #e0e0e0;border-radius:10px;padding:10px 12px;color:#111;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;outline:none;transition:border-color .2s;}
+.fi input:focus,.fi textarea:focus,.fi select:focus{border-color:#f5c842;}
 .fi textarea{min-height:65px;resize:none;}
-.fi select option{background:#222;}
+.fi select option{background:#fff;}
 .r2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+
 .slr{display:flex;align-items:center;gap:10px;}
 .slr input[type=range]{flex:1;accent-color:#f5c842;}
-.slv{font-family:'Bebas Neue',cursive;font-size:1.3rem;color:#f5c842;min-width:26px;text-align:center;}
+.slv{font-family:'Bebas Neue',cursive;font-size:1.4rem;color:#f5c842;min-width:28px;text-align:center;}
+.sl-labels{display:flex;justify-content:space-between;margin-top:-2px;}
+.sl-labels span{font-size:.52rem;color:#bbb;font-weight:800;}
+
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
-.chip{border:2px solid #333;border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;background:#222;}
-.chip .ce{font-size:1.25rem;display:block;}
-.chip .cl{font-size:.62rem;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-top:3px;display:block;line-height:1.2;}
-.chip.on{border-color:#f5c842;background:rgba(245,200,66,.08);}
+.chip{border:2px solid #e0e0e0;border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;background:#fafaf8;transition:all .15s;}
+.chip .ce{font-size:1.2rem;display:block;}
+.chip .cl{font-size:.58rem;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-top:3px;display:block;line-height:1.2;}
+.chip:active{transform:scale(.96);}
+.chip.on{border-color:#f5c842;background:rgba(245,200,66,.1);}
 .chip.on .cl{color:#f5c842;}
-.chip.on-r{border-color:#c0392b;background:rgba(192,57,43,.1);}
-.chip.on-r .cl{color:#c0392b;}
-.chip.on-b{border-color:#1a6fd4;background:rgba(26,111,212,.1);}
+.chip.on-r{border-color:#e74c3c;background:rgba(231,76,60,.1);}
+.chip.on-r .cl{color:#e74c3c;}
+.chip.on-b{border-color:#3498db;background:rgba(52,152,219,.1);}
 .chip.on-b .cl{color:#5ab4ff;}
-.obj{background:#222;border:1.5px solid #333;border-radius:12px;padding:10px;margin-bottom:7px;}
+
+.obj{background:#fafaf8;border:1.5px solid #e8e8e8;border-radius:12px;padding:10px;margin-bottom:7px;}
 .obj-n{font-family:'Bebas Neue',cursive;font-size:.85rem;color:#f5c842;letter-spacing:1px;margin-bottom:6px;}
 .obj-r{display:grid;grid-template-columns:1fr auto;gap:7px;align-items:center;}
-.oi{background:#111;border:1.5px solid #333;border-radius:8px;padding:8px 10px;color:#f0f0f0;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;outline:none;width:100%;}
-.os{background:#111;border:1.5px solid #333;border-radius:8px;padding:8px;color:#f0f0f0;font-family:'Bebas Neue',cursive;font-size:.9rem;min-width:65px;outline:none;}
-.sav{background:#f5c842;color:#111;border:none;border-radius:14px;padding:14px;font-family:'Bebas Neue',cursive;font-size:1.2rem;letter-spacing:3px;width:100%;cursor:pointer;}
+.oi{background:#f0f0ee;border:1.5px solid #ddd;border-radius:8px;padding:8px 10px;color:#111;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;outline:none;width:100%;}
+.os{background:#f0f0ee;border:1.5px solid #ddd;border-radius:8px;padding:8px;color:#111;font-family:'Bebas Neue',cursive;font-size:.9rem;min-width:65px;outline:none;}
+
+.sep{height:1px;background:#ebebeb;margin:6px 0;}
+.slbl{font-size:.62rem;font-weight:900;color:#c8a430;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px;}
+.nutri-rule{font-size:.62rem;color:#999;font-weight:700;padding:5px 8px;background:#f5f5f3;border-radius:7px;border-left:2px solid #e0e0e0;margin-bottom:6px;}
+.nutri-rule span{color:#f5c842;}
+
+.sommeil-wrap{display:flex;gap:6px;flex-wrap:wrap;}
+.s-chip{border:1.5px solid #e0e0e0;border-radius:8px;padding:7px 12px;font-size:.7rem;font-weight:800;color:#aaa;cursor:pointer;background:#fafaf8;white-space:nowrap;transition:all .15s;}
+.s-chip.on{border-color:#9b59b6;color:#a678d4;background:rgba(155,89,182,.1);}
+
+.hi-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:10px;}
+.stat-box{background:#fff;border:1.5px solid #e8e8e8;border-radius:10px;padding:10px;text-align:center;}
+.stat-n{font-family:'Bebas Neue',cursive;font-size:1.7rem;color:#f5c842;line-height:1;}
+.stat-l{font-size:.58rem;font-weight:900;color:#bbb;text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+
+.hi-filters{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;}
+.hi-f{font-family:'Bebas Neue',cursive;font-size:.73rem;letter-spacing:1px;padding:5px 12px;border-radius:20px;border:1.5px solid #e0e0e0;color:#aaa;cursor:pointer;background:#fff;}
+.hi-f.on{border-color:#f5c842;color:#f5c842;}
+
+.hi{background:#fff;border:1.5px solid #e8e8e8;border-radius:12px;padding:10px 12px;margin-bottom:7px;}
+.hi-top{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.hi-badge{font-family:'Bebas Neue',cursive;font-size:.68rem;letter-spacing:1px;padding:3px 9px;border-radius:20px;}
+.hi-badge.train{background:rgba(245,200,66,.12);color:#f5c842;border:1px solid rgba(245,200,66,.25);}
+.hi-badge.match{background:rgba(231,76,60,.12);color:#e74c3c;border:1px solid rgba(231,76,60,.25);}
+.hi-badge.mental{background:rgba(155,89,182,.12);color:#a678d4;border:1px solid rgba(155,89,182,.25);}
+.hi-badge.nutri{background:rgba(46,204,113,.12);color:#2ecc71;border:1px solid rgba(46,204,113,.25);}
+.hi-date{font-size:.68rem;color:#bbb;font-weight:800;}
+.hi-det{font-size:.7rem;color:#888;font-weight:700;line-height:1.7;}
+.hi-det strong{color:#444;}
+.hi-actions{display:flex;justify-content:flex-end;margin-top:6px;}
+.hi-del{background:none;border:1px solid #ddd;border-radius:7px;color:#bbb;font-size:.63rem;font-weight:800;padding:3px 9px;cursor:pointer;font-family:'Nunito',sans-serif;}
+
+.empty{text-align:center;padding:30px;color:#ccc;font-size:.78rem;font-weight:700;}
+
+.sav{background:#f5c842;color:#111;border:none;border-radius:14px;padding:15px;font-family:'Bebas Neue',cursive;font-size:1.2rem;letter-spacing:3px;width:100%;cursor:pointer;transition:all .2s;}
+.sav:active{transform:scale(.98);}
 .sav.ok{background:#1a2e1a;color:#27ae60;border:2px solid #27ae60;}
-.sep{height:1px;background:#2a2a2a;margin:8px 0;}
-.slbl{font-size:.65rem;font-weight:900;color:#7a6421;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;}
-.hi{background:#222;border:1.5px solid #2a2a2a;border-radius:12px;padding:10px 12px;margin-bottom:7px;}
-.hid{font-family:'Bebas Neue',cursive;font-size:.9rem;color:#f5c842;letter-spacing:1px;}
-.hit{font-size:.7rem;color:#555;font-weight:700;margin-top:3px;line-height:1.5;}
-.empty{text-align:center;padding:24px;color:#444;font-size:.78rem;font-weight:700;}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#27ae60;color:#fff;font-weight:900;font-size:.8rem;padding:10px 22px;border-radius:50px;transition:transform .3s;z-index:999;white-space:nowrap;pointer-events:none;}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1a2e1a;color:#27ae60;font-weight:900;font-size:.78rem;padding:10px 22px;border-radius:50px;border:1.5px solid #27ae60;transition:transform .3s;z-index:999;white-space:nowrap;pointer-events:none;}
 .toast.show{transform:translateX(-50%) translateY(0);}
+.toast.warn{background:#2e1a1a;color:#e74c3c;border-color:#e74c3c;}
 </style>
 </head>
 <body>
-<div class="hdr"><h1>SUIVI JOUEUR Y.E.S.I</h1><p>Entrainement · Match · Mental · Nutrition</p></div>
-<div class="pband">
-  <input type="text" id="nom" placeholder="Prenom Nom du joueur">
-  <select id="sport"><option value="">Sport</option><option>Football</option><option>Basketball</option><option>Tennis</option><option>Handball</option><option>Rugby</option><option>Athletisme</option><option>Natation</option><option>Arts martiaux</option><option>Autre</option></select>
+
+<div class="hdr">
+  <h1>SUIVI JOUEUR Y.E.S.I</h1>
+  <p>Entra&icirc;nement &middot; Match &middot; Mental &middot; Nutrition</p>
 </div>
+
+<div class="pband">
+  <input type="text" id="nom" placeholder="Pr&eacute;nom Nom du joueur">
+</div>
+
 <div class="tabs">
-  <div class="tab on" data-m="train">Entrainement</div>
+  <div class="tab on" data-m="train">Entra&icirc;nement</div>
   <div class="tab" data-m="match">Match</div>
   <div class="tab" data-m="mental">Mental</div>
   <div class="tab" data-m="nutri">Nutrition</div>
   <div class="tab" data-m="hist">Historique</div>
 </div>
 
+<!-- ENTRAINEMENT -->
 <div class="mod on" id="mod-train">
-  <div class="card"><div class="ch"><span class="i">📅</span><span class="t">SESSION</span></div><div class="cb">
-    <div class="fi"><label class="lbl">Date</label><input type="date" id="t-dt"></div>
-    <div class="r2">
-      <div class="fi"><label class="lbl">Type</label><select id="t-ty"><option value="">-</option><option>Technique</option><option>Tactique</option><option>Physique</option><option>Mixte</option><option>Recuperation</option></select></div>
-      <div class="fi"><label class="lbl">Duree</label><select id="t-du"><option value="">-</option><option>30 min</option><option>45 min</option><option>1h</option><option>1h30</option><option>2h+</option></select></div>
+  <div class="card">
+    <div class="ch"><span class="i">&#128197;</span><span class="t">SESSION</span></div>
+    <div class="cb">
+      <div class="fi"><label class="lbl">Date</label><input type="date" id="t-dt"></div>
+      <div class="r2">
+        <div class="fi"><label class="lbl">Type</label>
+          <select id="t-ty"><option value="">-</option><option>Technique</option><option>Tactique</option><option>Physique</option><option>Mixte</option><option>R&eacute;cup&eacute;ration</option></select>
+        </div>
+        <div class="fi"><label class="lbl">Dur&eacute;e</label>
+          <select id="t-du"><option value="">-</option><option>30 min</option><option>45 min</option><option>1h</option><option>1h30</option><option>2h+</option></select>
+        </div>
+      </div>
     </div>
-  </div></div>
-  <div class="card"><div class="ch"><span class="i">🎯</span><span class="t">OBJECTIFS</span></div><div class="cb" id="t-ob"></div></div>
-  <div class="card"><div class="ch"><span class="i">💡</span><span class="t">Q.F.A.C</span></div><div class="cb">
-    <div class="fi"><label class="lbl">Attitude</label><select id="t-at"><option value="">-</option><option>Tres investie</option><option>Investie</option><option>Neutre</option><option>Peu investie</option><option>Desengagee</option></select></div>
-    <div class="fi"><label class="lbl">Comportement</label><select id="t-co"><option value="">-</option><option>Exemplaire</option><option>Bon</option><option>Neutre</option><option>Tensions</option><option>Negatif</option></select></div>
-    <div class="fi"><label class="lbl">Concentration (0-10)</label><div class="slr"><input type="range" min="0" max="10" value="5" id="t-cn"><span class="slv" id="t-cn-v">5</span></div></div>
-    <div class="fi"><label class="lbl">Intensite physique (0-10)</label><div class="slr"><input type="range" min="0" max="10" value="5" id="t-in"><span class="slv" id="t-in-v">5</span></div></div>
-  </div></div>
-  <div class="card"><div class="ch"><span class="i">📝</span><span class="t">NOTES</span></div><div class="cb"><div class="fi"><textarea id="t-no" placeholder="Observations, ressentis..."></textarea></div></div></div>
-  <button class="sav" id="t-sv">💾 VALIDER LA SESSION</button>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="i">&#127919;</span><span class="t">OBJECTIFS</span></div>
+    <div class="cb" id="t-ob"></div>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="i">&#128161;</span><span class="t">Q.F.A.C</span></div>
+    <div class="cb">
+      <div class="fi"><label class="lbl">Attitude</label>
+        <select id="t-at"><option value="">-</option><option>Tr&egrave;s investie</option><option>Investie</option><option>Neutre</option><option>Peu investie</option><option>D&eacute;sengag&eacute;e</option></select>
+      </div>
+      <div class="fi"><label class="lbl">Comportement</label>
+        <select id="t-co"><option value="">-</option><option>Exemplaire</option><option>Bon</option><option>Neutre</option><option>Tensions</option><option>N&eacute;gatif</option></select>
+      </div>
+      <div class="fi">
+        <label class="lbl">Concentration (0-10)</label>
+        <div class="slr"><input type="range" min="0" max="10" value="5" id="t-cn"><span class="slv" id="t-cn-v">5</span></div>
+        <div class="sl-labels"><span>Absent</span><span>Moyen</span><span>Laser</span></div>
+      </div>
+      <div class="fi">
+        <label class="lbl">Intensit&eacute; physique (0-10)</label>
+        <div class="slr"><input type="range" min="0" max="10" value="5" id="t-in"><span class="slv" id="t-in-v">5</span></div>
+        <div class="sl-labels"><span>Faible</span><span>Moyen</span><span>Maximal</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="i">&#128221;</span><span class="t">NOTES</span></div>
+    <div class="cb"><div class="fi"><textarea id="t-no" placeholder="Observations, ressentis, points &agrave; retenir..."></textarea></div></div>
+  </div>
+  <button class="sav" id="t-sv">&#128190; VALIDER LA SESSION</button>
 </div>
 
+<!-- MATCH -->
 <div class="mod" id="mod-match">
-  <div class="card"><div class="ch"><span class="i">📅</span><span class="t">MATCH</span></div><div class="cb">
-    <div class="fi"><label class="lbl">Date</label><input type="date" id="m-dt"></div>
-    <div class="r2">
-      <div class="fi"><label class="lbl">Adversaire</label><input type="text" id="m-ad" placeholder="Equipe adverse"></div>
-      <div class="fi"><label class="lbl">Score</label><input type="text" id="m-sc" placeholder="2 - 1"></div>
+  <div class="card">
+    <div class="ch"><span class="i">&#128197;</span><span class="t">MATCH</span></div>
+    <div class="cb">
+      <div class="fi"><label class="lbl">Date</label><input type="date" id="m-dt"></div>
+      <div class="r2">
+        <div class="fi"><label class="lbl">Adversaire</label><input type="text" id="m-ad" placeholder="&Eacute;quipe adverse"></div>
+        <div class="fi"><label class="lbl">Score</label><input type="text" id="m-sc" placeholder="2 - 1"></div>
+      </div>
+      <div class="r2">
+        <div class="fi"><label class="lbl">R&eacute;sultat</label>
+          <select id="m-re"><option value="">-</option><option>Victoire</option><option>Nul</option><option>D&eacute;faite</option></select>
+        </div>
+        <div class="fi"><label class="lbl">Temps de jeu</label>
+          <select id="m-tp"><option value="">-</option><option>Titulaire complet</option><option>Titulaire partiel</option><option>Rempla&ccedil;ant</option><option>Non utilis&eacute;</option></select>
+        </div>
+      </div>
+      <div class="fi"><label class="lbl">Comp&eacute;tition / Niveau</label><input type="text" id="m-cp" placeholder="N3, R&eacute;gional 1, U19..."></div>
     </div>
-    <div class="r2">
-      <div class="fi"><label class="lbl">Resultat</label><select id="m-re"><option value="">-</option><option>Victoire</option><option>Nul</option><option>Defaite</option></select></div>
-      <div class="fi"><label class="lbl">Temps de jeu</label><select id="m-tp"><option value="">-</option><option>Titulaire complet</option><option>Titulaire partiel</option><option>Remplacant</option><option>Non utilise</option></select></div>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="i">&#127919;</span><span class="t">OBJECTIFS DU MATCH</span></div>
+    <div class="cb" id="m-ob"></div>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="i">&#128161;</span><span class="t">Q.F.A.C PERFORMANCE</span></div>
+    <div class="cb">
+      <div class="fi"><label class="lbl">Attitude sous pression</label>
+        <select id="m-at"><option value="">-</option><option>Exemplaire sous pression</option><option>Bonne attitude</option><option>Neutre</option><option>Perdu mentalement</option><option>Attitude n&eacute;gative</option></select>
+      </div>
+      <div class="fi"><label class="lbl">Comportement collectif</label>
+        <select id="m-co"><option value="">-</option><option>Leader positif</option><option>Bon co&eacute;quipier</option><option>Neutre</option><option>Individualismes</option><option>Conflits</option></select>
+      </div>
+      <div class="fi">
+        <label class="lbl">Performance globale (0-10)</label>
+        <div class="slr"><input type="range" min="0" max="10" value="5" id="m-pf"><span class="slv" id="m-pf-v">5</span></div>
+        <div class="sl-labels"><span>Mauvaise</span><span>Correcte</span><span>Excellente</span></div>
+      </div>
+      <div class="fi">
+        <label class="lbl">Gestion du stress (0-10)</label>
+        <div class="slr"><input type="range" min="0" max="10" value="5" id="m-st"><span class="slv" id="m-st-v">5</span></div>
+        <div class="sl-labels"><span>Submerg&eacute;</span><span>G&eacute;r&eacute;</span><span>Ma&icirc;tris&eacute;</span></div>
+      </div>
     </div>
-  </div></div>
-  <div class="card"><div class="ch"><span class="i">🎯</span><span class="t">OBJECTIFS DU MATCH</span></div><div class="cb" id="m-ob"></div></div>
-  <div class="card"><div class="ch"><span class="i">💡</span><span class="t">Q.F.A.C PERFORMANCE</span></div><div class="cb">
-    <div class="fi"><label class="lbl">Attitude</label><select id="m-at"><option value="">-</option><option>Exemplaire sous pression</option><option>Bonne attitude</option><option>Neutre</option><option>Perdu mentalement</option><option>Attitude negative</option></select></div>
-    <div class="fi"><label class="lbl">Comportement collectif</label><select id="m-co"><option value="">-</option><option>Leader positif</option><option>Bon coequipier</option><option>Neutre</option><option>Individualismes</option><option>Conflits</option></select></div>
-    <div class="fi"><label class="lbl">Performance globale (0-10)</label><div class="slr"><input type="range" min="0" max="10" value="5" id="m-pf"><span class="slv" id="m-pf-v">5</span></div></div>
-    <div class="fi"><label class="lbl">Gestion du stress (0-10)</label><div class="slr"><input type="range" min="0" max="10" value="5" id="m-st"><span class="slv" id="m-st-v">5</span></div></div>
-  </div></div>
-  <div class="card"><div class="ch"><span class="i">📝</span><span class="t">ANALYSE POST-MATCH</span></div><div class="cb">
-    <div class="fi"><label class="lbl">Points forts</label><textarea id="m-fo" placeholder="Ce que tu as bien reussi..."></textarea></div>
-    <div class="fi"><label class="lbl">Points a ameliorer</label><textarea id="m-ax" placeholder="Ce sur quoi progresser..."></textarea></div>
-  </div></div>
-  <button class="sav" id="m-sv">💾 VALIDER LE MATCH</button>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="i">&#128221;</span><span class="t">ANALYSE POST-MATCH</span></div>
+    <div class="cb">
+      <div class="fi"><label class="lbl">Points forts</label><textarea id="m-fo" placeholder="Ce que tu as bien r&eacute;ussi..."></textarea></div>
+      <div class="fi"><label class="lbl">Points &agrave; am&eacute;liorer</label><textarea id="m-ax" placeholder="Ce sur quoi progresser..."></textarea></div>
+    </div>
+  </div>
+  <button class="sav" id="m-sv">&#128190; VALIDER LE MATCH</button>
 </div>
 
+<!-- MENTAL -->
 <div class="mod" id="mod-mental">
-  <div class="card"><div class="ch"><span class="i">📅</span><span class="t">SESSION MENTALE</span></div><div class="cb">
-    <div class="fi"><label class="lbl">Date</label><input type="date" id="me-dt"></div>
-    <div class="fi"><label class="lbl">Etat mental du jour (0-10)</label><div class="slr"><input type="range" min="0" max="10" value="5" id="me-et"><span class="slv" id="me-et-v">5</span></div></div>
-  </div></div>
-  <div class="card"><div class="ch"><span class="i">🧠</span><span class="t">EXERCICES REALISES</span></div><div class="cb"><div class="g2" id="me-ex"></div></div></div>
-  <div class="card"><div class="ch"><span class="i">⚠️</span><span class="t">AXE Y.E.S.I TRAVAILLE</span></div><div class="cb"><div class="g2" id="me-ax"></div></div></div>
-  <div class="card"><div class="ch"><span class="i">📝</span><span class="t">RESSENTI</span></div><div class="cb"><div class="fi"><textarea id="me-re" placeholder="Tes ressentis, ce que tu as appris..."></textarea></div></div></div>
-  <button class="sav" id="me-sv">💾 VALIDER LA SESSION</button>
+  <div class="card">
+    <div class="ch"><span class="i">&#128197;</span><span class="t">SESSION MENTALE</span></div>
+    <div class="cb">
+      <div class="fi"><label class="lbl">Date</label><input type="date" id="me-dt"></div>
+      <div class="fi">
+        <label class="lbl">&Eacute;tat mental du jour (0-10)</label>
+        <div class="slr"><input type="range" min="0" max="10" value="5" id="me-et"><span class="slv" id="me-et-v">5</span></div>
+        <div class="sl-labels"><span>En difficult&eacute;</span><span>Stable</span><span>Au top</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="i">&#129504;</span><span class="t">EXERCICES R&Eacute;ALIS&Eacute;S</span></div>
+    <div class="cb"><div class="g2" id="me-ex"></div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="i">&#9889;</span><span class="t">AXE Y.E.S.I TRAVAILL&Eacute;</span></div>
+    <div class="cb"><div class="g2" id="me-ax"></div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="i">&#128221;</span><span class="t">RESSENTI</span></div>
+    <div class="cb"><div class="fi"><textarea id="me-re" placeholder="Tes ressentis, ce que tu as appris, ce que tu retiens..."></textarea></div></div>
+  </div>
+  <button class="sav" id="me-sv">&#128190; VALIDER LA SESSION</button>
 </div>
 
+<!-- NUTRITION -->
 <div class="mod" id="mod-nutri">
-  <div class="card"><div class="ch"><span class="i">📅</span><span class="t">JOURNEE</span></div><div class="cb"><div class="fi"><label class="lbl">Date</label><input type="date" id="n-dt"></div></div></div>
-  <div class="card"><div class="ch"><span class="i">🍽️</span><span class="t">3 REPAS DU JOUR</span></div><div class="cb" id="n-rp"></div></div>
-  <div class="card"><div class="ch"><span class="i">💧</span><span class="t">EAU DU JOUR</span></div><div class="cb"><div class="g4" id="n-ea"></div></div></div>
-  <div class="card"><div class="ch"><span class="i">📊</span><span class="t">QUALITE GLOBALE</span></div><div class="cb">
-    <div class="fi"><label class="lbl">Note nutrition (0-10)</label><div class="slr"><input type="range" min="0" max="10" value="5" id="n-sc"><span class="slv" id="n-sc-v">5</span></div></div>
-    <div class="fi"><textarea id="n-no" placeholder="Ecarts, contexte, ressenti energetique..."></textarea></div>
-  </div></div>
-  <button class="sav" id="n-sv">💾 VALIDER LA JOURNEE</button>
+  <div class="card">
+    <div class="ch"><span class="i">&#128197;</span><span class="t">JOURN&Eacute;E</span></div>
+    <div class="cb"><div class="fi"><label class="lbl">Date</label><input type="date" id="n-dt"></div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="i">&#127869;</span><span class="t">3 REPAS DU JOUR</span></div>
+    <div class="cb" id="n-rp"></div>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="i">&#128167;</span><span class="t">HYDRATATION</span></div>
+    <div class="cb"><div class="g4" id="n-ea"></div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="i">&#127769;</span><span class="t">R&Eacute;CUP&Eacute;RATION</span></div>
+    <div class="cb">
+      <label class="lbl">Sommeil de la nuit pr&eacute;c&eacute;dente</label>
+      <div class="sommeil-wrap" id="n-som"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="i">&#128202;</span><span class="t">QUALIT&Eacute; GLOBALE</span></div>
+    <div class="cb">
+      <div class="fi">
+        <label class="lbl">Note nutrition (0-10)</label>
+        <div class="slr"><input type="range" min="0" max="10" value="5" id="n-sc"><span class="slv" id="n-sc-v">5</span></div>
+        <div class="sl-labels"><span>Mauvaise</span><span>Correcte</span><span>Optimale</span></div>
+      </div>
+      <div class="fi"><textarea id="n-no" placeholder="&Eacute;carts, contexte, ressenti &eacute;nerg&eacute;tique..."></textarea></div>
+    </div>
+  </div>
+  <button class="sav" id="n-sv">&#128190; VALIDER LA JOURN&Eacute;E</button>
 </div>
 
+<!-- HISTORIQUE -->
 <div class="mod" id="mod-hist">
-  <div class="card"><div class="ch"><span class="i">📊</span><span class="t">HISTORIQUE</span></div><div class="cb" id="hist-l"></div></div>
+  <div class="hi-stats" id="hist-stats"></div>
+  <div class="hi-filters">
+    <div class="hi-f on" data-f="all">Tout</div>
+    <div class="hi-f" data-f="train">Entra&icirc;n.</div>
+    <div class="hi-f" data-f="match">Match</div>
+    <div class="hi-f" data-f="mental">Mental</div>
+    <div class="hi-f" data-f="nutri">Nutrition</div>
+  </div>
+  <div id="hist-l"></div>
 </div>
 
 <div class="toast" id="tst"></div>
 
 <script>
-var NOM='', SPORT='', SESS=[], EAU_ST=null, REP={r1:null,r2:null,r3:null}, EXO_ST={}, AXE_ST='';
-var SK='yesi_v3';
+var NOM='', SESS=[], EAU_ST=null, SOM_ST=null;
+var REP={r1:null,r2:null,r3:null};
+var EXO_ST={}, AXE_ST='';
+var SK='yesi_v4';
+var HIST_FILTER='all';
+var FRIT_COUNT=0;
 
 function load(){
   try{
@@ -158,14 +320,13 @@ function load(){
     if(!r) return;
     var d=JSON.parse(r);
     if(!d||typeof d!='object') return;
-    NOM  = typeof d.nom=='string'   ? d.nom   : '';
-    SPORT= typeof d.sport=='string' ? d.sport : '';
-    SESS = Array.isArray(d.sess)    ? d.sess  : [];
-  }catch(e){ NOM=''; SPORT=''; SESS=[]; }
+    NOM=typeof d.nom=='string'?d.nom:'';
+    SESS=Array.isArray(d.sess)?d.sess:[];
+  }catch(e){NOM='';SESS=[];}
 }
 
 function save(){
-  try{ localStorage.setItem(SK,JSON.stringify({nom:NOM,sport:SPORT,sess:SESS})); }catch(e){}
+  try{localStorage.setItem(SK,JSON.stringify({nom:NOM,sess:SESS}));}catch(e){}
 }
 
 function pad(n){return n<10?'0'+n:''+n;}
@@ -174,37 +335,79 @@ function fmt(s){if(!s)return '-';var p=s.split('-');return p[2]+'/'+p[1]+'/'+p[0
 function g(id){return document.getElementById(id);}
 function v(id){var e=g(id);return e?e.value:'';}
 
-function toast(msg){
-  var t=g('tst'); t.textContent=msg; t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show');},2200);
+var toastTimer=null;
+function toast(msg,warn){
+  var t=g('tst');
+  t.textContent=msg;
+  t.className='toast'+(warn?' warn':'')+' show';
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(function(){t.classList.remove('show');},2300);
 }
 
-function sl(id,vid){ var e=g(id),vv=g(vid); if(e&&vv) e.oninput=function(){vv.textContent=this.value;}; }
+function sl(id,vid){
+  var e=g(id),vv=g(vid);
+  if(e&&vv) e.oninput=function(){vv.textContent=this.value;};
+}
 
 function mkObjs(cid,pfx){
-  var c=g(cid); if(!c) return; c.innerHTML='';
+  var c=g(cid);if(!c)return;c.innerHTML='';
   for(var i=1;i<=3;i++){
-    var d=document.createElement('div'); d.className='obj';
+    var d=document.createElement('div');d.className='obj';
     var op='<option value="">-</option>';
     for(var j=1;j<=10;j++) op+='<option>'+j+'/10</option>';
-    d.innerHTML='<div class="obj-n">OBJECTIF '+i+'</div><div class="obj-r"><input type="text" class="oi" id="'+pfx+'o'+i+'" placeholder="Decris ton objectif..."><select class="os" id="'+pfx+'os'+i+'">'+op+'</select></div>';
+    d.innerHTML='<div class="obj-n">OBJECTIF '+i+'</div><div class="obj-r"><input type="text" class="oi" id="'+pfx+'o'+i+'" placeholder="D&eacute;cris ton objectif..."><select class="os" id="'+pfx+'os'+i+'">'+op+'</select></div>';
     c.appendChild(d);
   }
 }
 
-var EX=[{v:'conc',e:'🃏',l:'Table Shuffle'},{v:'rout',e:'⚡',l:'Routine pre-match'},{v:'disc',e:'💬',l:'Discours interieur'},{v:'axe',e:'🔧',l:'Renforcement axe'},{v:'visu',e:'🎯',l:'Visualisation'},{v:'resp',e:'🫁',l:'Coherence cardiaque'}];
-var AX=[{v:'YES',l:'YES ATTITUDE'},{v:'ESTIME',l:'ESTIME DE SOI'},{v:'SMART',l:'SMART GOALS'},{v:'INVEST',l:'INVESTISSEMENT'}];
-var RO=[{v:'legumes',e:'🥦',l:'Legumes'},{v:'salade',e:'🥗',l:'Salade'},{v:'feculent',e:'🍚',l:'Feculent'},{v:'frit',e:'🍟',l:'Frit'},{v:'proteine',e:'🍗',l:'Proteines'},{v:'autre',e:'🍽️',l:'Autre'}];
-var SL=[{k:'r1',l:'Matin/Midi'},{k:'r2',l:'Dejeuner'},{k:'r3',l:'Diner'}];
-var EA=[{v:'m1',e:'💧',l:'<1L'},{v:'1l',e:'💧💧',l:'1L'},{v:'v5',e:'💧💧💧',l:'1.5L'},{v:'p5',e:'🌊',l:'>1.5L'}];
+var EX=[
+  {v:'conc',e:'&#127183;',l:'Table Shuffle'},
+  {v:'rout',e:'&#9889;',l:'Routine pr&eacute;-match'},
+  {v:'disc',e:'&#128172;',l:'Discours int&eacute;rieur'},
+  {v:'axe', e:'&#128295;',l:'Renforcement axe'},
+  {v:'visu',e:'&#127919;',l:'Visualisation'},
+  {v:'resp',e:'&#129755;',l:'Coh&eacute;rence cardiaque'}
+];
 
-function mkChips(cid,items,isAxe){
-  var c=g(cid); if(!c) return; c.innerHTML='';
+var AX=[
+  {v:'YES',   e:'&#128293;',l:'YES ATTITUDE'},
+  {v:'ESTIME',e:'&#128142;',l:'ESTIME DE SOI'},
+  {v:'SMART', e:'&#127919;',l:'SMART GOALS'},
+  {v:'INVEST',e:'&#9881;',  l:'INVESTISSEMENT'}
+];
+
+var RO=[
+  {v:'legumes',  e:'&#129382;',l:'L&eacute;gumes'},
+  {v:'salade',   e:'&#129361;',l:'Salade'},
+  {v:'feculent', e:'&#127834;',l:'F&eacute;culent'},
+  {v:'frit',     e:'🍟',l:'Frit'},
+  {v:'proteine', e:'&#127831;',l:'Prot&eacute;ines'},
+  {v:'fruit',    e:'&#127822;',l:'Fruit'},
+  {v:'autre',    e:'&#127869;',l:'Autre'}
+];
+
+var SL=[
+  {k:'r1',l:'MATIN',   rule:'Aucune restriction'},
+  {k:'r2',l:'MIDI',    rule:'Max <span>1 f&eacute;culent</span> autoris&eacute;'},
+  {k:'r3',l:'SOIR',    rule:'Pas de f&eacute;culent &middot; Pas de frit'}
+];
+
+var EA=[
+  {v:'m1',e:'&#128167;',      l:'&lt; 1L'},
+  {v:'1l',e:'&#128167;&#128167;',    l:'1 - 1.5L'},
+  {v:'v5',e:'&#128167;&#128167;&#128167;',  l:'1.5 - 2L'},
+  {v:'p5',e:'&#127754;',      l:'&gt; 2L'}
+];
+
+var SOM=['< 5h','5-6h','6-7h','7-8h','8-9h','> 9h'];
+
+function mkChips(cid,items,mode){
+  var c=g(cid);if(!c)return;c.innerHTML='';
   items.forEach(function(it){
-    var d=document.createElement('div'); d.className='chip';
-    d.innerHTML='<span class="ce">'+(it.e||'🔹')+'</span><span class="cl">'+it.l+'</span>';
+    var d=document.createElement('div');d.className='chip';
+    d.innerHTML='<span class="ce">'+(it.e||'&#128313;')+'</span><span class="cl">'+it.l+'</span>';
     d.onclick=function(){
-      if(isAxe){
+      if(mode==='axe'){
         AXE_ST=(AXE_ST===it.v)?'':it.v;
         c.querySelectorAll('.chip').forEach(function(b){b.classList.remove('on-r');});
         if(AXE_ST===it.v) d.classList.add('on-r');
@@ -218,16 +421,27 @@ function mkChips(cid,items,isAxe){
 }
 
 function mkNutri(){
-  var c=g('n-rp'); if(!c) return; c.innerHTML='';
+  var c=g('n-rp');if(!c)return;c.innerHTML='';
   SL.forEach(function(sl,si){
-    if(si>0){var s=document.createElement('div');s.className='sep';c.appendChild(s);}
+    if(si>0){var sep=document.createElement('div');sep.className='sep';c.appendChild(sep);}
     var lb=document.createElement('div');lb.className='slbl';lb.textContent=sl.l;c.appendChild(lb);
-    var gr=document.createElement('div');gr.className='g2';
+    var rule=document.createElement('div');rule.className='nutri-rule';rule.innerHTML='&rarr; '+sl.rule;c.appendChild(rule);
+    var gr=document.createElement('div');gr.className='g3';
     RO.forEach(function(r){
       var b=document.createElement('div');b.className='chip';
       b.innerHTML='<span class="ce">'+r.e+'</span><span class="cl">'+r.l+'</span>';
       b.onclick=function(){
-        REP[sl.k]=(REP[sl.k]===r.v)?null:r.v;
+        if(sl.k==='r3'&&(r.v==='feculent'||r.v==='frit')){
+          toast('Pas de '+r.l.replace('&eacute;','e')+' le soir !',true);return;
+        }
+        if(r.v==='frit'&&REP[sl.k]!=='frit'&&FRIT_COUNT>=1){
+          toast('Limite : 1 frit par jour max !',true);return;
+        }
+        var prev=REP[sl.k];
+        var wasOn=(REP[sl.k]===r.v);
+        REP[sl.k]=wasOn?null:r.v;
+        if(prev==='frit') FRIT_COUNT--;
+        if(!wasOn&&r.v==='frit') FRIT_COUNT++;
         gr.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');});
         if(REP[sl.k]) b.classList.add('on');
       };
@@ -238,7 +452,7 @@ function mkNutri(){
 }
 
 function mkEau(){
-  var c=g('n-ea'); if(!c) return; c.innerHTML='';
+  var c=g('n-ea');if(!c)return;c.innerHTML='';
   EA.forEach(function(e){
     var b=document.createElement('div');b.className='chip';
     b.innerHTML='<span class="ce">'+e.e+'</span><span class="cl">'+e.l+'</span>';
@@ -251,39 +465,98 @@ function mkEau(){
   });
 }
 
+function mkSommeil(){
+  var c=g('n-som');if(!c)return;c.innerHTML='';
+  SOM.forEach(function(s){
+    var b=document.createElement('div');b.className='s-chip';b.textContent=s;
+    b.onclick=function(){
+      SOM_ST=(SOM_ST===s)?null:s;
+      c.querySelectorAll('.s-chip').forEach(function(x){x.classList.remove('on');});
+      if(SOM_ST) b.classList.add('on');
+    };
+    c.appendChild(b);
+  });
+}
+
 function mkSav(id,type,lbl){
-  var b=g(id); if(!b) return;
+  var b=g(id);if(!b)return;
   b.onclick=function(){
-    var s={type:type,ts:Date.now(),date:v(type[0]+'-dt')||today()};
-    if(type==='train'){s.ty=v('t-ty');s.du=v('t-du');s.o1=v('t-o1');s.o1s=v('t-os1');s.o2=v('t-o2');s.o2s=v('t-os2');s.o3=v('t-o3');s.o3s=v('t-os3');s.at=v('t-at');s.co=v('t-co');s.cn=v('t-cn');s.ins=v('t-in');s.no=v('t-no');}
-    else if(type==='match'){s.ad=v('m-ad');s.sc=v('m-sc');s.re=v('m-re');s.tp=v('m-tp');s.o1=v('m-o1');s.o1s=v('m-os1');s.o2=v('m-o2');s.o2s=v('m-os2');s.o3=v('m-o3');s.o3s=v('m-os3');s.at=v('m-at');s.co=v('m-co');s.pf=v('m-pf');s.st=v('m-st');s.fo=v('m-fo');s.ax=v('m-ax');}
-    else if(type==='mental'){s.et=v('me-et');s.ex=Object.keys(EXO_ST).filter(function(k){return EXO_ST[k];});s.ax=AXE_ST;s.re=v('me-re');}
-    else if(type==='nutri'){s.r1=REP.r1;s.r2=REP.r2;s.r3=REP.r3;s.ea=EAU_ST;s.sc=v('n-sc');s.no=v('n-no');}
-    SESS.push(s); save();
-    b.textContent='VALIDE !'; b.classList.add('ok');
+    var prefix=type==='train'?'t':type==='match'?'m':type==='mental'?'me':'n';
+    var s={type:type,ts:Date.now(),date:v(prefix+'-dt')||today()};
+    if(type==='train'){
+      s.ty=v('t-ty');s.du=v('t-du');
+      s.o1=v('t-o1');s.o1s=v('t-os1');s.o2=v('t-o2');s.o2s=v('t-os2');s.o3=v('t-o3');s.o3s=v('t-os3');
+      s.at=v('t-at');s.co=v('t-co');s.cn=v('t-cn');s.ins=v('t-in');s.no=v('t-no');
+    } else if(type==='match'){
+      s.ad=v('m-ad');s.sc=v('m-sc');s.re=v('m-re');s.tp=v('m-tp');s.cp=v('m-cp');
+      s.o1=v('m-o1');s.o1s=v('m-os1');s.o2=v('m-o2');s.o2s=v('m-os2');s.o3=v('m-o3');s.o3s=v('m-os3');
+      s.at=v('m-at');s.co=v('m-co');s.pf=v('m-pf');s.st=v('m-st');s.fo=v('m-fo');s.ax=v('m-ax');
+    } else if(type==='mental'){
+      s.et=v('me-et');
+      s.ex=Object.keys(EXO_ST).filter(function(k){return EXO_ST[k];});
+      s.ax=AXE_ST;s.re=v('me-re');
+    } else if(type==='nutri'){
+      s.r1=REP.r1;s.r2=REP.r2;s.r3=REP.r3;s.ea=EAU_ST;s.som=SOM_ST;s.sc=v('n-sc');s.no=v('n-no');
+    }
+    SESS.push(s);save();
+    b.textContent='VALIDE !';b.classList.add('ok');
     setTimeout(function(){b.textContent=lbl;b.classList.remove('ok');},2000);
     toast('Session du '+fmt(s.date)+' sauvegardee !');
   };
 }
 
+function renderStats(){
+  var c=g('hist-stats');if(!c)return;
+  var ct={train:0,match:0,mental:0,nutri:0};
+  SESS.forEach(function(s){if(ct[s.type]!==undefined)ct[s.type]++;});
+  c.innerHTML=
+    '<div class="stat-box"><div class="stat-n">'+SESS.length+'</div><div class="stat-l">Total sessions</div></div>'+
+    '<div class="stat-box"><div class="stat-n">'+ct.match+'</div><div class="stat-l">Matchs</div></div>'+
+    '<div class="stat-box"><div class="stat-n">'+ct.train+'</div><div class="stat-l">Entra&icirc;nements</div></div>'+
+    '<div class="stat-box"><div class="stat-n">'+ct.mental+'</div><div class="stat-l">Mentales</div></div>';
+}
+
 function renderHist(){
-  var c=g('hist-l'); if(!c) return;
-  if(!SESS.length){c.innerHTML='<div class="empty">Aucune session enregistree.<br>Remplis tes modules !</div>';return;}
+  renderStats();
+  var c=g('hist-l');if(!c)return;
+  var filtered=SESS.filter(function(s){return HIST_FILTER==='all'||s.type===HIST_FILTER;});
+  if(!filtered.length){c.innerHTML='<div class="empty">Aucune session enregistr&eacute;e.<br>Remplis tes modules !</div>';return;}
   c.innerHTML='';
-  var TL={train:'Entrainement',match:'Match',mental:'Mental',nutri:'Nutrition'};
-  SESS.slice().sort(function(a,b){return b.ts-a.ts;}).forEach(function(s){
+  var TL={train:'Entra&icirc;nement',match:'Match',mental:'Mental',nutri:'Nutrition'};
+  filtered.slice().sort(function(a,b){return b.ts-a.ts;}).forEach(function(s){
     var d=document.createElement('div');d.className='hi';
-    var dt='';
-    if(s.type==='train') dt=(s.ty||'-')+' · '+(s.du||'-')+' · Conc: '+(s.cn||'-')+'/10';
-    else if(s.type==='match') dt='Vs '+(s.ad||'-')+' · '+(s.sc||'-')+' · '+(s.re||'-')+' · Perf: '+(s.pf||'-')+'/10';
-    else if(s.type==='mental') dt='Etat: '+(s.et||'-')+'/10'+(s.ax?' · Axe: '+s.ax:'')+(s.ex&&s.ex.length?' · '+s.ex.length+' ex.':'');
-    else if(s.type==='nutri') dt='Note: '+(s.sc||'-')+'/10 · Eau: '+(s.ea||'-');
-    d.innerHTML='<div class="hid">'+(TL[s.type]||s.type)+' · '+fmt(s.date)+'</div><div class="hit">'+dt+'</div>';
+    var badge='<span class="hi-badge '+s.type+'">'+TL[s.type]+'</span>';
+    var det='';
+    if(s.type==='train'){
+      det='<strong>'+(s.ty||'?')+'</strong> &middot; '+(s.du||'?')+' &middot; Conc: <strong>'+(s.cn||'-')+'/10</strong>';
+      if(s.at) det+=' &middot; '+s.at;
+    } else if(s.type==='match'){
+      det='Vs <strong>'+(s.ad||'?')+'</strong> &middot; '+(s.sc||'-')+' &middot; <strong>'+(s.re||'?')+'</strong>';
+      if(s.pf) det+=' &middot; Perf: <strong>'+s.pf+'/10</strong>';
+      if(s.cp) det+=' &middot; '+s.cp;
+    } else if(s.type==='mental'){
+      det='&Eacute;tat: <strong>'+(s.et||'-')+'/10</strong>';
+      if(s.ax) det+=' &middot; <strong>'+s.ax+'</strong>';
+      if(s.ex&&s.ex.length) det+=' &middot; '+s.ex.length+' ex.';
+    } else if(s.type==='nutri'){
+      det='Note: <strong>'+(s.sc||'-')+'/10</strong> &middot; Eau: '+(s.ea||'-');
+      if(s.som) det+=' &middot; Sommeil: <strong>'+s.som+'</strong>';
+    }
+    var realIdx=SESS.indexOf(s);
+    d.innerHTML=
+      '<div class="hi-top">'+badge+'<span class="hi-date">'+fmt(s.date)+'</span></div>'+
+      '<div class="hi-det">'+det+'</div>'+
+      '<div class="hi-actions"><button class="hi-del" data-i="'+realIdx+'">Supprimer</button></div>';
     c.appendChild(d);
+  });
+  c.querySelectorAll('.hi-del').forEach(function(btn){
+    btn.onclick=function(){
+      var i=parseInt(this.getAttribute('data-i'));
+      if(!isNaN(i)&&i>=0&&i<SESS.length){SESS.splice(i,1);save();renderHist();toast('Session supprim&eacute;e');}
+    };
   });
 }
 
-// TABS
 document.querySelectorAll('.tab').forEach(function(t){
   t.onclick=function(){
     document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
@@ -295,24 +568,34 @@ document.querySelectorAll('.tab').forEach(function(t){
   };
 });
 
-// BOOT
+document.querySelectorAll('.hi-f').forEach(function(f){
+  f.onclick=function(){
+    document.querySelectorAll('.hi-f').forEach(function(x){x.classList.remove('on');});
+    f.classList.add('on');
+    HIST_FILTER=f.getAttribute('data-f');
+    renderHist();
+  };
+});
+
 load();
 g('nom').value=NOM;
-g('sport').value=SPORT;
 g('nom').oninput=function(){NOM=this.value;save();};
-g('sport').onchange=function(){SPORT=this.value;save();};
 
 var td=today();
 ['t-dt','m-dt','me-dt','n-dt'].forEach(function(id){var e=g(id);if(e)e.value=td;});
 
-mkObjs('t-ob','t-');mkObjs('m-ob','m-');
-mkChips('me-ex',EX,false);mkChips('me-ax',AX,true);
-mkNutri();mkEau();
-sl('t-cn','t-cn-v');sl('t-in','t-in-v');sl('m-pf','m-pf-v');sl('m-st','m-st-v');sl('me-et','me-et-v');sl('n-sc','n-sc-v');
-mkSav('t-sv','train','💾 VALIDER LA SESSION');
-mkSav('m-sv','match','💾 VALIDER LE MATCH');
-mkSav('me-sv','mental','💾 VALIDER LA SESSION');
-mkSav('n-sv','nutri','💾 VALIDER LA JOURNEE');
+mkObjs('t-ob','t-');
+mkObjs('m-ob','m-');
+mkChips('me-ex',EX,'exo');
+mkChips('me-ax',AX,'axe');
+mkNutri();mkEau();mkSommeil();
+sl('t-cn','t-cn-v');sl('t-in','t-in-v');
+sl('m-pf','m-pf-v');sl('m-st','m-st-v');
+sl('me-et','me-et-v');sl('n-sc','n-sc-v');
+mkSav('t-sv','train','&#128190; VALIDER LA SESSION');
+mkSav('m-sv','match','&#128190; VALIDER LE MATCH');
+mkSav('me-sv','mental','&#128190; VALIDER LA SESSION');
+mkSav('n-sv','nutri','&#128190; VALIDER LA JOURN&Eacute;E');
 </script>
 </body>
 </html>

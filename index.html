@@ -7,7 +7,7 @@
 
 <title>Y.E.S.I CONCEPT — Suivi Joueur</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -20,6 +20,10 @@
 --dark4:#242424;
 --white:#f5f5f5;
 --muted:#9d9d9d;
+--mental-bg:#ffffff;
+--mental-text:#2A2A2A;
+--mental-border:#E6E0D4;
+--mental-muted:#777;
 }
 
 *{
@@ -206,6 +210,8 @@ font-family:'Bebas Neue',sans-serif;
 font-size:20px;
 letter-spacing:1px;
 transition:.2s;
+cursor:pointer;
+border:none;
 }
 
 .tool-btn:hover{
@@ -357,6 +363,179 @@ font-size:120px;
 
 }
 
+/* ========================= */
+/* MENTAL SECTION */
+/* ========================= */
+
+.mental-page{
+background:var(--mental-bg);
+color:var(--mental-text);
+font-family:'Outfit',sans-serif;
+padding-bottom:80px;
+}
+
+.mental-header{
+padding:90px 24px 70px;
+border-bottom:1px solid var(--mental-border);
+}
+
+.mental-kicker{
+font-size:10px;
+letter-spacing:4px;
+text-transform:uppercase;
+color:var(--gold);
+margin-bottom:28px;
+}
+
+.mental-title{
+font-family:'Bebas Neue',sans-serif;
+font-size:92px;
+line-height:.9;
+color:#000;
+margin-bottom:24px;
+}
+
+.mental-title em{
+font-family:'Cormorant Garamond',serif;
+font-style:italic;
+font-weight:300;
+color:var(--gold);
+}
+
+.mental-desc{
+max-width:650px;
+font-size:16px;
+line-height:1.9;
+color:#666;
+}
+
+.mental-container{
+max-width:1200px;
+margin:auto;
+padding:0 24px;
+}
+
+.mental-intro{
+padding:70px 0;
+border-bottom:1px solid var(--mental-border);
+}
+
+.mental-intro p{
+font-family:'Cormorant Garamond',serif;
+font-size:32px;
+line-height:1.6;
+font-weight:300;
+color:#111;
+max-width:900px;
+}
+
+.mental-intro strong{
+color:var(--gold);
+}
+
+.mental-section-title{
+padding:60px 0 30px;
+font-family:'Bebas Neue',sans-serif;
+font-size:58px;
+letter-spacing:2px;
+color:#000;
+border-bottom:1px solid var(--mental-border);
+}
+
+.mental-axe{
+padding:55px 0;
+border-bottom:1px solid var(--mental-border);
+display:grid;
+grid-template-columns:1fr;
+gap:34px;
+}
+
+.mental-left small{
+font-size:11px;
+letter-spacing:3px;
+color:var(--gold);
+display:block;
+margin-bottom:14px;
+}
+
+.mental-left h3{
+font-family:'Bebas Neue',sans-serif;
+font-size:68px;
+line-height:.92;
+color:#000;
+}
+
+.mental-left span{
+display:block;
+margin-top:10px;
+font-family:'Cormorant Garamond',serif;
+font-size:20px;
+font-style:italic;
+color:var(--gold);
+}
+
+.mental-right p{
+font-size:15px;
+line-height:1.9;
+color:#666;
+margin-bottom:28px;
+}
+
+.mental-pillars{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px 24px;
+margin-bottom:24px;
+}
+
+.mental-pill{
+font-size:14px;
+color:#222;
+position:relative;
+padding-left:16px;
+}
+
+.mental-pill::before{
+content:'';
+position:absolute;
+left:0;
+top:8px;
+width:5px;
+height:5px;
+border-radius:50%;
+background:var(--gold);
+}
+
+.mental-quote{
+padding-left:18px;
+border-left:1px solid var(--gold);
+font-family:'Cormorant Garamond',serif;
+font-style:italic;
+font-size:18px;
+line-height:1.7;
+color:var(--gold);
+}
+
+@media(min-width:900px){
+
+.mental-axe{
+grid-template-columns:320px 1fr;
+}
+
+.mental-header{
+padding:120px 60px 80px;
+}
+
+.mental-container{
+padding:0 60px;
+}
+
+.mental-title{
+font-size:150px;
+}
+
+}
+
 </style>
 </head>
 
@@ -486,12 +665,12 @@ Mental
 </h3>
 
 <p>
-Clarté mentale, concentration et stabilité.
+Clarté mentale, concentration et stabilité du sportif.
 </p>
 
-<div class="tool-btn" style="opacity:.5;pointer-events:none;">
-BIENTÔT DISPONIBLE
-</div>
+<a href="#mental" class="tool-btn">
+ACCÉDER AU CONTENU
+</a>
 
 </div>
 
@@ -547,6 +726,182 @@ Suivre l’évolution des habitudes et des sensations.
 <span>
 La progression vient de la répétition et de la régularité.
 </span>
+</div>
+
+</div>
+
+</section>
+
+<!-- SECTION MENTAL -->
+
+<section class="mental-page" id="mental">
+
+<div class="mental-header">
+
+<div class="mental-kicker">
+Structure mentale du sportif
+</div>
+
+<h2 class="mental-title">
+LES 4<br>AXES<br><em>mentaux</em>
+</h2>
+
+<p class="mental-desc">
+Le Y.E.S.I CONCEPT structure la performance mentale autour de quatre axes fondamentaux : attitude, confiance, clarté mentale et investissement personnel.
+</p>
+
+</div>
+
+<div class="mental-container">
+
+<div class="mental-intro">
+<p>
+La performance mentale ne repose pas uniquement sur la motivation. Elle dépend de l'équilibre entre l'attitude, la confiance, la gestion émotionnelle et <strong>l'investissement personnel</strong>.
+</p>
+</div>
+
+<h2 class="mental-section-title">
+STRUCTURE DES 4 AXES
+</h2>
+
+<!-- AXE 1 -->
+
+<div class="mental-axe">
+
+<div class="mental-left">
+<small>AXE 01</small>
+<h3>
+YES<br>ATTITUDE
+</h3>
+<span>
+Stabilité avant tout
+</span>
+</div>
+
+<div class="mental-right">
+
+<p>
+Développer une attitude stable et engagée face aux difficultés. Cet axe conditionne la constance du sportif dans l'effort comme dans l'adversité.
+</p>
+
+<div class="mental-pillars">
+<div class="mental-pill">Énergie mentale</div>
+<div class="mental-pill">Capacité à rebondir</div>
+<div class="mental-pill">Stabilité émotionnelle</div>
+<div class="mental-pill">Engagement quotidien</div>
+</div>
+
+<div class="mental-quote">
+L'attitude influence directement la constance du sportif.
+</div>
+
+</div>
+
+</div>
+
+<!-- AXE 2 -->
+
+<div class="mental-axe">
+
+<div class="mental-left">
+<small>AXE 02</small>
+<h3>
+ESTIME<br>DE SOI
+</h3>
+<span>
+Se connaître pour performer
+</span>
+</div>
+
+<div class="mental-right">
+
+<p>
+Construire une relation solide avec soi-même. La confiance est le socle sur lequel repose chaque décision et chaque prise de risque.
+</p>
+
+<div class="mental-pillars">
+<div class="mental-pill">Confiance en soi</div>
+<div class="mental-pill">Perception personnelle</div>
+<div class="mental-pill">Gestion du regard extérieur</div>
+<div class="mental-pill">Stabilité mentale</div>
+</div>
+
+<div class="mental-quote">
+Un sportif en confiance gère mieux la pression et les erreurs.
+</div>
+
+</div>
+
+</div>
+
+<!-- AXE 3 -->
+
+<div class="mental-axe">
+
+<div class="mental-left">
+<small>AXE 03</small>
+<h3>
+SMART<br>GOALS
+</h3>
+<span>
+Avancer sans se disperser
+</span>
+</div>
+
+<div class="mental-right">
+
+<p>
+Donner du sens à chaque effort grâce à des objectifs précis et mesurables. La clarté mentale améliore les prises de décision.
+</p>
+
+<div class="mental-pillars">
+<div class="mental-pill">Objectifs précis</div>
+<div class="mental-pill">Organisation mentale</div>
+<div class="mental-pill">Concentration</div>
+<div class="mental-pill">Calme sous pression</div>
+</div>
+
+<div class="mental-quote">
+Un esprit clair produit des décisions plus efficaces.
+</div>
+
+</div>
+
+</div>
+
+<!-- AXE 4 -->
+
+<div class="mental-axe">
+
+<div class="mental-left">
+<small>AXE 04</small>
+<h3>
+INVEST.<br>PERSONNEL
+</h3>
+<span>
+La progression comme habitude
+</span>
+</div>
+
+<div class="mental-right">
+
+<p>
+Mesurer l'implication réelle dans la progression. Ce sont les habitudes répétées quotidiennement qui construisent la progression.
+</p>
+
+<div class="mental-pillars">
+<div class="mental-pill">Discipline</div>
+<div class="mental-pill">Régularité</div>
+<div class="mental-pill">Sacrifices assumés</div>
+<div class="mental-pill">Autonomie</div>
+</div>
+
+<div class="mental-quote">
+La progression dépend des habitudes répétées chaque jour.
+</div>
+
+</div>
+
 </div>
 
 </div>

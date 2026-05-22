@@ -10,15 +10,31 @@
 
 <style>
 
+:root{
+--gold:#c7a74d;
+--gold-light:#e7ca76;
+--dark:#050505;
+--dark2:#0d0d0d;
+--dark3:#151515;
+--dark4:#1e1e1e;
+--text:#f5f5f5;
+--muted:#9d9d9d;
+}
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
-background:#0b0b0b;
-color:white;
+background:var(--dark);
+color:var(--text);
 font-family:'DM Sans',sans-serif;
 overflow-x:hidden;
 }
@@ -27,77 +43,100 @@ overflow-x:hidden;
 
 .hero{
 min-height:100vh;
+padding:90px 24px 70px;
 display:flex;
 flex-direction:column;
-justify-content:center;
-padding:40px 24px;
+justify-content:flex-end;
+position:relative;
+overflow:hidden;
 background:
-linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.9)),
-url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1200&auto=format&fit=crop');
-background-size:cover;
-background-position:center;
+radial-gradient(circle at top, rgba(199,167,77,0.12), transparent 55%),
+linear-gradient(to bottom,#070707,#050505);
+}
+
+.hero-bg{
+position:absolute;
+top:-10px;
+left:-10px;
+font-family:'Bebas Neue',sans-serif;
+font-size:160px;
+line-height:1;
+color:rgba(199,167,77,0.04);
+pointer-events:none;
+letter-spacing:3px;
 }
 
 .tag{
-color:#c7a74d;
-font-size:12px;
+font-size:11px;
 letter-spacing:3px;
-margin-bottom:20px;
 text-transform:uppercase;
+color:var(--gold);
+margin-bottom:18px;
+opacity:0;
+animation:fadeUp .6s ease forwards;
 }
 
 .hero h1{
 font-family:'Bebas Neue',sans-serif;
-font-size:78px;
-line-height:0.9;
+font-size:92px;
+line-height:0.88;
 letter-spacing:2px;
-margin-bottom:20px;
+margin-bottom:12px;
+opacity:0;
+animation:fadeUp .6s ease .1s forwards;
+}
+
+.hero-sub{
+font-family:'Bebas Neue',sans-serif;
+font-size:24px;
+letter-spacing:3px;
+color:#8e8e8e;
+margin-bottom:25px;
+opacity:0;
+animation:fadeUp .6s ease .2s forwards;
 }
 
 .hero p{
-color:#bdbdbd;
+max-width:520px;
 font-size:15px;
-line-height:1.7;
-max-width:500px;
-margin-bottom:35px;
-}
-
-.btn{
-display:inline-block;
-background:#c7a74d;
-color:#000;
-text-decoration:none;
-padding:18px 24px;
-font-weight:700;
-font-size:15px;
-text-align:center;
-transition:0.2s;
-}
-
-.btn:hover{
-transform:scale(1.02);
+line-height:1.8;
+color:var(--muted);
+border-left:2px solid var(--gold);
+padding-left:16px;
+opacity:0;
+animation:fadeUp .6s ease .3s forwards;
 }
 
 /* SECTION */
 
 .section{
-padding:60px 24px;
-max-width:1100px;
+padding:70px 24px;
+max-width:1200px;
 margin:auto;
+}
+
+.section-label{
+font-size:10px;
+letter-spacing:3px;
+text-transform:uppercase;
+color:#7d6731;
+margin-bottom:8px;
 }
 
 .section-title{
 font-family:'Bebas Neue',sans-serif;
-font-size:54px;
+font-size:62px;
+line-height:0.95;
 letter-spacing:2px;
-margin-bottom:12px;
+margin-bottom:18px;
 }
 
 .section-text{
-color:#a8a8a8;
+color:var(--muted);
 line-height:1.8;
-margin-bottom:40px;
 font-size:15px;
+max-width:650px;
+margin-bottom:40px;
 }
 
 /* CARDS */
@@ -105,85 +144,195 @@ font-size:15px;
 .grid{
 display:grid;
 grid-template-columns:1fr;
-gap:20px;
+gap:18px;
 }
 
 .card{
-background:#151515;
-border:1px solid #252525;
-padding:24px;
+background:linear-gradient(180deg,var(--dark3),var(--dark2));
+border:1px solid rgba(199,167,77,0.08);
+padding:28px;
+position:relative;
+overflow:hidden;
+transition:.25s;
+text-decoration:none;
+color:white;
+}
+
+.card::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:2px;
+background:var(--gold);
+opacity:.7;
+}
+
+.card:hover{
+transform:translateY(-4px);
+border-color:rgba(199,167,77,0.3);
+box-shadow:0 0 25px rgba(199,167,77,0.08);
 }
 
 .card-icon{
-font-size:34px;
-margin-bottom:15px;
+font-size:32px;
+margin-bottom:18px;
 }
 
 .card h3{
 font-family:'Bebas Neue',sans-serif;
 font-size:34px;
 letter-spacing:1px;
-margin-bottom:12px;
+margin-bottom:10px;
 }
 
 .card p{
-color:#aaaaaa;
-line-height:1.7;
 font-size:14px;
-margin-bottom:20px;
+line-height:1.7;
+color:var(--muted);
 }
 
 /* GUIDE */
 
-.guide{
-background:#121212;
-border:1px solid #242424;
-padding:30px;
-margin-top:50px;
+.steps{
+margin-top:20px;
+display:flex;
+flex-direction:column;
+gap:14px;
 }
 
-.guide h2{
-font-family:'Bebas Neue',sans-serif;
-font-size:44px;
-margin-bottom:20px;
+.step{
+padding:22px;
+background:var(--dark3);
+border-left:2px solid var(--gold);
 }
 
-.guide-step{
-padding:18px 0;
-border-bottom:1px solid #222;
-}
-
-.guide-step:last-child{
-border-bottom:none;
-}
-
-.guide-step strong{
-color:#c7a74d;
+.step strong{
 display:block;
-margin-bottom:6px;
+font-family:'Bebas Neue',sans-serif;
+font-size:28px;
+letter-spacing:1px;
+margin-bottom:8px;
+color:var(--gold-light);
+}
+
+.step span{
+color:var(--muted);
+line-height:1.7;
+font-size:14px;
+}
+
+/* CTA FINAL */
+
+.cta{
+padding:90px 24px;
+text-align:center;
+background:
+radial-gradient(circle at center, rgba(199,167,77,0.08), transparent 60%);
+}
+
+.cta h2{
+font-family:'Bebas Neue',sans-serif;
+font-size:72px;
+line-height:0.95;
+letter-spacing:2px;
+margin-bottom:18px;
+}
+
+.cta p{
+color:var(--muted);
 font-size:15px;
+margin-bottom:35px;
+}
+
+.btn{
+display:inline-flex;
+justify-content:center;
+align-items:center;
+padding:20px 34px;
+background:var(--gold);
+color:#000;
+text-decoration:none;
+font-family:'Bebas Neue',sans-serif;
+font-size:22px;
+letter-spacing:2px;
+transition:.25s;
+min-width:300px;
+}
+
+.btn:hover{
+transform:scale(1.03);
+box-shadow:0 0 35px rgba(199,167,77,0.25);
 }
 
 /* FOOTER */
 
 .footer{
-padding:40px 24px 70px;
+padding:45px 24px 70px;
 text-align:center;
+border-top:1px solid rgba(199,167,77,0.08);
+}
+
+.footer-logo{
+font-family:'Bebas Neue',sans-serif;
+font-size:22px;
+letter-spacing:5px;
+color:var(--gold);
+margin-bottom:10px;
+}
+
+.footer p{
+font-size:11px;
+letter-spacing:2px;
+text-transform:uppercase;
 color:#666;
-font-size:12px;
-line-height:1.7;
+line-height:1.8;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(25px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 /* RESPONSIVE */
 
 @media(min-width:768px){
 
-.grid{
-grid-template-columns:repeat(3,1fr);
+.hero{
+padding:120px 60px 80px;
+}
+
+.hero-bg{
+font-size:260px;
 }
 
 .hero h1{
-font-size:120px;
+font-size:150px;
+}
+
+.hero-sub{
+font-size:32px;
+}
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.section{
+padding:100px 60px;
+}
+
+.cta h2{
+font-size:110px;
 }
 
 }
@@ -197,8 +346,12 @@ font-size:120px;
 
 <section class="hero">
 
+<div class="hero-bg">
+SUIVI
+</div>
+
 <div class="tag">
-Y.E.S.I CONCEPT — OUTIL AUTONOME
+Y.E.S.I CONCEPT — HUB SPORTIF
 </div>
 
 <h1>
@@ -206,95 +359,181 @@ SUIVI<br>
 JOUEUR
 </h1>
 
-<p>
-Un outil autonome pensé pour les sportifs.
-Organisation, discipline, récupération, nutrition et performance regroupés dans un seul espace.
-</p>
+<div class="hero-sub">
+ORGANISATION • DISCIPLINE • PERFORMANCE
+</div>
 
-<a href="suivi-joueur.html" class="btn">
-ACCÉDER À L'OUTIL
-</a>
+<p>
+Une plateforme autonome pensée pour les sportifs souhaitant structurer leur quotidien, optimiser leurs habitudes et suivre leur progression.
+</p>
 
 </section>
 
-<!-- SECTION -->
+<!-- OUTILS -->
 
 <section class="section">
 
+<div class="section-label">
+Plateforme
+</div>
+
 <h2 class="section-title">
-L'OUTIL
+Les Outils
 </h2>
 
 <p class="section-text">
-Le bénéficiaire a déjà accès à la plateforme. Cette page sert d'entrée principale vers le suivi joueur autonome Y.E.S.I CONCEPT.
+Accède aux différents espaces du suivi autonome Y.E.S.I CONCEPT.
 </p>
 
 <div class="grid">
 
-<div class="card">
+<a href="guide_nutrition_mobile.html" class="card">
+
 <div class="card-icon">⚡</div>
-<h3>NUTRITION</h3>
-<p>
-Gestion des repas, hydratation, récupération et habitudes alimentaires du sportif.
-</p>
-</div>
 
-<div class="card">
+<h3>
+Nutrition
+</h3>
+
+<p>
+Guide nutritionnel complet du sportif.
+</p>
+
+</a>
+
+<a href="discipline.html" class="card">
+
 <div class="card-icon">🏆</div>
-<h3>DISCIPLINE</h3>
-<p>
-Régularité, sommeil, comportements de performance et organisation quotidienne.
-</p>
-</div>
 
-<div class="card">
+<h3>
+Discipline
+</h3>
+
+<p>
+Organisation, sommeil et habitudes de performance.
+</p>
+
+</a>
+
+<a href="performance.html" class="card">
+
 <div class="card-icon">📈</div>
-<h3>PERFORMANCE</h3>
+
+<h3>
+Performance
+</h3>
+
 <p>
-Suivi des sensations, récupération, charge mentale et progression sportive.
+Suivi quotidien, sensations et récupération.
 </p>
-</div>
+
+</a>
+
+<a href="mental.html" class="card">
+
+<div class="card-icon">🧠</div>
+
+<h3>
+Mental
+</h3>
+
+<p>
+Clarté mentale, concentration et stabilité.
+</p>
+
+</a>
 
 </div>
 
-<div class="guide">
+</section>
 
-<h2>
-GUIDE RAPIDE
+<!-- GUIDE -->
+
+<section class="section">
+
+<div class="section-label">
+Fonctionnement
+</div>
+
+<h2 class="section-title">
+Comment ça fonctionne
 </h2>
 
-<div class="guide-step">
-<strong>01 — Ouvrir l'outil</strong>
-Cliquer sur “ACCÉDER À L'OUTIL”.
+<div class="steps">
+
+<div class="step">
+<strong>
+01 — Ouvrir un outil
+</strong>
+<span>
+Accéder à l’espace souhaité depuis la plateforme autonome.
+</span>
 </div>
 
-<div class="guide-step">
-<strong>02 — Compléter le suivi</strong>
-Renseigner les éléments demandés quotidiennement.
+<div class="step">
+<strong>
+02 — Compléter le suivi
+</strong>
+<span>
+Renseigner les informations demandées quotidiennement.
+</span>
 </div>
 
-<div class="guide-step">
-<strong>03 — Observer les progrès</strong>
-Suivre les habitudes et l'évolution dans le temps.
+<div class="step">
+<strong>
+03 — Observer les données
+</strong>
+<span>
+Suivre l’évolution des habitudes et des sensations.
+</span>
 </div>
 
-<div class="guide-step">
-<strong>04 — Rester régulier</strong>
-La progression vient de la répétition quotidienne.
+<div class="step">
+<strong>
+04 — Répéter quotidiennement
+</strong>
+<span>
+La progression vient de la répétition et de la régularité.
+</span>
 </div>
 
 </div>
+
+</section>
+
+<!-- CTA FINAL -->
+
+<section class="cta">
+
+<h2>
+LA PROGRESSION<br>
+VIENT DE LA<br>
+RÉPÉTITION
+</h2>
+
+<p>
+Accède maintenant à la plateforme autonome du sportif.
+</p>
+
+<a href="suivi-joueur.html" class="btn">
+ACCÉDER À LA PLATEFORME
+</a>
 
 </section>
 
 <!-- FOOTER -->
 
-<div class="footer">
+<footer class="footer">
 
-Y.E.S.I CONCEPT<br>
-Outil autonome de suivi joueur
-
+<div class="footer-logo">
+Y.E.S.I CONCEPT
 </div>
+
+<p>
+Hub autonome du sportif
+</p>
+
+</footer>
 
 </body>
 </html>

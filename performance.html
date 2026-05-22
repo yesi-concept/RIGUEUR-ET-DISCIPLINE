@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Performance du Sportif – Y.E.S.I CONCEPT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--gold:#C9A84C;
+--gold-light:#E8C97A;
+--black:#111111;
+--gray:#6F6F6F;
+--light:#F5F5F5;
+--border:#E5E5E5;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:white;
+color:var(--black);
+font-family:'DM Sans',sans-serif;
+overflow-x:hidden;
+padding-bottom:60px;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:flex-end;
+padding:30px 22px;
+position:relative;
+overflow:hidden;
+background:white;
+}
+
+.bg-text{
+position:absolute;
+top:0;
+left:-5px;
+font-family:'Bebas Neue',sans-serif;
+font-size:120px;
+color:rgba(0,0,0,0.03);
+line-height:1;
+letter-spacing:-4px;
+}
+
+.tag{
+font-family:'DM Mono',monospace;
+font-size:10px;
+letter-spacing:3px;
+color:var(--gold);
+margin-bottom:18px;
+}
+
+.title{
+font-family:'Bebas Neue',sans-serif;
+font-size:82px;
+line-height:0.9;
+margin-bottom:12px;
+color:var(--black);
+}
+
+.title em{
+color:var(--gold);
+font-style:normal;
+}
+
+.subtitle{
+font-family:'Bebas Neue',sans-serif;
+font-size:22px;
+letter-spacing:3px;
+color:var(--gray);
+margin-bottom:24px;
+}
+
+.desc{
+font-size:15px;
+line-height:1.9;
+border-left:2px solid var(--gold);
+padding-left:14px;
+color:var(--gray);
+max-width:350px;
+margin-bottom:28px;
+}
+
+.cta{
+display:inline-block;
+padding:15px 24px;
+background:var(--black);
+color:white;
+font-family:'Bebas Neue',sans-serif;
+letter-spacing:2px;
+font-size:18px;
+text-decoration:none;
+}
+
+.page{
+padding:26px 18px;
+max-width:520px;
+margin:auto;
+}
+
+.label{
+font-family:'DM Mono',monospace;
+font-size:10px;
+letter-spacing:3px;
+text-transform:uppercase;
+color:var(--gold);
+margin-bottom:8px;
+}
+
+.page-title{
+font-family:'Bebas Neue',sans-serif;
+font-size:58px;
+line-height:0.9;
+margin-bottom:22px;
+}
+
+.page-title em{
+color:var(--gold);
+font-style:normal;
+}
+
+.box{
+background:var(--light);
+border-left:3px solid var(--gold);
+padding:18px;
+margin-bottom:18px;
+line-height:1.9;
+color:var(--gray);
+font-size:14px;
+}
+
+.box strong{
+color:var(--black);
+}
+
+.card{
+background:white;
+border:1px solid var(--border);
+padding:20px 18px;
+margin-bottom:16px;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+right:0;
+height:3px;
+background:var(--gold);
+}
+
+.card-title{
+font-family:'Bebas Neue',sans-serif;
+font-size:30px;
+letter-spacing:2px;
+margin-bottom:10px;
+color:var(--black);
+}
+
+.card-text{
+font-size:14px;
+line-height:1.9;
+color:var(--gray);
+}
+
+.card-text strong{
+color:var(--black);
+}
+
+.quote{
+padding:24px;
+background:var(--black);
+color:white;
+margin:30px 0;
+}
+
+.quote-text{
+font-family:'Bebas Neue',sans-serif;
+font-size:32px;
+line-height:1.1;
+letter-spacing:1px;
+}
+
+.check-title{
+font-family:'Bebas Neue',sans-serif;
+font-size:24px;
+letter-spacing:2px;
+margin:28px 0 16px;
+color:var(--black);
+}
+
+.checklist{
+list-style:none;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.checklist li{
+background:white;
+border:1px solid var(--border);
+padding:15px;
+display:flex;
+align-items:flex-start;
+gap:12px;
+font-size:14px;
+line-height:1.7;
+color:var(--gray);
+}
+
+.cb{
+width:20px;
+height:20px;
+border:1px solid var(--gold);
+flex-shrink:0;
+margin-top:2px;
+}
+
+.footer{
+text-align:center;
+padding:40px 20px 60px;
+margin-top:40px;
+border-top:1px solid var(--border);
+}
+
+.footer-logo{
+font-family:'Bebas Neue',sans-serif;
+font-size:22px;
+letter-spacing:5px;
+color:var(--black);
+margin-bottom:8px;
+}
+
+.footer-text{
+font-family:'DM Mono',monospace;
+font-size:10px;
+letter-spacing:1px;
+color:#888;
+line-height:1.8;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="bg-text">PERFORMANCE</div>
+
+<div class="tag">
+Y.E.S.I CONCEPT — GUIDE PERFORMANCE
+</div>
+
+<h1 class="title">
+LA<br><em>PERFORMANCE</em>
+</h1>
+
+<div class="subtitle">
+Ce que peu de personnes acceptent réellement
+</div>
+
+<div class="desc">
+La performance n'est pas un talent magique.  
+C'est une accumulation de sacrifices, d'habitudes et de constance répétées pendant longtemps.
+</div>
+
+<a href="#contenu" class="cta">
+COMMENCER ↓
+</a>
+
+</section>
+
+<div class="page" id="contenu">
+
+<div class="label">
+01 — Comprendre
+</div>
+
+<h2 class="page-title">
+Qu'est-ce que la<br><em>performance ?</em>
+</h2>
+
+<div class="box">
+<strong>La performance, c'est produire un haut niveau malgré la fatigue, la pression et les difficultés.</strong><br><br>
+
+Beaucoup aiment le résultat.  
+Très peu acceptent réellement le mode de vie nécessaire pour y arriver.
+</div>
+
+<div class="card">
+<div class="card-title">
+Sacrifices
+</div>
+
+<div class="card-text">
+La performance demande parfois de :
+<br><br>
+
+• dire non aux distractions  
+<br>
+• dormir plus tôt  
+<br>
+• travailler quand les autres se reposent  
+<br>
+• répéter sans être applaudi  
+<br>
+• continuer même sans résultats immédiats
+<br><br>
+
+<strong>Le sacrifice crée l'avance.</strong>
+</div>
+</div>
+
+<div class="card">
+<div class="card-title">
+Régularité
+</div>
+
+<div class="card-text">
+Un gros entraînement ne change pas une carrière.
+<br><br>
+
+Ce sont les petits efforts répétés chaque jour qui construisent un sportif solide mentalement et physiquement.
+</div>
+</div>
+
+<div class="card">
+<div class="card-title">
+Mental
+</div>
+
+<div class="card-text">
+La performance demande un mental stable :
+<br><br>
+
+• accepter l'échec  
+<br>
+• gérer la frustration  
+<br>
+• continuer sous pression  
+<br>
+• rester concentré  
+<br>
+• ne pas abandonner rapidement
+</div>
+</div>
+
+<div class="quote">
+<div class="quote-text">
+LA PERFORMANCE COMMENCE LÀ OÙ LE CONFORT S'ARRÊTE.
+</div>
+</div>
+
+<div class="label">
+02 — Mentalité
+</div>
+
+<h2 class="page-title">
+Les habitudes<br><em>du performant</em>
+</h2>
+
+<div class="check-title">
+CHECKLIST PERFORMANCE
+</div>
+
+<ul class="checklist">
+
+<li>
+<div class="cb"></div>
+<span>Respecter son sommeil</span>
+</li>
+
+<li>
+<div class="cb"></div>
+<span>Travailler même sans motivation</span>
+</li>
+
+<li>
+<div class="cb"></div>
+<span>Limiter les distractions inutiles</span>
+</li>
+
+<li>
+<div class="cb"></div>
+<span>Accepter les critiques constructives</span>
+</li>
+
+<li>
+<div class="cb"></div>
+<span>Rester discipliné après une victoire</span>
+</li>
+
+<li>
+<div class="cb"></div>
+<span>Continuer après un échec</span>
+</li>
+
+<li>
+<div class="cb"></div>
+<span>Être constant dans les efforts</span>
+</li>
+
+<li>
+<div class="cb"></div>
+<span>Chercher à progresser chaque semaine</span>
+</li>
+
+</ul>
+
+<div class="card" style="margin-top:26px;">
+<div class="card-title">
+Différence
+</div>
+
+<div class="card-text">
+La différence entre un sportif moyen et un sportif performant ne se voit pas toujours le jour du match.
+<br><br>
+
+Elle se construit dans tout ce que personne ne voit :
+<br><br>
+
+<strong>les habitudes, les sacrifices et la constance quotidienne.</strong>
+</div>
+</div>
+
+<div class="footer">
+<div class="footer-logo">
+Y.E.S.I CONCEPT
+</div>
+
+<div class="footer-text">
+Guide Performance — Version Mobile<br>
+Développement personnel & performance sportive
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

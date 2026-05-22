@@ -114,6 +114,8 @@
     cursor: pointer; transition: all .15s; user-select: none;
   }
   .check-item.selected { background: rgba(201,168,76,.12); border-color: var(--gold); color: var(--gold); }
+  .check-item.bad-item.selected { background: rgba(217,64,64,.1); border-color: var(--red); color: var(--red); }
+  .check-item.skip-item.selected { background: rgba(153,153,153,.12); border-color: #999; color: #666; }
 
   .radio-group { display: flex; flex-direction: column; gap: 6px; }
   .radio-item {
@@ -265,6 +267,68 @@
     color: var(--orange); margin-bottom: 8px; padding-bottom: 5px;
     border-bottom: 1px solid rgba(201,106,32,.2);
   }
+
+  /* ── NUTRITION SPECIFIQUE ── */
+  .nutri-section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; margin: 12px 0 8px;
+  }
+  .nutri-section-label.label-prot { color: #2F72D4; }
+  .nutri-section-label.label-fec { color: #C96A20; }
+  .nutri-section-label.label-veg { color: #3A9E5F; }
+  .nutri-section-label.label-bad { color: #D94040; }
+  .nutri-section-label.label-supp { color: #6B4EC4; }
+  .nutri-section-label:first-child { margin-top: 0; }
+
+  .repas-qualite-bar {
+    height: 4px; border-radius: 2px; margin-top: 12px;
+    background: #E0E0E0; overflow: hidden; transition: all .3s;
+  }
+  .repas-qualite-fill { height: 100%; border-radius: 2px; transition: all .3s; width: 0%; }
+
+  .repas-qualite-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; margin-top: 5px; text-align: right;
+    transition: color .3s;
+  }
+
+  .pas-repas-toggle {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; background: #F0F0F0; border: 1px solid #DDDDDD;
+    border-radius: 8px; cursor: pointer; transition: all .15s; user-select: none;
+    margin-top: 10px;
+  }
+  .pas-repas-toggle.active { background: rgba(153,153,153,.12); border-color: #999; }
+  .pas-repas-toggle-icon {
+    width: 18px; height: 18px; border: 2px solid #CCCCCC; border-radius: 4px;
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; transition: all .15s;
+  }
+  .pas-repas-toggle.active .pas-repas-toggle-icon { background: #999; border-color: #999; color: #fff; }
+  .pas-repas-toggle-text { font-size: 12px; color: #666; font-weight: 500; }
+  .pas-repas-toggle.active .pas-repas-toggle-text { color: #444; }
+
+  .repas-body { transition: opacity .2s, max-height .3s; overflow: hidden; }
+  .repas-body.hidden { opacity: .3; pointer-events: none; max-height: 0 !important; }
+
+  .score-display-wrap {
+    padding: 16px; background: #F5F5F5; border-radius: 10px;
+    text-align: center; border: 2px solid #E0E0E0; transition: border-color .3s;
+    margin-bottom: 16px;
+  }
+  .score-display-wrap.score-bad { border-color: var(--red); }
+  .score-display-wrap.score-moyen { border-color: var(--orange); }
+  .score-display-wrap.score-bien { border-color: #B8922A; }
+  .score-display-wrap.score-top { border-color: var(--green); }
+
+  .n-score-big {
+    font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1;
+    transition: color .3s;
+  }
+  .score-bad .n-score-big { color: var(--red); }
+  .score-moyen .n-score-big { color: var(--orange); }
+  .score-bien .n-score-big { color: var(--gold); }
+  .score-top .n-score-big { color: var(--green); }
 </style>
 </head>
 <body>
@@ -425,7 +489,6 @@
 
 <!-- ══════════════════════════ AV.MATCH ══ -->
 <div class="section" id="s-avmatch">
-
   <div style="margin-bottom:18px">
     <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,12vw,58px);line-height:0.9;margin-bottom:8px">
       <span style="color:var(--orange)">Av.</span>Match
@@ -434,8 +497,6 @@
       Protocole nutrition match. À cocher dès <strong style="color:#444">J-2</strong> avant chaque rencontre.
     </div>
   </div>
-
-  <!-- Progression globale -->
   <div class="card">
     <div class="cm-header">
       <div class="cm-score" id="cm-score">0 / 18 complétés</div>
@@ -443,8 +504,6 @@
     </div>
     <div class="cm-progress"><div class="cm-bar" id="cm-bar"></div></div>
   </div>
-
-  <!-- J-2 / J-1 -->
   <div class="card">
     <div class="cm-phase-title">J-2 / J-1</div>
     <ul class="cm-list">
@@ -455,8 +514,6 @@
       <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Préparer la boisson d'attente et/ou le Gâteau Sport</span></li>
     </ul>
   </div>
-
-  <!-- Jour du match -->
   <div class="card">
     <div class="cm-phase-title">Jour du match</div>
     <ul class="cm-list">
@@ -467,8 +524,6 @@
       <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Boisson énergétique disponible pour la mi-temps</span></li>
     </ul>
   </div>
-
-  <!-- Post-match 30min -->
   <div class="card">
     <div class="cm-phase-title">Post-match — 30 min</div>
     <ul class="cm-list">
@@ -477,8 +532,6 @@
       <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Fruits secs ou frais en attendant le repas</span></li>
     </ul>
   </div>
-
-  <!-- Repas récupération -->
   <div class="card">
     <div class="cm-phase-title">Repas récupération</div>
     <ul class="cm-list">
@@ -489,7 +542,6 @@
       <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Zéro alcool, soda ou boisson énergisante</span></li>
     </ul>
   </div>
-
 </div>
 
 <!-- ══════════════════════════ MENTAL ══ -->
@@ -553,122 +605,203 @@
 
 <!-- ══════════════════════════ NUTRITION ══ -->
 <div class="section" id="s-nutrition">
+
+  <!-- DATE -->
   <div class="card">
     <div class="card-title"><span class="dot"></span>DATE</div>
     <input type="date" id="n-date">
   </div>
-  <div class="card">
+
+  <!-- MATIN -->
+  <div class="card" id="card-matin">
     <div class="card-title"><span class="dot"></span>🌅 MATIN</div>
-    <p style="font-size:11px;color:#999999;margin-bottom:12px">Coche tout ce que tu as mangé ce matin</p>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin-bottom:8px;text-transform:uppercase">Protéines</div>
-    <div class="check-group n-repas" id="nm-prot">
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥚 Œufs</div>
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🍗 Poulet</div>
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🐟 Poisson</div>
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥩 Viande rouge</div>
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🫘 Légumineuses</div>
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥛 Yaourt / fromage</div>
+    <div class="pas-repas-toggle" id="toggle-matin" onclick="togglePasRepas('matin')">
+      <div class="pas-repas-toggle-icon" id="icon-matin"></div>
+      <span class="pas-repas-toggle-text">Pas de petit-déjeuner</span>
     </div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">Féculents / Énergie</div>
-    <div class="check-group n-repas" id="nm-fec">
-      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🍞 Pain complet</div>
-      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🥣 Flocons d'avoine</div>
-      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🍌 Fruit</div>
-      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🥐 Viennoiserie</div>
-      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍫 Chocolat / sucré</div>
-      <div class="check-item" data-cat="skip" onclick="nutriCheck(this)">⛔ Pas de petit-déj</div>
+    <div class="repas-body" id="body-matin" style="max-height:600px">
+      <div class="nutri-section-label label-prot" style="margin-top:12px">Protéines</div>
+      <div class="check-group n-repas" id="nm-prot">
+        <div class="check-item" data-cat="prot" data-repas="matin" onclick="nutriCheck(this)">🥚 Œufs</div>
+        <div class="check-item" data-cat="prot" data-repas="matin" onclick="nutriCheck(this)">🍗 Poulet</div>
+        <div class="check-item" data-cat="prot" data-repas="matin" onclick="nutriCheck(this)">🐟 Poisson</div>
+        <div class="check-item" data-cat="prot" data-repas="matin" onclick="nutriCheck(this)">🥛 Yaourt / fromage</div>
+        <div class="check-item" data-cat="prot" data-repas="matin" onclick="nutriCheck(this)">🫘 Légumineuses</div>
+      </div>
+      <div class="nutri-section-label label-fec">Féculents / Énergie</div>
+      <div class="check-group n-repas" id="nm-fec">
+        <div class="check-item" data-cat="fec" data-repas="matin" onclick="nutriCheck(this)">🍞 Pain complet</div>
+        <div class="check-item" data-cat="fec" data-repas="matin" onclick="nutriCheck(this)">🥣 Flocons d'avoine</div>
+        <div class="check-item" data-cat="fec" data-repas="matin" onclick="nutriCheck(this)">🍌 Fruit</div>
+      </div>
+      <div class="nutri-section-label label-bad">À éviter</div>
+      <div class="check-group n-repas" id="nm-bad">
+        <div class="check-item bad-item" data-cat="bad" data-repas="matin" onclick="nutriCheck(this)">🥐 Viennoiserie</div>
+        <div class="check-item bad-item" data-cat="bad" data-repas="matin" onclick="nutriCheck(this)">🍫 Sucré / chocolat</div>
+      </div>
+      <div class="repas-qualite-bar"><div class="repas-qualite-fill" id="bar-matin"></div></div>
+      <div class="repas-qualite-label" id="label-matin" style="color:#999"></div>
     </div>
   </div>
-  <div class="card">
+
+  <!-- COLLATION -->
+  <div class="card" id="card-collation">
+    <div class="card-title"><span class="dot"></span>🔋 COLLATION</div>
+    <div class="pas-repas-toggle" id="toggle-collation" onclick="togglePasRepas('collation')">
+      <div class="pas-repas-toggle-icon" id="icon-collation"></div>
+      <span class="pas-repas-toggle-text">Pas de collation aujourd'hui</span>
+    </div>
+    <div class="repas-body" id="body-collation" style="max-height:400px">
+      <div class="nutri-section-label label-prot" style="margin-top:12px">Protéines</div>
+      <div class="check-group n-repas" id="nc-prot">
+        <div class="check-item" data-cat="prot" data-repas="collation" onclick="nutriCheck(this)">🥛 Yaourt / fromage blanc</div>
+        <div class="check-item" data-cat="prot" data-repas="collation" onclick="nutriCheck(this)">🥚 Œufs durs</div>
+        <div class="check-item" data-cat="prot" data-repas="collation" onclick="nutriCheck(this)">🍗 Poulet froid</div>
+      </div>
+      <div class="nutri-section-label label-fec">Énergie</div>
+      <div class="check-group n-repas" id="nc-fec">
+        <div class="check-item" data-cat="fec" data-repas="collation" onclick="nutriCheck(this)">🍌 Fruit</div>
+        <div class="check-item" data-cat="fec" data-repas="collation" onclick="nutriCheck(this)">🥜 Fruits secs / noix</div>
+        <div class="check-item" data-cat="fec" data-repas="collation" onclick="nutriCheck(this)">🍞 Pain complet</div>
+        <div class="check-item" data-cat="fec" data-repas="collation" onclick="nutriCheck(this)">🌾 Barre céréales</div>
+      </div>
+      <div class="nutri-section-label label-bad">À éviter</div>
+      <div class="check-group n-repas" id="nc-bad">
+        <div class="check-item bad-item" data-cat="bad" data-repas="collation" onclick="nutriCheck(this)">🍬 Confiseries</div>
+        <div class="check-item bad-item" data-cat="bad" data-repas="collation" onclick="nutriCheck(this)">🥤 Soda / energy drink</div>
+        <div class="check-item bad-item" data-cat="bad" data-repas="collation" onclick="nutriCheck(this)">🍪 Biscuits industriels</div>
+      </div>
+      <div class="repas-qualite-bar"><div class="repas-qualite-fill" id="bar-collation"></div></div>
+      <div class="repas-qualite-label" id="label-collation" style="color:#999"></div>
+    </div>
+  </div>
+
+  <!-- MIDI -->
+  <div class="card" id="card-midi">
     <div class="card-title"><span class="dot"></span>☀️ MIDI</div>
-    <p style="font-size:11px;color:#999999;margin-bottom:12px">Coche tout ce que tu as mangé à midi</p>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin-bottom:8px;text-transform:uppercase">Protéines</div>
-    <div class="check-group n-repas" id="nd-prot">
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🍗 Poulet</div>
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🐟 Poisson</div>
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥩 Viande rouge</div>
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥚 Œufs</div>
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🫘 Légumineuses</div>
+    <div class="pas-repas-toggle" id="toggle-midi" onclick="togglePasRepas('midi')">
+      <div class="pas-repas-toggle-icon" id="icon-midi"></div>
+      <span class="pas-repas-toggle-text">Repas de midi sauté</span>
     </div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">Féculents</div>
-    <div class="check-group n-repas" id="nd-fec">
-      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🍚 Riz</div>
-      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🍝 Pâtes</div>
-      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🥔 Pommes de terre</div>
-      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🫓 Pain</div>
-      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🌾 Quinoa / céréales</div>
-    </div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">Légumes</div>
-    <div class="check-group n-repas" id="nd-leg">
-      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🥗 Salade</div>
-      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🥦 Légumes cuits</div>
-      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🍅 Crudités</div>
-      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🥕 Carottes</div>
-    </div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">À éviter</div>
-    <div class="check-group n-repas" id="nd-bad">
-      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍟 Frites</div>
-      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍔 Burger / kebab</div>
-      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍕 Pizza</div>
-      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🥤 Soda</div>
-      <div class="check-item" data-cat="skip" onclick="nutriCheck(this)">⛔ Repas sauté</div>
+    <div class="repas-body" id="body-midi" style="max-height:700px">
+      <div class="nutri-section-label label-prot" style="margin-top:12px">Protéines</div>
+      <div class="check-group n-repas" id="nd-prot">
+        <div class="check-item" data-cat="prot" data-repas="midi" onclick="nutriCheck(this)">🍗 Poulet</div>
+        <div class="check-item" data-cat="prot" data-repas="midi" onclick="nutriCheck(this)">🐟 Poisson</div>
+        <div class="check-item" data-cat="prot" data-repas="midi" onclick="nutriCheck(this)">🥩 Viande rouge</div>
+        <div class="check-item" data-cat="prot" data-repas="midi" onclick="nutriCheck(this)">🥚 Œufs</div>
+        <div class="check-item" data-cat="prot" data-repas="midi" onclick="nutriCheck(this)">🫘 Légumineuses</div>
+      </div>
+      <div class="nutri-section-label label-fec">Féculents</div>
+      <div class="check-group n-repas" id="nd-fec">
+        <div class="check-item" data-cat="fec" data-repas="midi" onclick="nutriCheck(this)">🍚 Riz</div>
+        <div class="check-item" data-cat="fec" data-repas="midi" onclick="nutriCheck(this)">🍝 Pâtes</div>
+        <div class="check-item" data-cat="fec" data-repas="midi" onclick="nutriCheck(this)">🥔 Pommes de terre</div>
+        <div class="check-item" data-cat="fec" data-repas="midi" onclick="nutriCheck(this)">🫓 Pain</div>
+        <div class="check-item" data-cat="fec" data-repas="midi" onclick="nutriCheck(this)">🌾 Quinoa / céréales</div>
+      </div>
+      <div class="nutri-section-label label-veg">Légumes</div>
+      <div class="check-group n-repas" id="nd-leg">
+        <div class="check-item" data-cat="veg" data-repas="midi" onclick="nutriCheck(this)">🥗 Salade</div>
+        <div class="check-item" data-cat="veg" data-repas="midi" onclick="nutriCheck(this)">🥦 Légumes cuits</div>
+        <div class="check-item" data-cat="veg" data-repas="midi" onclick="nutriCheck(this)">🍅 Crudités</div>
+        <div class="check-item" data-cat="veg" data-repas="midi" onclick="nutriCheck(this)">🥕 Carottes</div>
+      </div>
+      <div class="nutri-section-label label-bad">À éviter</div>
+      <div class="check-group n-repas" id="nd-bad">
+        <div class="check-item bad-item" data-cat="bad" data-repas="midi" onclick="nutriCheck(this)">🍟 Frites</div>
+        <div class="check-item bad-item" data-cat="bad" data-repas="midi" onclick="nutriCheck(this)">🍔 Burger / kebab</div>
+        <div class="check-item bad-item" data-cat="bad" data-repas="midi" onclick="nutriCheck(this)">🍕 Pizza</div>
+        <div class="check-item bad-item" data-cat="bad" data-repas="midi" onclick="nutriCheck(this)">🥤 Soda</div>
+      </div>
+      <div class="repas-qualite-bar"><div class="repas-qualite-fill" id="bar-midi"></div></div>
+      <div class="repas-qualite-label" id="label-midi" style="color:#999"></div>
     </div>
   </div>
-  <div class="card">
+
+  <!-- SOIR -->
+  <div class="card" id="card-soir">
     <div class="card-title"><span class="dot"></span>🌙 SOIR</div>
-    <p style="font-size:11px;color:#999999;margin-bottom:12px">Coche tout ce que tu as mangé le soir</p>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin-bottom:8px;text-transform:uppercase">Protéines</div>
-    <div class="check-group n-repas" id="ns-prot">
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🍗 Poulet</div>
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🐟 Poisson</div>
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥩 Viande rouge</div>
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥚 Œufs</div>
-      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🫘 Légumineuses</div>
+    <div class="pas-repas-toggle" id="toggle-soir" onclick="togglePasRepas('soir')">
+      <div class="pas-repas-toggle-icon" id="icon-soir"></div>
+      <span class="pas-repas-toggle-text">Repas du soir sauté</span>
     </div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">Féculents</div>
-    <div class="check-group n-repas" id="ns-fec">
-      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🍚 Riz</div>
-      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🍝 Pâtes</div>
-      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🥔 Pommes de terre</div>
-      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🫓 Pain</div>
-    </div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">Légumes</div>
-    <div class="check-group n-repas" id="ns-leg">
-      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🥗 Salade</div>
-      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🥦 Légumes cuits</div>
-      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🍅 Crudités</div>
-      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🥕 Carottes</div>
-    </div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">À éviter</div>
-    <div class="check-group n-repas" id="ns-bad">
-      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍟 Frites</div>
-      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍔 Burger / kebab</div>
-      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍕 Pizza</div>
-      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🥤 Soda</div>
-      <div class="check-item" data-cat="skip" onclick="nutriCheck(this)">⛔ Repas sauté</div>
+    <div class="repas-body" id="body-soir" style="max-height:700px">
+      <div class="nutri-section-label label-prot" style="margin-top:12px">Protéines</div>
+      <div class="check-group n-repas" id="ns-prot">
+        <div class="check-item" data-cat="prot" data-repas="soir" onclick="nutriCheck(this)">🍗 Poulet</div>
+        <div class="check-item" data-cat="prot" data-repas="soir" onclick="nutriCheck(this)">🐟 Poisson</div>
+        <div class="check-item" data-cat="prot" data-repas="soir" onclick="nutriCheck(this)">🥩 Viande rouge</div>
+        <div class="check-item" data-cat="prot" data-repas="soir" onclick="nutriCheck(this)">🥚 Œufs</div>
+        <div class="check-item" data-cat="prot" data-repas="soir" onclick="nutriCheck(this)">🫘 Légumineuses</div>
+      </div>
+      <div class="nutri-section-label label-fec">Féculents</div>
+      <div class="check-group n-repas" id="ns-fec">
+        <div class="check-item" data-cat="fec" data-repas="soir" onclick="nutriCheck(this)">🍚 Riz</div>
+        <div class="check-item" data-cat="fec" data-repas="soir" onclick="nutriCheck(this)">🍝 Pâtes</div>
+        <div class="check-item" data-cat="fec" data-repas="soir" onclick="nutriCheck(this)">🥔 Pommes de terre</div>
+        <div class="check-item" data-cat="fec" data-repas="soir" onclick="nutriCheck(this)">🫓 Pain</div>
+      </div>
+      <div class="nutri-section-label label-veg">Légumes</div>
+      <div class="check-group n-repas" id="ns-leg">
+        <div class="check-item" data-cat="veg" data-repas="soir" onclick="nutriCheck(this)">🥗 Salade</div>
+        <div class="check-item" data-cat="veg" data-repas="soir" onclick="nutriCheck(this)">🥦 Légumes cuits</div>
+        <div class="check-item" data-cat="veg" data-repas="soir" onclick="nutriCheck(this)">🍅 Crudités</div>
+        <div class="check-item" data-cat="veg" data-repas="soir" onclick="nutriCheck(this)">🥕 Carottes</div>
+      </div>
+      <div class="nutri-section-label label-bad">À éviter</div>
+      <div class="check-group n-repas" id="ns-bad">
+        <div class="check-item bad-item" data-cat="bad" data-repas="soir" onclick="nutriCheck(this)">🍟 Frites</div>
+        <div class="check-item bad-item" data-cat="bad" data-repas="soir" onclick="nutriCheck(this)">🍔 Burger / kebab</div>
+        <div class="check-item bad-item" data-cat="bad" data-repas="soir" onclick="nutriCheck(this)">🍕 Pizza</div>
+        <div class="check-item bad-item" data-cat="bad" data-repas="soir" onclick="nutriCheck(this)">🥤 Soda</div>
+      </div>
+      <div class="repas-qualite-bar"><div class="repas-qualite-fill" id="bar-soir"></div></div>
+      <div class="repas-qualite-label" id="label-soir" style="color:#999"></div>
     </div>
   </div>
+
+  <!-- HYDRATATION -->
   <div class="card">
     <div class="card-title"><span class="dot"></span>💧 HYDRATATION</div>
     <div class="radio-group" id="n-eau">
-      <div class="radio-item" data-pts="0" onclick="selectRadio(this,'n-eau')">💧 Moins d'1L</div>
-      <div class="radio-item" data-pts="1" onclick="selectRadio(this,'n-eau')">💧💧 1L – 1.5L</div>
-      <div class="radio-item" data-pts="2" onclick="selectRadio(this,'n-eau')">💧💧💧 1.5L – 2L</div>
-      <div class="radio-item" data-pts="3" onclick="selectRadio(this,'n-eau')">🌊 2L+</div>
+      <div class="radio-item" data-pts="0" onclick="selectRadio(this,'n-eau');calcNutriScore()">💧 Moins d'1L</div>
+      <div class="radio-item" data-pts="1" onclick="selectRadio(this,'n-eau');calcNutriScore()">💧💧 1L – 1.5L</div>
+      <div class="radio-item" data-pts="2" onclick="selectRadio(this,'n-eau');calcNutriScore()">💧💧💧 1.5L – 2L</div>
+      <div class="radio-item" data-pts="3" onclick="selectRadio(this,'n-eau');calcNutriScore()">🌊 2L+</div>
     </div>
   </div>
+
+  <!-- COMPLÉMENTS -->
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>💊 COMPLÉMENTS</div>
+    <p style="font-size:11px;color:#999999;margin-bottom:12px">Suppléments pris aujourd'hui (optionnel)</p>
+    <div class="check-group" id="n-suppl">
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">🥛 Whey protéine</div>
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">⚡ Créatine</div>
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">🌿 BCAA</div>
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">☀️ Vitamine D</div>
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">🧲 Magnésium</div>
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">🐟 Oméga-3</div>
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">🌡️ Multivitamines</div>
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">🍃 Fer</div>
+    </div>
+  </div>
+
+  <!-- SCORE -->
   <div class="card" id="n-eval-card">
     <div class="card-title"><span class="dot"></span>SCORE NUTRITION</div>
-    <p style="font-size:12px;color:#999999;margin-bottom:16px;line-height:1.5">Calculé automatiquement selon tes choix — <strong style="color:#B8922A">verrouillé à la validation</strong>.</p>
-    <div id="n-score-display" style="padding:16px;background:#F5F5F5;border-radius:10px;text-align:center;border:2px solid #E0E0E0">
+    <label>Notes (optionnel)</label>
+    <textarea id="n-notes" placeholder="Contexte, repas extérieur, contrainte..." style="margin-bottom:16px"></textarea>
+    <p style="font-size:12px;color:#999999;margin-bottom:16px;line-height:1.5">Calculé automatiquement — <strong style="color:#B8922A">verrouillé à la validation</strong>.</p>
+    <div class="score-display-wrap" id="n-score-display">
       <div style="font-size:11px;letter-spacing:2px;color:#999999;text-transform:uppercase;margin-bottom:6px">Score qualité</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:56px;color:#B8922A;line-height:1" id="n-score-val">—</div>
+      <div class="n-score-big" id="n-score-val">—</div>
       <div style="font-size:11px;color:#999999">/10</div>
       <div style="font-size:13px;color:#444444;margin-top:8px;font-weight:600" id="n-score-label">Complète tes repas</div>
     </div>
-    <label style="margin-top:16px">Notes (optionnel)</label>
-    <textarea id="n-notes" placeholder="Contexte, repas extérieur, contrainte..."></textarea>
   </div>
+
   <button class="btn-submit" onclick="saveNutrition()">💾 VALIDER LA JOURNÉE</button>
 </div>
 
@@ -928,50 +1061,161 @@ function saveMental() {
   showToast('✅ Session mentale enregistrée');
 }
 
-// ── NUTRITION SCORE AUTO ──
+// ══════════════════════════ NUTRITION JS ══════════════════════════
+
 var nutriLocked = false;
 var nutriScoreVal = null;
-var NUTRI_WEIGHTS = { prot: 2, veg: 2, fec: 1, bad: -2, skip: -3 };
+var pasRepasState = { matin: false, collation: false, midi: false, soir: false };
+
+var NUTRI_WEIGHTS = { prot: 2, veg: 2, fec: 1, bad: -2 };
+
+function togglePasRepas(repas) {
+  if (nutriLocked) return;
+  pasRepasState[repas] = !pasRepasState[repas];
+  var toggle = document.getElementById('toggle-' + repas);
+  var icon = document.getElementById('icon-' + repas);
+  var body = document.getElementById('body-' + repas);
+  if (pasRepasState[repas]) {
+    toggle.classList.add('active');
+    icon.textContent = '✓';
+    body.classList.add('hidden');
+    // Déselectionner tous les items de ce repas
+    document.querySelectorAll('.check-item[data-repas="'+repas+'"]').forEach(function(el){
+      el.classList.remove('selected');
+    });
+  } else {
+    toggle.classList.remove('active');
+    icon.textContent = '';
+    body.classList.remove('hidden');
+  }
+  calcNutriScore();
+}
 
 function nutriCheck(el) {
   if (nutriLocked) return;
   el.classList.toggle('selected');
   calcNutriScore();
+  updateRepasBar(el.getAttribute('data-repas'));
 }
+
+function updateRepasBar(repas) {
+  if (!repas) return;
+  var items = document.querySelectorAll('.check-item[data-repas="'+repas+'"].selected');
+  var score = 0;
+  items.forEach(function(el){
+    score += (NUTRI_WEIGHTS[el.getAttribute('data-cat')] || 0);
+  });
+  var pct = Math.max(0, Math.min(100, 50 + score * 10));
+  var bar = document.getElementById('bar-' + repas);
+  var lbl = document.getElementById('label-' + repas);
+  if (!bar || !lbl) return;
+  var color, text;
+  if (score >= 3) { color = '#3A9E5F'; text = '✅ Très bien'; }
+  else if (score >= 1) { color = '#B8922A'; text = '🟡 Correct'; }
+  else if (score === 0) { color = '#999999'; text = ''; }
+  else if (score >= -1) { color = '#C96A20'; text = '🟠 À améliorer'; }
+  else { color = '#D94040'; text = '🔴 Attention'; }
+  bar.style.width = pct + '%';
+  bar.style.background = color;
+  lbl.style.color = color;
+  lbl.textContent = text;
+}
+
 function calcNutriScore() {
   var allItems = document.querySelectorAll('.n-repas .check-item.selected');
   var raw = 0;
   allItems.forEach(function(el){ raw += (NUTRI_WEIGHTS[el.getAttribute('data-cat')] || 0); });
+
+  // Malus repas sautés (hors collation qui est optionnelle)
+  var repasOblig = ['matin','midi','soir'];
+  repasOblig.forEach(function(r){
+    if (pasRepasState[r]) raw -= 2;
+  });
+
   var eauSel = document.querySelector('#n-eau .radio-item.selected');
-  var eauPts = eauSel ? parseInt(eauSel.getAttribute('data-pts')||0) : 0;
+  var eauPts = eauSel ? parseInt(eauSel.getAttribute('data-pts') || 0) : 0;
+
   var score = Math.max(0, Math.min(10, 4 + raw + eauPts));
   nutriScoreVal = score;
-  var label = score >= 9 ? '🔥 Excellent' : score >= 7 ? '✅ Très bien' : score >= 5 ? '🟡 Correct' : score >= 3 ? '🟠 À améliorer' : '🔴 Insuffisant';
+
+  var wrap = document.getElementById('n-score-display');
+  wrap.className = 'score-display-wrap';
+  var label, cls;
+  if (score >= 9) { label = '🔥 Excellent'; cls = 'score-top'; }
+  else if (score >= 7) { label = '✅ Très bien'; cls = 'score-bien'; }
+  else if (score >= 5) { label = '🟡 Correct'; cls = 'score-moyen'; }
+  else if (score >= 3) { label = '🟠 À améliorer'; cls = 'score-moyen'; }
+  else { label = '🔴 Insuffisant'; cls = 'score-bad'; }
+  wrap.classList.add(cls);
+
   document.getElementById('n-score-val').textContent = score;
   document.getElementById('n-score-label').textContent = label;
-  document.getElementById('n-score-display').style.border = '2px solid #B8922A';
 }
+
 function lockNutri() {
   nutriLocked = true;
-  document.querySelectorAll('.n-repas .check-item').forEach(function(el){ el.style.pointerEvents = 'none'; if (!el.classList.contains('selected')) el.style.opacity = '0.3'; });
-  document.querySelectorAll('#n-eau .radio-item').forEach(function(el){ el.style.pointerEvents = 'none'; if (!el.classList.contains('selected')) el.style.opacity = '0.3'; });
+  document.querySelectorAll('.n-repas .check-item').forEach(function(el){
+    el.style.pointerEvents = 'none';
+    if (!el.classList.contains('selected')) el.style.opacity = '0.3';
+  });
+  document.querySelectorAll('#n-eau .radio-item').forEach(function(el){
+    el.style.pointerEvents = 'none';
+    if (!el.classList.contains('selected')) el.style.opacity = '0.3';
+  });
+  document.querySelectorAll('.pas-repas-toggle').forEach(function(el){ el.style.pointerEvents = 'none'; });
 }
+
 function resetNutri() {
   nutriLocked = false; nutriScoreVal = null;
-  document.querySelectorAll('.n-repas .check-item').forEach(function(el){ el.classList.remove('selected'); el.style.pointerEvents = ''; el.style.opacity = ''; });
+  pasRepasState = { matin: false, collation: false, midi: false, soir: false };
+  ['matin','collation','midi','soir'].forEach(function(r){
+    var toggle = document.getElementById('toggle-' + r);
+    var icon = document.getElementById('icon-' + r);
+    var body = document.getElementById('body-' + r);
+    if (toggle) toggle.classList.remove('active');
+    if (icon) icon.textContent = '';
+    if (body) body.classList.remove('hidden');
+    var bar = document.getElementById('bar-' + r);
+    var lbl = document.getElementById('label-' + r);
+    if (bar) { bar.style.width = '0%'; bar.style.background = ''; }
+    if (lbl) { lbl.textContent = ''; }
+    document.querySelectorAll('.pas-repas-toggle').forEach(function(el){ el.style.pointerEvents = ''; });
+  });
+  document.querySelectorAll('.n-repas .check-item').forEach(function(el){
+    el.classList.remove('selected');
+    el.style.pointerEvents = '';
+    el.style.opacity = '';
+  });
+  var wrap = document.getElementById('n-score-display');
+  wrap.className = 'score-display-wrap';
   document.getElementById('n-score-val').textContent = '—';
   document.getElementById('n-score-label').textContent = 'Complète tes repas';
-  document.getElementById('n-score-display').style.border = '2px solid #E0E0E0';
 }
+
 function saveNutrition() {
   function getRepas(ids) {
     var items = [];
-    ids.forEach(function(id){ document.querySelectorAll('#'+id+' .check-item.selected').forEach(function(el){ items.push(el.textContent.trim()); }); });
+    ids.forEach(function(id){
+      document.querySelectorAll('#'+id+' .check-item.selected').forEach(function(el){ items.push(el.textContent.trim()); });
+    });
     return items;
   }
-  var entry = { type:'nutrition', date:val('n-date'), matin:getRepas(['nm-prot','nm-fec']), midi:getRepas(['nd-prot','nd-fec','nd-leg','nd-bad']), soir:getRepas(['ns-prot','ns-fec','ns-leg','ns-bad']), eau:getRadio('n-eau'), qualite:nutriScoreVal !== null ? nutriScoreVal : '—', notes:val('n-notes'), ts:Date.now() };
+  var entry = {
+    type: 'nutrition',
+    date: val('n-date'),
+    matin: pasRepasState.matin ? ['(sauté)'] : getRepas(['nm-prot','nm-fec','nm-bad']),
+    collation: pasRepasState.collation ? ['(pas de collation)'] : getRepas(['nc-prot','nc-fec','nc-bad']),
+    midi: pasRepasState.midi ? ['(sauté)'] : getRepas(['nd-prot','nd-fec','nd-leg','nd-bad']),
+    soir: pasRepasState.soir ? ['(sauté)'] : getRepas(['ns-prot','ns-fec','ns-leg','ns-bad']),
+    eau: getRadio('n-eau'),
+    supplements: getChecked('n-suppl'),
+    qualite: nutriScoreVal !== null ? nutriScoreVal : '—',
+    notes: val('n-notes'),
+    ts: Date.now()
+  };
   lockNutri();
   var data = getStorage(); data.unshift(entry); setStorage(data);
+  resetChecks('n-suppl');
   clearVal('n-notes');
   showToast('✅ Journée enregistrée — score verrouillé 🔒');
   setTimeout(function(){ resetNutri(); resetRadios('n-eau'); document.getElementById('n-date').value = today(); }, 1500);
@@ -1045,7 +1289,7 @@ function entrySummary(e) {
   if (e.type==='entrainement') { var p=[]; if(e.seanceType&&e.seanceType.length) p.push('<span class="hist-badge">'+e.seanceType.join(' · ')+'</span>'); if(e.duree) p.push('<span class="hist-badge">'+e.duree+'</span>'); if(e.concentration) p.push('Conc. '+e.concentration+'/10'); return p.join(' '); }
   if (e.type==='match') { var p=[]; if(e.adversaire) p.push('<span class="hist-badge">vs '+escHtml(e.adversaire)+'</span>'); if(e.score) p.push('<span class="hist-badge">'+escHtml(e.score)+'</span>'); if(e.resultat) p.push(e.resultat); return p.join(' '); }
   if (e.type==='mental') { return 'État '+e.etat+'/10 · Énergie '+e.energie+'/10'+(e.piliers&&e.piliers.length?' · '+e.piliers.join(', '):''); }
-  if (e.type==='nutrition') { return 'Score '+(e.qualite !== undefined ? e.qualite : '—')+'/10'+(e.eau?' · '+e.eau:''); }
+  if (e.type==='nutrition') { return 'Score '+(e.qualite !== undefined ? e.qualite : '—')+'/10'+(e.eau?' · '+e.eau:'')+(e.supplements&&e.supplements.length?' · '+e.supplements.length+' suppl.':''); }
   if (e.type==='sommeil') { return 'Qualité '+e.qualite+'/10'+(e.duree?' · '+e.duree:'')+(e.recup?' · '+e.recup:''); }
   if (e.type==='objectifs') { return escHtml(e.quoi||'Objectif SMART')+(e.deadline?' · '+formatDate(e.deadline):''); }
   return '';
@@ -1076,7 +1320,7 @@ function buildModalContent(e) {
   if (e.type==='entrainement') { rows += row('Type',e.seanceType)+row('Durée',e.duree)+row('Attitude',e.attitude)+row('Comportement',e.comportement)+row('Concentration',e.concentration+'/10')+row('Intensité',e.intensite+'/10')+row('Points forts',e.positif)+row('À améliorer',e.negatif)+row('Notes',e.notes); }
   else if (e.type==='match') { rows += row('Compétition',e.competition)+row('Adversaire',e.adversaire)+row('Score',e.score)+row('Résultat',e.resultat)+row('Temps de jeu',e.tempsJeu)+row('Poste',e.poste)+row('Attitude',e.attitude)+row('Collectif',e.collectif)+row('Performance',e.performance+'/10')+row('Gestion stress',e.stress+'/10')+row('Points forts',e.forts)+row('À améliorer',e.amelio)+row('Ressenti',e.ressenti); }
   else if (e.type==='mental') { rows += row('État mental',e.etat+'/10')+row('Énergie',e.energie+'/10')+row('Stress',e.stress)+row('Axes Y.E.S.I',e.piliers)+row('Exercices',e.exercices)+row('Ce qui m\'a affecté',e.affecte)+row('Bien géré',e.bien)+row('Intention',e.intention); }
-  else if (e.type==='nutrition') { rows += row('Matin',e.matin)+row('Midi',e.midi)+row('Soir',e.soir)+row('Eau',e.eau)+row('Score qualité',e.qualite !== undefined ? e.qualite+'/10' : '—')+row('Notes',e.notes); }
+  else if (e.type==='nutrition') { rows += row('Matin',e.matin)+row('Collation',e.collation)+row('Midi',e.midi)+row('Soir',e.soir)+row('Eau',e.eau)+row('Compléments',e.supplements)+row('Score qualité',e.qualite !== undefined ? e.qualite+'/10' : '—')+row('Notes',e.notes); }
   else if (e.type==='sommeil') { rows += row('Coucher',e.coucher)+row('Lever',e.lever)+row('Durée',e.duree)+row('Qualité',e.qualite+'/10')+row('Récupération',e.recup)+row('Perturbations',e.perturbations)+row('Récupération active',e.recupActif)+row('Notes',e.notes); }
   else if (e.type==='objectifs') { rows += row('Objectif',e.quoi)+row('Pourquoi',e.pourquoi)+row('Deadline',formatDate(e.deadline))+row('Actions',e.actions); }
   return rows || '<div style="color:var(--text-muted);font-size:13px">Aucune donnée</div>';

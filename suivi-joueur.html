@@ -850,66 +850,142 @@
 <div class="section" id="s-nutrition">
 
   <div class="card">
-    <div class="card-title"><span class="dot"></span>JOURNÉE ALIMENTAIRE</div>
-    <label>Date</label>
+    <div class="card-title"><span class="dot"></span>DATE</div>
     <input type="date" id="n-date">
-
-    <label>Petit-déjeuner</label>
-    <textarea id="n-pdj" placeholder="Composition du petit-déjeuner..." style="min-height:60px"></textarea>
-
-    <label>Déjeuner</label>
-    <textarea id="n-dejeuner" placeholder="Composition du déjeuner..." style="min-height:60px"></textarea>
-
-    <label>Dîner</label>
-    <textarea id="n-diner" placeholder="Composition du dîner..." style="min-height:60px"></textarea>
-
-    <label>Collations / encas</label>
-    <textarea id="n-collation" placeholder="Barres, fruits, shakers..." style="min-height:50px"></textarea>
   </div>
 
+  <!-- MATIN -->
   <div class="card">
-    <div class="card-title"><span class="dot"></span>HYDRATATION</div>
+    <div class="card-title"><span class="dot"></span>🌅 MATIN</div>
+    <p style="font-size:11px;color:#999999;margin-bottom:12px">Coche tout ce que tu as mangé ce matin</p>
 
-    <label>Eau consommée</label>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin-bottom:8px;text-transform:uppercase">Protéines</div>
+    <div class="check-group n-repas" id="nm-prot">
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥚 Œufs</div>
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🍗 Poulet</div>
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🐟 Poisson</div>
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥩 Viande rouge</div>
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🫘 Légumineuses</div>
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥛 Yaourt / fromage</div>
+    </div>
+
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">Féculents / Énergie</div>
+    <div class="check-group n-repas" id="nm-fec">
+      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🍞 Pain complet</div>
+      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🥣 Flocons d'avoine</div>
+      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🍌 Fruit</div>
+      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🥐 Viennoiserie</div>
+      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍫 Chocolat / sucré</div>
+      <div class="check-item" data-cat="skip" onclick="nutriCheck(this)">⛔ Pas de petit-déj</div>
+    </div>
+  </div>
+
+  <!-- MIDI -->
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>☀️ MIDI</div>
+    <p style="font-size:11px;color:#999999;margin-bottom:12px">Coche tout ce que tu as mangé à midi</p>
+
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin-bottom:8px;text-transform:uppercase">Protéines</div>
+    <div class="check-group n-repas" id="nd-prot">
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🍗 Poulet</div>
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🐟 Poisson</div>
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥩 Viande rouge</div>
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥚 Œufs</div>
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🫘 Légumineuses</div>
+    </div>
+
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">Féculents</div>
+    <div class="check-group n-repas" id="nd-fec">
+      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🍚 Riz</div>
+      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🍝 Pâtes</div>
+      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🥔 Pommes de terre</div>
+      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🫓 Pain</div>
+      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🌾 Quinoa / céréales</div>
+    </div>
+
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">Légumes</div>
+    <div class="check-group n-repas" id="nd-leg">
+      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🥗 Salade</div>
+      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🥦 Légumes cuits</div>
+      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🍅 Crudités</div>
+      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🥕 Carottes</div>
+    </div>
+
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">À éviter</div>
+    <div class="check-group n-repas" id="nd-bad">
+      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍟 Frites</div>
+      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍔 Burger / kebab</div>
+      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍕 Pizza</div>
+      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🥤 Soda</div>
+      <div class="check-item" data-cat="skip" onclick="nutriCheck(this)">⛔ Repas sauté</div>
+    </div>
+  </div>
+
+  <!-- SOIR -->
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>🌙 SOIR</div>
+    <p style="font-size:11px;color:#999999;margin-bottom:12px">Coche tout ce que tu as mangé le soir</p>
+
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin-bottom:8px;text-transform:uppercase">Protéines</div>
+    <div class="check-group n-repas" id="ns-prot">
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🍗 Poulet</div>
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🐟 Poisson</div>
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥩 Viande rouge</div>
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🥚 Œufs</div>
+      <div class="check-item" data-cat="prot" onclick="nutriCheck(this)">🫘 Légumineuses</div>
+    </div>
+
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">Féculents</div>
+    <div class="check-group n-repas" id="ns-fec">
+      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🍚 Riz</div>
+      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🍝 Pâtes</div>
+      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🥔 Pommes de terre</div>
+      <div class="check-item" data-cat="fec" onclick="nutriCheck(this)">🫓 Pain</div>
+    </div>
+
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">Légumes</div>
+    <div class="check-group n-repas" id="ns-leg">
+      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🥗 Salade</div>
+      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🥦 Légumes cuits</div>
+      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🍅 Crudités</div>
+      <div class="check-item" data-cat="veg" onclick="nutriCheck(this)">🥕 Carottes</div>
+    </div>
+
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#B8922A;margin:12px 0 8px;text-transform:uppercase">À éviter</div>
+    <div class="check-group n-repas" id="ns-bad">
+      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍟 Frites</div>
+      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍔 Burger / kebab</div>
+      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🍕 Pizza</div>
+      <div class="check-item" data-cat="bad" onclick="nutriCheck(this)">🥤 Soda</div>
+      <div class="check-item" data-cat="skip" onclick="nutriCheck(this)">⛔ Repas sauté</div>
+    </div>
+  </div>
+
+  <!-- HYDRATATION -->
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>💧 HYDRATATION</div>
     <div class="radio-group" id="n-eau">
-      <div class="radio-item" onclick="selectRadio(this,'n-eau')">💧 Moins d'1L</div>
-      <div class="radio-item" onclick="selectRadio(this,'n-eau')">💧💧 1L – 1.5L</div>
-      <div class="radio-item" onclick="selectRadio(this,'n-eau')">💧💧💧 1.5L – 2L</div>
-      <div class="radio-item" onclick="selectRadio(this,'n-eau')">🌊 2L+</div>
-    </div>
-
-    <label>Compléments / suppléments</label>
-    <div class="check-group" id="n-suppl">
-      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">Protéines</div>
-      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">Créatine</div>
-      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">Vitamines</div>
-      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">Magnésium</div>
-      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">Oméga 3</div>
-      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">Aucun</div>
+      <div class="radio-item" data-pts="0" onclick="selectRadio(this,'n-eau')">💧 Moins d'1L</div>
+      <div class="radio-item" data-pts="1" onclick="selectRadio(this,'n-eau')">💧💧 1L – 1.5L</div>
+      <div class="radio-item" data-pts="2" onclick="selectRadio(this,'n-eau')">💧💧💧 1.5L – 2L</div>
+      <div class="radio-item" data-pts="3" onclick="selectRadio(this,'n-eau')">🌊 2L+</div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-title"><span class="dot"></span>ÉVALUATION</div>
+  <!-- SCORE AUTO -->
+  <div class="card" id="n-eval-card">
+    <div class="card-title"><span class="dot"></span>SCORE NUTRITION</div>
+    <p style="font-size:12px;color:#999999;margin-bottom:16px;line-height:1.5">Calculé automatiquement selon tes choix — <strong style="color:#B8922A">verrouillé à la validation</strong>.</p>
 
-    <label>Qualité nutritionnelle globale (0–10)</label>
-    <div class="slider-wrap">
-      <div class="slider-row">
-        <input type="range" min="0" max="10" value="5" id="n-qualite" oninput="updateSlider(this,'n-qualite-val')">
-        <div class="slider-value" id="n-qualite-val">5</div>
-      </div>
+    <div id="n-score-display" style="padding:16px;background:#F5F5F5;border-radius:10px;text-align:center;border:2px solid #E0E0E0">
+      <div style="font-size:11px;letter-spacing:2px;color:#999999;text-transform:uppercase;margin-bottom:6px">Score qualité</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:56px;color:#B8922A;line-height:1" id="n-score-val">—</div>
+      <div style="font-size:11px;color:#999999">/10</div>
+      <div style="font-size:13px;color:#444444;margin-top:8px;font-weight:600" id="n-score-label">Complète tes repas</div>
     </div>
 
-    <label>Respect du plan alimentaire</label>
-    <div class="radio-group" id="n-respect">
-      <div class="radio-item" onclick="selectRadio(this,'n-respect')">✅ Totalement respecté</div>
-      <div class="radio-item" onclick="selectRadio(this,'n-respect')">🟡 Partiellement respecté</div>
-      <div class="radio-item" onclick="selectRadio(this,'n-respect')">❌ Non respecté</div>
-      <div class="radio-item" onclick="selectRadio(this,'n-respect')">— Pas de plan défini</div>
-    </div>
-
-    <label>Notes / contexte</label>
-    <textarea id="n-notes" placeholder="Repas extérieur, compétition, contrainte..."></textarea>
+    <label style="margin-top:16px">Notes (optionnel)</label>
+    <textarea id="n-notes" placeholder="Contexte, repas extérieur, contrainte..."></textarea>
   </div>
 
   <button class="btn-submit" onclick="saveNutrition()">💾 VALIDER LA JOURNÉE</button>
@@ -1258,28 +1334,112 @@ function saveMental() {
   showToast('✅ Session mentale enregistrée');
 }
 
-// ── SAVE NUTRITION ──
+// ── NUTRITION SCORE AUTO (aliments cochés) ──
+var nutriLocked = false;
+var nutriScoreVal = null;
+
+// Poids par catégorie d'aliment
+// prot = +2pts, veg = +2pts, fec = +1pt, bad = -2pts, skip = -3pts
+var NUTRI_WEIGHTS = { prot: 2, veg: 2, fec: 1, bad: -2, skip: -3 };
+
+function nutriCheck(el) {
+  if (nutriLocked) return;
+  el.classList.toggle('selected');
+  calcNutriScore();
+}
+
+function calcNutriScore() {
+  var allItems = document.querySelectorAll('.n-repas .check-item.selected');
+  var raw = 0;
+  // base : on part de 4 (repas équilibrés de base)
+  var protCount = 0, vegCount = 0, badCount = 0, skipCount = 0;
+  allItems.forEach(function(el){
+    var cat = el.getAttribute('data-cat');
+    raw += (NUTRI_WEIGHTS[cat] || 0);
+    if (cat === 'prot') protCount++;
+    if (cat === 'veg') vegCount++;
+    if (cat === 'bad') badCount++;
+    if (cat === 'skip') skipCount++;
+  });
+
+  // Bonus eau
+  var eauSel = document.querySelector('#n-eau .radio-item.selected');
+  var eauPts = eauSel ? parseInt(eauSel.getAttribute('data-pts')||0) : 0;
+
+  // Score sur 10 : base 4 + contributions
+  var score = 4 + raw + eauPts;
+  score = Math.max(0, Math.min(10, score));
+  nutriScoreVal = score;
+
+  var label = score >= 9 ? '🔥 Excellent' : score >= 7 ? '✅ Très bien' : score >= 5 ? '🟡 Correct' : score >= 3 ? '🟠 À améliorer' : '🔴 Insuffisant';
+  document.getElementById('n-score-val').textContent = score;
+  document.getElementById('n-score-label').textContent = label;
+  document.getElementById('n-score-display').style.border = '2px solid #B8922A';
+}
+
+function lockNutri() {
+  nutriLocked = true;
+  document.querySelectorAll('.n-repas .check-item').forEach(function(el){
+    el.style.pointerEvents = 'none';
+    if (!el.classList.contains('selected')) el.style.opacity = '0.3';
+  });
+  document.querySelectorAll('#n-eau .radio-item').forEach(function(el){
+    el.style.pointerEvents = 'none';
+    if (!el.classList.contains('selected')) el.style.opacity = '0.3';
+  });
+  // Ajouter badge verrouillé
+  var badge = document.getElementById('n-lock-badge');
+  if (badge) badge.style.display = 'block';
+}
+
+function resetNutri() {
+  nutriLocked = false;
+  nutriScoreVal = null;
+  document.querySelectorAll('.n-repas .check-item').forEach(function(el){
+    el.classList.remove('selected');
+    el.style.pointerEvents = '';
+    el.style.opacity = '';
+  });
+  document.getElementById('n-score-val').textContent = '—';
+  document.getElementById('n-score-label').textContent = 'Complète tes repas';
+  document.getElementById('n-score-display').style.border = '2px solid #E0E0E0';
+  var badge = document.getElementById('n-lock-badge');
+  if (badge) badge.style.display = 'none';
+}
+
 function saveNutrition() {
+  // Collecter tous les aliments cochés par repas
+  function getRepas(groupIds) {
+    var items = [];
+    groupIds.forEach(function(id){
+      document.querySelectorAll('#'+id+' .check-item.selected').forEach(function(el){ items.push(el.textContent.trim()); });
+    });
+    return items;
+  }
   var entry = {
     type: 'nutrition',
     date: val('n-date'),
-    pdj: val('n-pdj'),
-    dejeuner: val('n-dejeuner'),
-    diner: val('n-diner'),
-    collation: val('n-collation'),
+    matin: getRepas(['nm-prot','nm-fec']),
+    midi: getRepas(['nd-prot','nd-fec','nd-leg','nd-bad']),
+    soir: getRepas(['ns-prot','ns-fec','ns-leg','ns-bad']),
     eau: getRadio('n-eau'),
-    suppl: getChecked('n-suppl'),
-    qualite: val('n-qualite'),
-    respect: getRadio('n-respect'),
+    qualite: nutriScoreVal !== null ? nutriScoreVal : '—',
     notes: val('n-notes'),
     ts: Date.now()
   };
+  // Verrouiller avant d'enregistrer
+  lockNutri();
   var data = getStorage(); data.unshift(entry); setStorage(data);
-  resetRadios('n-eau'); resetChecks('n-suppl'); resetRadios('n-respect');
-  resetSlider('n-qualite','n-qualite-val',5);
-  ['n-pdj','n-dejeuner','n-diner','n-collation','n-notes'].forEach(clearVal);
-  showToast('✅ Journée nutritionnelle enregistrée');
+  clearVal('n-notes');
+  showToast('✅ Journée enregistrée — score verrouillé 🔒');
+  // Reset après 1.5s pour permettre de voir le lock
+  setTimeout(function(){
+    resetNutri();
+    resetRadios('n-eau');
+    document.getElementById('n-date').value = today();
+  }, 1500);
 }
+
 
 // ── SAVE SOMMEIL ──
 function saveSommeil() {
@@ -1407,7 +1567,7 @@ function entrySummary(e) {
     return 'État '+e.etat+'/10 · Énergie '+e.energie+'/10'+(e.piliers&&e.piliers.length?' · '+e.piliers.join(', '):'');
   }
   if (e.type==='nutrition') {
-    return 'Qualité '+e.qualite+'/10'+(e.eau?' · '+e.eau:'');
+    return 'Score '+(e.qualite !== undefined ? e.qualite : '—')+'/10'+(e.eau?' · '+e.eau:'');
   }
   if (e.type==='sommeil') {
     return 'Qualité '+e.qualite+'/10'+(e.duree?' · '+e.duree:'')+(e.recup?' · '+e.recup:'');
@@ -1461,7 +1621,7 @@ function buildModalContent(e) {
   } else if (e.type==='mental') {
     rows += row('État mental',e.etat+'/10')+row('Énergie',e.energie+'/10')+row('Stress',e.stress)+row('Axes Y.E.S.I',e.piliers)+row('Exercices',e.exercices)+row('Ce qui m\'a affecté',e.affecte)+row('Bien géré',e.bien)+row('Intention',e.intention);
   } else if (e.type==='nutrition') {
-    rows += row('Petit-déjeuner',e.pdj)+row('Déjeuner',e.dejeuner)+row('Dîner',e.diner)+row('Collations',e.collation)+row('Eau',e.eau)+row('Suppléments',e.suppl)+row('Qualité',e.qualite+'/10')+row('Respect plan',e.respect)+row('Notes',e.notes);
+    rows += row('Matin',e.matin)+row('Midi',e.midi)+row('Soir',e.soir)+row('Eau',e.eau)+row('Score qualité',e.qualite !== undefined ? e.qualite+'/10' : '—')+row('Notes',e.notes);
   } else if (e.type==='sommeil') {
     rows += row('Coucher',e.coucher)+row('Lever',e.lever)+row('Durée',e.duree)+row('Qualité',e.qualite+'/10')+row('Récupération',e.recup)+row('Perturbations',e.perturbations)+row('Récupération active',e.recupActif)+row('Notes',e.notes);
   } else if (e.type==='objectifs') {

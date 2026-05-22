@@ -7,7 +7,7 @@
 
 <title>Y.E.S.I CONCEPT — Suivi Joueur</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -19,10 +19,6 @@
 --dark3:#171717;
 --white:#f5f5f5;
 --muted:#9d9d9d;
-
---mental-bg:#ffffff;
---mental-text:#2A2A2A;
---mental-border:#E6E0D4;
 }
 
 *{
@@ -49,7 +45,7 @@ overflow-x:hidden;
 min-height:100vh;
 display:flex;
 flex-direction:column;
-justify-content:flex-end;
+justify-content:center;
 padding:90px 24px 70px;
 position:relative;
 overflow:hidden;
@@ -60,7 +56,7 @@ linear-gradient(to bottom,#080808,#050505);
 
 .hero-bg{
 position:absolute;
-top:-10px;
+top:-30px;
 left:-10px;
 font-family:'Bebas Neue',sans-serif;
 font-size:170px;
@@ -71,14 +67,21 @@ letter-spacing:3px;
 }
 
 .hero-logo{
-width:140px;
-margin-bottom:30px;
+width:280px;
+max-width:85%;
+margin-bottom:40px;
 display:block;
+padding:18px 24px;
+background:rgba(255,255,255,0.92);
+border-radius:20px;
+box-shadow:
+0 0 40px rgba(199,167,77,0.18),
+0 0 80px rgba(199,167,77,0.08);
 }
 
 .tag{
 font-size:11px;
-letter-spacing:3px;
+letter-spacing:4px;
 text-transform:uppercase;
 color:var(--gold);
 margin-bottom:18px;
@@ -89,7 +92,7 @@ font-family:'Bebas Neue',sans-serif;
 font-size:96px;
 line-height:0.88;
 letter-spacing:2px;
-margin-bottom:14px;
+margin-bottom:16px;
 }
 
 .hero-sub{
@@ -97,7 +100,7 @@ font-family:'Bebas Neue',sans-serif;
 font-size:24px;
 letter-spacing:3px;
 color:#8f8f8f;
-margin-bottom:26px;
+margin-bottom:28px;
 }
 
 .hero p{
@@ -109,7 +112,7 @@ border-left:2px solid var(--gold);
 padding-left:16px;
 }
 
-/* GENERAL SECTION */
+/* SECTION */
 
 .section{
 padding:80px 24px;
@@ -218,186 +221,6 @@ transform:scale(1.02);
 box-shadow:0 0 25px rgba(199,167,77,0.25);
 }
 
-/* MENTAL */
-
-.mental-page{
-background:var(--mental-bg);
-color:var(--mental-text);
-padding-bottom:80px;
-}
-
-.mental-header{
-padding:90px 24px 70px;
-border-bottom:1px solid var(--mental-border);
-}
-
-.mental-kicker{
-font-size:10px;
-letter-spacing:4px;
-text-transform:uppercase;
-color:var(--gold);
-margin-bottom:28px;
-}
-
-.mental-title{
-font-family:'Bebas Neue',sans-serif;
-font-size:92px;
-line-height:.9;
-color:#000;
-margin-bottom:24px;
-}
-
-.mental-title em{
-font-family:'Cormorant Garamond',serif;
-font-style:italic;
-font-weight:300;
-color:var(--gold);
-}
-
-.mental-desc{
-max-width:650px;
-font-size:16px;
-line-height:1.9;
-color:#666;
-}
-
-.mental-container{
-max-width:1200px;
-margin:auto;
-padding:0 24px;
-}
-
-.mental-intro{
-padding:70px 0;
-border-bottom:1px solid var(--mental-border);
-}
-
-.mental-intro p{
-font-family:'Cormorant Garamond',serif;
-font-size:32px;
-line-height:1.6;
-font-weight:300;
-color:#111;
-max-width:900px;
-}
-
-.mental-intro strong{
-color:var(--gold);
-}
-
-.mental-section-title{
-padding:60px 0 30px;
-font-family:'Bebas Neue',sans-serif;
-font-size:58px;
-letter-spacing:2px;
-color:#000;
-border-bottom:1px solid var(--mental-border);
-}
-
-.mental-axe{
-padding:55px 0;
-border-bottom:1px solid var(--mental-border);
-display:grid;
-grid-template-columns:1fr;
-gap:34px;
-}
-
-.mental-left small{
-font-size:11px;
-letter-spacing:3px;
-color:var(--gold);
-display:block;
-margin-bottom:14px;
-}
-
-.mental-left h3{
-font-family:'Bebas Neue',sans-serif;
-font-size:68px;
-line-height:.92;
-color:#000;
-}
-
-.mental-left span{
-display:block;
-margin-top:10px;
-font-family:'Cormorant Garamond',serif;
-font-size:20px;
-font-style:italic;
-color:var(--gold);
-}
-
-.mental-right p{
-font-size:15px;
-line-height:1.9;
-color:#666;
-margin-bottom:28px;
-}
-
-.mental-pillars{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px 24px;
-margin-bottom:24px;
-}
-
-.mental-pill{
-font-size:14px;
-color:#222;
-position:relative;
-padding-left:16px;
-}
-
-.mental-pill::before{
-content:'';
-position:absolute;
-left:0;
-top:8px;
-width:5px;
-height:5px;
-border-radius:50%;
-background:var(--gold);
-}
-
-.mental-quote{
-padding-left:18px;
-border-left:1px solid var(--gold);
-font-family:'Cormorant Garamond',serif;
-font-style:italic;
-font-size:18px;
-line-height:1.7;
-color:var(--gold);
-}
-
-/* GUIDE */
-
-.steps{
-display:flex;
-flex-direction:column;
-gap:14px;
-margin-top:20px;
-}
-
-.step{
-padding:22px;
-background:var(--dark3);
-border-left:2px solid var(--gold);
-}
-
-.step strong{
-display:block;
-font-family:'Bebas Neue',sans-serif;
-font-size:28px;
-letter-spacing:1px;
-margin-bottom:8px;
-color:var(--gold-light);
-}
-
-.step span{
-font-size:14px;
-line-height:1.7;
-color:var(--muted);
-}
-
 /* CTA */
 
 .cta{
@@ -477,6 +300,10 @@ padding:120px 60px 80px;
 font-size:260px;
 }
 
+.hero-logo{
+width:360px;
+}
+
 .hero h1{
 font-size:150px;
 }
@@ -497,28 +324,14 @@ padding:100px 60px;
 font-size:120px;
 }
 
-.mental-header{
-padding:120px 60px 80px;
-}
-
-.mental-container{
-padding:0 60px;
-}
-
-.mental-title{
-font-size:150px;
-}
-
-.mental-axe{
-grid-template-columns:320px 1fr;
-}
-
 }
 
 </style>
 </head>
 
 <body>
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -546,6 +359,98 @@ Une plateforme autonome pensée pour les sportifs souhaitant structurer leur quo
 </p>
 
 </section>
+
+<!-- OUTILS -->
+
+<section class="section">
+
+<div class="section-label">
+Plateforme
+</div>
+
+<h2 class="section-title">
+Les Outils
+</h2>
+
+<p class="section-text">
+Accède aux différents espaces du suivi autonome Y.E.S.I CONCEPT.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<div class="card-icon">⚡</div>
+<h3>Nutrition</h3>
+<p>Guide nutritionnel complet du sportif.</p>
+<a href="guide_nutrition_mobile.html" class="tool-btn">
+ACCÉDER AU CONTENU
+</a>
+</div>
+
+<div class="card">
+<div class="card-icon">🏆</div>
+<h3>Discipline</h3>
+<p>Organisation, sommeil et habitudes de performance.</p>
+<a href="discipline.html" class="tool-btn">
+ACCÉDER AU CONTENU
+</a>
+</div>
+
+<div class="card">
+<div class="card-icon">📈</div>
+<h3>Performance</h3>
+<p>Comprendre la performance et la régularité du sportif performant.</p>
+<a href="performance.html" class="tool-btn">
+ACCÉDER AU CONTENU
+</a>
+</div>
+
+<div class="card">
+<div class="card-icon">🧠</div>
+<h3>Mental</h3>
+<p>Clarté mentale, concentration et stabilité du sportif.</p>
+<a href="#mental" class="tool-btn">
+ACCÉDER AU CONTENU
+</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta">
+
+<h2>
+LA PROGRESSION<br>
+VIENT DE LA<br>
+RÉPÉTITION
+</h2>
+
+<p>
+Accède maintenant à la plateforme autonome du sportif.
+</p>
+
+<a href="suivi-joueur.html" class="main-btn">
+ACCÉDER À LA PLATEFORME
+</a>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<div class="footer-logo">
+Y.E.S.I CONCEPT
+</div>
+
+<p>
+Hub autonome du sportif
+</p>
+
+</footer>
 
 </body>
 </html>

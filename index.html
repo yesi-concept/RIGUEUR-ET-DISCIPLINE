@@ -19,6 +19,10 @@
 --dark3:#171717;
 --white:#f5f5f5;
 --muted:#9d9d9d;
+
+--mental-bg:#ffffff;
+--mental-text:#2A2A2A;
+--mental-border:#E6E0D4;
 }
 
 *{
@@ -72,7 +76,7 @@ max-width:85%;
 margin-bottom:40px;
 display:block;
 padding:18px 24px;
-background:rgba(255,255,255,0.92);
+background:rgba(255,255,255,0.94);
 border-radius:20px;
 box-shadow:
 0 0 40px rgba(199,167,77,0.18),
@@ -221,6 +225,63 @@ transform:scale(1.02);
 box-shadow:0 0 25px rgba(199,167,77,0.25);
 }
 
+/* MENTAL */
+
+.mental-page{
+background:var(--mental-bg);
+color:var(--mental-text);
+padding:90px 24px;
+}
+
+.mental-title{
+font-family:'Bebas Neue',sans-serif;
+font-size:70px;
+line-height:.95;
+color:#000;
+margin-bottom:25px;
+}
+
+.mental-title em{
+font-family:'Cormorant Garamond',serif;
+font-style:italic;
+font-weight:300;
+color:var(--gold);
+}
+
+.mental-desc{
+max-width:700px;
+font-size:16px;
+line-height:1.9;
+color:#555;
+margin-bottom:50px;
+}
+
+.mental-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:24px;
+}
+
+.mental-box{
+padding:28px;
+border:1px solid #E6E0D4;
+background:#fff;
+}
+
+.mental-box h3{
+font-family:'Bebas Neue',sans-serif;
+font-size:42px;
+letter-spacing:1px;
+margin-bottom:14px;
+color:#000;
+}
+
+.mental-box p{
+font-size:15px;
+line-height:1.8;
+color:#666;
+}
+
 /* CTA */
 
 .cta{
@@ -320,6 +381,18 @@ grid-template-columns:repeat(2,1fr);
 padding:100px 60px;
 }
 
+.mental-page{
+padding:120px 60px;
+}
+
+.mental-title{
+font-size:120px;
+}
+
+.mental-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
 .cta h2{
 font-size:120px;
 }
@@ -412,6 +485,52 @@ ACCÉDER AU CONTENU
 <a href="#mental" class="tool-btn">
 ACCÉDER AU CONTENU
 </a>
+</div>
+
+</div>
+
+</section>
+
+<!-- MENTAL -->
+
+<section class="mental-page" id="mental">
+
+<h2 class="mental-title">
+LES 4 AXES <em>MENTAUX</em>
+</h2>
+
+<p class="mental-desc">
+Le Y.E.S.I CONCEPT structure la performance mentale autour de quatre axes fondamentaux permettant au sportif de stabiliser sa progression.
+</p>
+
+<div class="mental-grid">
+
+<div class="mental-box">
+<h3>YES ATTITUDE</h3>
+<p>
+Développer une attitude stable face aux difficultés et rester engagé dans la progression quotidienne.
+</p>
+</div>
+
+<div class="mental-box">
+<h3>ESTIME DE SOI</h3>
+<p>
+Construire une confiance solide afin de mieux gérer la pression et le regard extérieur.
+</p>
+</div>
+
+<div class="mental-box">
+<h3>SMART GOALS</h3>
+<p>
+Organiser ses objectifs et clarifier son esprit pour avancer avec cohérence.
+</p>
+</div>
+
+<div class="mental-box">
+<h3>INVESTISSEMENT PERSONNEL</h3>
+<p>
+Créer des habitudes fortes basées sur la discipline et la régularité.
+</p>
 </div>
 
 </div>

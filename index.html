@@ -17,13 +17,12 @@
 --dark:#050505;
 --dark2:#0d0d0d;
 --dark3:#171717;
---dark4:#242424;
 --white:#f5f5f5;
 --muted:#9d9d9d;
+
 --mental-bg:#ffffff;
 --mental-text:#2A2A2A;
 --mental-border:#E6E0D4;
---mental-muted:#777;
 }
 
 *{
@@ -77,7 +76,6 @@ letter-spacing:3px;
 text-transform:uppercase;
 color:var(--gold);
 margin-bottom:18px;
-animation:fadeUp .5s ease;
 }
 
 .hero h1{
@@ -86,7 +84,6 @@ font-size:96px;
 line-height:0.88;
 letter-spacing:2px;
 margin-bottom:14px;
-animation:fadeUp .6s ease;
 }
 
 .hero-sub{
@@ -95,7 +92,6 @@ font-size:24px;
 letter-spacing:3px;
 color:#8f8f8f;
 margin-bottom:26px;
-animation:fadeUp .7s ease;
 }
 
 .hero p{
@@ -105,10 +101,9 @@ line-height:1.8;
 color:var(--muted);
 border-left:2px solid var(--gold);
 padding-left:16px;
-animation:fadeUp .8s ease;
 }
 
-/* SECTION */
+/* GENERAL SECTION */
 
 .section{
 padding:80px 24px;
@@ -210,8 +205,6 @@ font-family:'Bebas Neue',sans-serif;
 font-size:20px;
 letter-spacing:1px;
 transition:.2s;
-cursor:pointer;
-border:none;
 }
 
 .tool-btn:hover{
@@ -219,158 +212,11 @@ transform:scale(1.02);
 box-shadow:0 0 25px rgba(199,167,77,0.25);
 }
 
-/* GUIDE */
-
-.steps{
-display:flex;
-flex-direction:column;
-gap:14px;
-margin-top:20px;
-}
-
-.step{
-padding:22px;
-background:var(--dark3);
-border-left:2px solid var(--gold);
-}
-
-.step strong{
-display:block;
-font-family:'Bebas Neue',sans-serif;
-font-size:28px;
-letter-spacing:1px;
-margin-bottom:8px;
-color:var(--gold-light);
-}
-
-.step span{
-font-size:14px;
-line-height:1.7;
-color:var(--muted);
-}
-
-/* CTA */
-
-.cta{
-padding:100px 24px;
-text-align:center;
-background:
-radial-gradient(circle at center, rgba(199,167,77,0.08), transparent 60%);
-}
-
-.cta h2{
-font-family:'Bebas Neue',sans-serif;
-font-size:74px;
-line-height:0.95;
-letter-spacing:2px;
-margin-bottom:18px;
-}
-
-.cta p{
-font-size:15px;
-color:var(--muted);
-margin-bottom:35px;
-}
-
-.main-btn{
-display:inline-flex;
-justify-content:center;
-align-items:center;
-padding:22px 34px;
-background:var(--gold);
-color:#000;
-text-decoration:none;
-font-family:'Bebas Neue',sans-serif;
-font-size:24px;
-letter-spacing:2px;
-min-width:310px;
-transition:.25s;
-}
-
-.main-btn:hover{
-transform:scale(1.03);
-box-shadow:0 0 35px rgba(199,167,77,0.28);
-}
-
-/* FOOTER */
-
-.footer{
-padding:45px 24px 70px;
-text-align:center;
-border-top:1px solid rgba(199,167,77,0.08);
-}
-
-.footer-logo{
-font-family:'Bebas Neue',sans-serif;
-font-size:24px;
-letter-spacing:5px;
-color:var(--gold);
-margin-bottom:10px;
-}
-
-.footer p{
-font-size:11px;
-letter-spacing:2px;
-text-transform:uppercase;
-color:#666;
-line-height:1.8;
-}
-
-/* ANIMATION */
-
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(25px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-/* RESPONSIVE */
-
-@media(min-width:768px){
-
-.hero{
-padding:120px 60px 80px;
-}
-
-.hero-bg{
-font-size:260px;
-}
-
-.hero h1{
-font-size:150px;
-}
-
-.hero-sub{
-font-size:32px;
-}
-
-.grid{
-grid-template-columns:repeat(2,1fr);
-}
-
-.section{
-padding:100px 60px;
-}
-
-.cta h2{
-font-size:120px;
-}
-
-}
-
-/* ========================= */
-/* MENTAL SECTION */
-/* ========================= */
+/* MENTAL */
 
 .mental-page{
 background:var(--mental-bg);
 color:var(--mental-text);
-font-family:'Outfit',sans-serif;
 padding-bottom:80px;
 }
 
@@ -516,10 +362,133 @@ line-height:1.7;
 color:var(--gold);
 }
 
-@media(min-width:900px){
+/* GUIDE */
 
-.mental-axe{
-grid-template-columns:320px 1fr;
+.steps{
+display:flex;
+flex-direction:column;
+gap:14px;
+margin-top:20px;
+}
+
+.step{
+padding:22px;
+background:var(--dark3);
+border-left:2px solid var(--gold);
+}
+
+.step strong{
+display:block;
+font-family:'Bebas Neue',sans-serif;
+font-size:28px;
+letter-spacing:1px;
+margin-bottom:8px;
+color:var(--gold-light);
+}
+
+.step span{
+font-size:14px;
+line-height:1.7;
+color:var(--muted);
+}
+
+/* CTA */
+
+.cta{
+padding:100px 24px;
+text-align:center;
+background:
+radial-gradient(circle at center, rgba(199,167,77,0.08), transparent 60%);
+}
+
+.cta h2{
+font-family:'Bebas Neue',sans-serif;
+font-size:74px;
+line-height:0.95;
+letter-spacing:2px;
+margin-bottom:18px;
+}
+
+.cta p{
+font-size:15px;
+color:var(--muted);
+margin-bottom:35px;
+}
+
+.main-btn{
+display:inline-flex;
+justify-content:center;
+align-items:center;
+padding:22px 34px;
+background:var(--gold);
+color:#000;
+text-decoration:none;
+font-family:'Bebas Neue',sans-serif;
+font-size:24px;
+letter-spacing:2px;
+min-width:310px;
+transition:.25s;
+}
+
+.main-btn:hover{
+transform:scale(1.03);
+box-shadow:0 0 35px rgba(199,167,77,0.28);
+}
+
+/* FOOTER */
+
+.footer{
+padding:45px 24px 70px;
+text-align:center;
+border-top:1px solid rgba(199,167,77,0.08);
+}
+
+.footer-logo{
+font-family:'Bebas Neue',sans-serif;
+font-size:24px;
+letter-spacing:5px;
+color:var(--gold);
+margin-bottom:10px;
+}
+
+.footer p{
+font-size:11px;
+letter-spacing:2px;
+text-transform:uppercase;
+color:#666;
+line-height:1.8;
+}
+
+/* RESPONSIVE */
+
+@media(min-width:768px){
+
+.hero{
+padding:120px 60px 80px;
+}
+
+.hero-bg{
+font-size:260px;
+}
+
+.hero h1{
+font-size:150px;
+}
+
+.hero-sub{
+font-size:32px;
+}
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.section{
+padding:100px 60px;
+}
+
+.cta h2{
+font-size:120px;
 }
 
 .mental-header{
@@ -532,6 +501,10 @@ padding:0 60px;
 
 .mental-title{
 font-size:150px;
+}
+
+.mental-axe{
+grid-template-columns:320px 1fr;
 }
 
 }
@@ -586,153 +559,47 @@ Accède aux différents espaces du suivi autonome Y.E.S.I CONCEPT.
 
 <div class="grid">
 
-<!-- NUTRITION -->
-
 <div class="card">
-
-<div class="card-icon">
-⚡
-</div>
-
-<h3>
-Nutrition
-</h3>
-
-<p>
-Guide nutritionnel complet du sportif.
-</p>
-
+<div class="card-icon">⚡</div>
+<h3>Nutrition</h3>
+<p>Guide nutritionnel complet du sportif.</p>
 <a href="guide_nutrition_mobile.html" class="tool-btn">
 ACCÉDER AU CONTENU
 </a>
-
 </div>
-
-<!-- DISCIPLINE -->
 
 <div class="card">
-
-<div class="card-icon">
-🏆
-</div>
-
-<h3>
-Discipline
-</h3>
-
-<p>
-Organisation, sommeil et habitudes de performance.
-</p>
-
+<div class="card-icon">🏆</div>
+<h3>Discipline</h3>
+<p>Organisation, sommeil et habitudes de performance.</p>
 <a href="discipline.html" class="tool-btn">
 ACCÉDER AU CONTENU
 </a>
-
 </div>
-
-<!-- PERFORMANCE -->
 
 <div class="card">
-
-<div class="card-icon">
-📈
-</div>
-
-<h3>
-Performance
-</h3>
-
-<p>
-Comprendre la performance, les sacrifices et la régularité du sportif performant.
-</p>
-
+<div class="card-icon">📈</div>
+<h3>Performance</h3>
+<p>Comprendre la performance et la régularité du sportif performant.</p>
 <a href="performance.html" class="tool-btn">
 ACCÉDER AU CONTENU
 </a>
-
 </div>
-
-<!-- MENTAL -->
 
 <div class="card">
-
-<div class="card-icon">
-🧠
-</div>
-
-<h3>
-Mental
-</h3>
-
-<p>
-Clarté mentale, concentration et stabilité du sportif.
-</p>
-
+<div class="card-icon">🧠</div>
+<h3>Mental</h3>
+<p>Clarté mentale, concentration et stabilité du sportif.</p>
 <a href="#mental" class="tool-btn">
 ACCÉDER AU CONTENU
 </a>
-
 </div>
 
 </div>
 
 </section>
 
-<!-- FONCTIONNEMENT -->
-
-<section class="section">
-
-<div class="section-label">
-Fonctionnement
-</div>
-
-<h2 class="section-title">
-Comment ça fonctionne
-</h2>
-
-<div class="steps">
-
-<div class="step">
-<strong>
-01 — Ouvrir un outil
-</strong>
-<span>
-Accéder à l’espace souhaité depuis la plateforme autonome.
-</span>
-</div>
-
-<div class="step">
-<strong>
-02 — Compléter le suivi
-</strong>
-<span>
-Renseigner les informations demandées quotidiennement.
-</span>
-</div>
-
-<div class="step">
-<strong>
-03 — Observer les données
-</strong>
-<span>
-Suivre l’évolution des habitudes et des sensations.
-</span>
-</div>
-
-<div class="step">
-<strong>
-04 — Répéter quotidiennement
-</strong>
-<span>
-La progression vient de la répétition et de la régularité.
-</span>
-</div>
-
-</div>
-
-</section>
-
-<!-- SECTION MENTAL -->
+<!-- MENTAL -->
 
 <section class="mental-page" id="mental">
 
@@ -764,24 +631,16 @@ La performance mentale ne repose pas uniquement sur la motivation. Elle dépend 
 STRUCTURE DES 4 AXES
 </h2>
 
-<!-- AXE 1 -->
-
 <div class="mental-axe">
-
 <div class="mental-left">
 <small>AXE 01</small>
-<h3>
-YES<br>ATTITUDE
-</h3>
-<span>
-Stabilité avant tout
-</span>
+<h3>YES<br>ATTITUDE</h3>
+<span>Stabilité avant tout</span>
 </div>
 
 <div class="mental-right">
-
 <p>
-Développer une attitude stable et engagée face aux difficultés. Cet axe conditionne la constance du sportif dans l'effort comme dans l'adversité.
+Développer une attitude stable et engagée face aux difficultés.
 </p>
 
 <div class="mental-pillars">
@@ -794,29 +653,19 @@ Développer une attitude stable et engagée face aux difficultés. Cet axe condi
 <div class="mental-quote">
 L'attitude influence directement la constance du sportif.
 </div>
-
 </div>
-
 </div>
-
-<!-- AXE 2 -->
 
 <div class="mental-axe">
-
 <div class="mental-left">
 <small>AXE 02</small>
-<h3>
-ESTIME<br>DE SOI
-</h3>
-<span>
-Se connaître pour performer
-</span>
+<h3>ESTIME<br>DE SOI</h3>
+<span>Se connaître pour performer</span>
 </div>
 
 <div class="mental-right">
-
 <p>
-Construire une relation solide avec soi-même. La confiance est le socle sur lequel repose chaque décision et chaque prise de risque.
+Construire une relation solide avec soi-même.
 </p>
 
 <div class="mental-pillars">
@@ -827,31 +676,21 @@ Construire une relation solide avec soi-même. La confiance est le socle sur leq
 </div>
 
 <div class="mental-quote">
-Un sportif en confiance gère mieux la pression et les erreurs.
+Un sportif en confiance gère mieux la pression.
 </div>
-
 </div>
-
 </div>
-
-<!-- AXE 3 -->
 
 <div class="mental-axe">
-
 <div class="mental-left">
 <small>AXE 03</small>
-<h3>
-SMART<br>GOALS
-</h3>
-<span>
-Avancer sans se disperser
-</span>
+<h3>SMART<br>GOALS</h3>
+<span>Avancer sans se disperser</span>
 </div>
 
 <div class="mental-right">
-
 <p>
-Donner du sens à chaque effort grâce à des objectifs précis et mesurables. La clarté mentale améliore les prises de décision.
+Donner du sens à chaque effort grâce à des objectifs précis.
 </p>
 
 <div class="mental-pillars">
@@ -864,29 +703,19 @@ Donner du sens à chaque effort grâce à des objectifs précis et mesurables. L
 <div class="mental-quote">
 Un esprit clair produit des décisions plus efficaces.
 </div>
-
 </div>
-
 </div>
-
-<!-- AXE 4 -->
 
 <div class="mental-axe">
-
 <div class="mental-left">
 <small>AXE 04</small>
-<h3>
-INVEST.<br>PERSONNEL
-</h3>
-<span>
-La progression comme habitude
-</span>
+<h3>INVEST.<br>PERSONNEL</h3>
+<span>La progression comme habitude</span>
 </div>
 
 <div class="mental-right">
-
 <p>
-Mesurer l'implication réelle dans la progression. Ce sont les habitudes répétées quotidiennement qui construisent la progression.
+Les habitudes répétées quotidiennement construisent la progression.
 </p>
 
 <div class="mental-pillars">
@@ -899,16 +728,52 @@ Mesurer l'implication réelle dans la progression. Ce sont les habitudes répét
 <div class="mental-quote">
 La progression dépend des habitudes répétées chaque jour.
 </div>
-
 </div>
-
 </div>
 
 </div>
 
 </section>
 
-<!-- CTA FINAL -->
+<!-- FONCTIONNEMENT -->
+
+<section class="section">
+
+<div class="section-label">
+Fonctionnement
+</div>
+
+<h2 class="section-title">
+Comment ça fonctionne
+</h2>
+
+<div class="steps">
+
+<div class="step">
+<strong>01 — Ouvrir un outil</strong>
+<span>Accéder à l’espace souhaité depuis la plateforme autonome.</span>
+</div>
+
+<div class="step">
+<strong>02 — Compléter le suivi</strong>
+<span>Renseigner les informations demandées quotidiennement.</span>
+</div>
+
+<div class="step">
+<strong>03 — Observer les données</strong>
+<span>Suivre l’évolution des habitudes et des sensations.</span>
+</div>
+
+<div class="step">
+<strong>04 — Répéter quotidiennement</strong>
+<span>La progression vient de la répétition et de la régularité.</span>
+</div>
+
+</div>
+
+</section>
+
+<!-- CTA -->
 
 <section class="cta">
 

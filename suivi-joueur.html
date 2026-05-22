@@ -4,598 +4,1494 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Y.E.S.I — Suivi Joueur</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;800;900&display=swap');
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{background:#f8f8f6;font-family:'Nunito',sans-serif;color:#111;padding-bottom:80px;}
+  :root {
+    --gold: #B8922A;
+    --gold-light: #D4A83A;
+    --gold-dim: #8a6d2a;
+    --dark: #FFFFFF;
+    --dark2: #F5F5F5;
+    --dark3: #FAFAFA;
+    --dark4: #F0F0F0;
+    --dark5: #E0E0E0;
+    --text: #111111;
+    --text-dim: #444444;
+    --text-muted: #999999;
+    --red: #D94040;
+    --green: #3A9E5F;
+    --blue: #2F72D4;
+    --purple: #6B4EC4;
+    --orange: #C96A20;
+  }
 
-.hdr{background:#f5c842;padding:14px 16px 12px;text-align:center;position:sticky;top:0;z-index:99;border-bottom:3px solid #d4a817;}
-.hdr h1{font-family:'Bebas Neue',cursive;font-size:1.9rem;color:#111;letter-spacing:4px;line-height:1;}
-.hdr p{font-size:.6rem;font-weight:900;color:#5a4200;letter-spacing:2.5px;text-transform:uppercase;margin-top:3px;}
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-.pband{display:flex;gap:8px;padding:10px 12px;background:#fff;border-bottom:2px solid #e8e8e8;align-items:center;}
-.pband input{flex:1;background:#f0f0ee;border:1.5px solid #ddd;border-radius:10px;padding:9px 12px;color:#111;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:800;outline:none;}
-.pband input::placeholder{color:#aaa;font-weight:700;}
+  body {
+    background: #FFFFFF;
+    color: #111111;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-.tabs{display:flex;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:2px solid #e8e8e8;}
-.tabs::-webkit-scrollbar{display:none;}
-.tab{flex-shrink:0;padding:12px 13px;font-family:'Bebas Neue',cursive;font-size:.9rem;letter-spacing:1.5px;color:#bbb;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s;}
-.tab.on{color:#f5c842;border-bottom-color:#f5c842;}
+  /* ── HEADER ── */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #F5F5F5;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .header-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 3px;
+    color: var(--gold);
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-history {
+    background: #F0F0F0;
+    border: 1px solid var(--dark5);
+    color: #444444;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-history:hover { border-color: var(--gold-dim); color: var(--gold); }
+  .btn-history.active { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,.08); }
 
-.mod{display:none;padding:12px;flex-direction:column;gap:10px;}
-.mod.on{display:flex;}
+  /* ── NAV TABS ── */
+  .nav-tabs {
+    display: flex;
+    background: #F5F5F5;
+    border-bottom: 1px solid #e8e8e8;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex: 0 0 auto;
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #999999;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all .2s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .tab-btn:hover:not(.active) { color: #444444; }
+  .tab-icon { font-size: 14px; }
 
-.card{background:#fff;border:1.5px solid #e8e8e8;border-radius:14px;overflow:hidden;}
-.ch{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#fafaf8;border-bottom:1px solid #ebebeb;}
-.ch .i{font-size:1.05rem;}
-.ch .t{font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:2px;color:#f5c842;}
-.cb{padding:12px;display:flex;flex-direction:column;gap:9px;}
-.lbl{font-size:.6rem;font-weight:900;color:#999;text-transform:uppercase;letter-spacing:1.2px;display:block;margin-bottom:4px;}
-.fi input,.fi textarea,.fi select{width:100%;background:#f5f5f3;border:1.5px solid #e0e0e0;border-radius:10px;padding:10px 12px;color:#111;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;outline:none;transition:border-color .2s;}
-.fi input:focus,.fi textarea:focus,.fi select:focus{border-color:#f5c842;}
-.fi textarea{min-height:65px;resize:none;}
-.fi select option{background:#fff;}
-.r2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  /* ── SECTIONS ── */
+  .section { display: none; padding: 20px 16px 100px; max-width: 600px; margin: 0 auto; }
+  .section.active { display: block; }
 
-.slr{display:flex;align-items:center;gap:10px;}
-.slr input[type=range]{flex:1;accent-color:#f5c842;}
-.slv{font-family:'Bebas Neue',cursive;font-size:1.4rem;color:#f5c842;min-width:28px;text-align:center;}
-.sl-labels{display:flex;justify-content:space-between;margin-top:-2px;}
-.sl-labels span{font-size:.52rem;color:#bbb;font-weight:800;}
+  /* ── CARDS ── */
+  .card {
+    background: #FAFAFA;
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 14px;
+  }
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: inline-block;
+  }
 
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
-.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
-.chip{border:2px solid #e0e0e0;border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;background:#fafaf8;transition:all .15s;}
-.chip .ce{font-size:1.2rem;display:block;}
-.chip .cl{font-size:.58rem;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-top:3px;display:block;line-height:1.2;}
-.chip:active{transform:scale(.96);}
-.chip.on{border-color:#f5c842;background:rgba(245,200,66,.1);}
-.chip.on .cl{color:#f5c842;}
-.chip.on-r{border-color:#e74c3c;background:rgba(231,76,60,.1);}
-.chip.on-r .cl{color:#e74c3c;}
-.chip.on-b{border-color:#3498db;background:rgba(52,152,219,.1);}
-.chip.on-b .cl{color:#5ab4ff;}
+  /* ── FORM ELEMENTS ── */
+  label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #999999;
+    margin-bottom: 6px;
+    margin-top: 14px;
+  }
+  label:first-child { margin-top: 0; }
 
-.obj{background:#fafaf8;border:1.5px solid #e8e8e8;border-radius:12px;padding:10px;margin-bottom:7px;}
-.obj-n{font-family:'Bebas Neue',cursive;font-size:.85rem;color:#f5c842;letter-spacing:1px;margin-bottom:6px;}
-.obj-r{display:grid;grid-template-columns:1fr auto;gap:7px;align-items:center;}
-.oi{background:#f0f0ee;border:1.5px solid #ddd;border-radius:8px;padding:8px 10px;color:#111;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;outline:none;width:100%;}
-.os{background:#f0f0ee;border:1.5px solid #ddd;border-radius:8px;padding:8px;color:#111;font-family:'Bebas Neue',cursive;font-size:.9rem;min-width:65px;outline:none;}
+  input[type="date"],
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    background: #F0F0F0;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    color: #111111;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 10px 12px;
+    outline: none;
+    transition: border-color .2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  input[type="date"]:focus,
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  select:focus,
+  textarea:focus { border-color: var(--gold-dim); }
 
-.sep{height:1px;background:#ebebeb;margin:6px 0;}
-.slbl{font-size:.62rem;font-weight:900;color:#c8a430;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px;}
-.nutri-rule{font-size:.62rem;color:#999;font-weight:700;padding:5px 8px;background:#f5f5f3;border-radius:7px;border-left:2px solid #e0e0e0;margin-bottom:6px;}
-.nutri-rule span{color:#f5c842;}
+  select option { background: #F0F0F0; }
+  textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
 
-.sommeil-wrap{display:flex;gap:6px;flex-wrap:wrap;}
-.s-chip{border:1.5px solid #e0e0e0;border-radius:8px;padding:7px 12px;font-size:.7rem;font-weight:800;color:#aaa;cursor:pointer;background:#fafaf8;white-space:nowrap;transition:all .15s;}
-.s-chip.on{border-color:#9b59b6;color:#a678d4;background:rgba(155,89,182,.1);}
+  /* ── SLIDER ── */
+  .slider-wrap { margin-top: 2px; }
+  .slider-row { display: flex; align-items: center; gap: 12px; }
+  .slider-value {
+    min-width: 32px;
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--gold);
+  }
+  input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: #E0E0E0;
+    border-radius: 2px;
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    background: var(--gold);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(201,168,76,.4);
+  }
 
-.hi-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:10px;}
-.stat-box{background:#fff;border:1.5px solid #e8e8e8;border-radius:10px;padding:10px;text-align:center;}
-.stat-n{font-family:'Bebas Neue',cursive;font-size:1.7rem;color:#f5c842;line-height:1;}
-.stat-l{font-size:.58rem;font-weight:900;color:#bbb;text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+  /* ── CHECKBOX GROUP ── */
+  .check-group { display: flex; flex-wrap: wrap; gap: 8px; }
+  .check-item {
+    background: #F0F0F0;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #444444;
+    cursor: pointer;
+    transition: all .15s;
+    user-select: none;
+  }
+  .check-item.selected {
+    background: rgba(201,168,76,.12);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
 
-.hi-filters{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;}
-.hi-f{font-family:'Bebas Neue',cursive;font-size:.73rem;letter-spacing:1px;padding:5px 12px;border-radius:20px;border:1.5px solid #e0e0e0;color:#aaa;cursor:pointer;background:#fff;}
-.hi-f.on{border-color:#f5c842;color:#f5c842;}
+  /* ── RADIO GROUP ── */
+  .radio-group { display: flex; flex-direction: column; gap: 6px; }
+  .radio-item {
+    background: #F0F0F0;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #444444;
+    cursor: pointer;
+    transition: all .15s;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .radio-item::before {
+    content: '';
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid #444;
+    flex-shrink: 0;
+    transition: all .15s;
+  }
+  .radio-item.selected {
+    border-color: var(--gold-dim);
+    color: #111111;
+    background: rgba(201,168,76,.06);
+  }
+  .radio-item.selected::before {
+    border-color: var(--gold);
+    background: var(--gold);
+    box-shadow: 0 0 6px rgba(201,168,76,.4);
+  }
 
-.hi{background:#fff;border:1.5px solid #e8e8e8;border-radius:12px;padding:10px 12px;margin-bottom:7px;}
-.hi-top{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
-.hi-badge{font-family:'Bebas Neue',cursive;font-size:.68rem;letter-spacing:1px;padding:3px 9px;border-radius:20px;}
-.hi-badge.train{background:rgba(245,200,66,.12);color:#f5c842;border:1px solid rgba(245,200,66,.25);}
-.hi-badge.match{background:rgba(231,76,60,.12);color:#e74c3c;border:1px solid rgba(231,76,60,.25);}
-.hi-badge.mental{background:rgba(155,89,182,.12);color:#a678d4;border:1px solid rgba(155,89,182,.25);}
-.hi-badge.nutri{background:rgba(46,204,113,.12);color:#2ecc71;border:1px solid rgba(46,204,113,.25);}
-.hi-date{font-size:.68rem;color:#bbb;font-weight:800;}
-.hi-det{font-size:.7rem;color:#888;font-weight:700;line-height:1.7;}
-.hi-det strong{color:#444;}
-.hi-actions{display:flex;justify-content:flex-end;margin-top:6px;}
-.hi-del{background:none;border:1px solid #ddd;border-radius:7px;color:#bbb;font-size:.63rem;font-weight:800;padding:3px 9px;cursor:pointer;font-family:'Nunito',sans-serif;}
+  /* ── SCORE ROW ── */
+  .score-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .score-btn {
+    width: 36px; height: 36px;
+    background: #F0F0F0;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    color: #444444;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .score-btn.selected {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #111111;
+  }
 
-.empty{text-align:center;padding:30px;color:#ccc;font-size:.78rem;font-weight:700;}
+  /* ── SUBMIT BTN ── */
+  .btn-submit {
+    width: 100%;
+    background: var(--gold);
+    color: #111111;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all .2s;
+  }
+  .btn-submit:hover { background: var(--gold-light); }
+  .btn-submit:active { transform: scale(.98); }
 
-.sav{background:#f5c842;color:#111;border:none;border-radius:14px;padding:15px;font-family:'Bebas Neue',cursive;font-size:1.2rem;letter-spacing:3px;width:100%;cursor:pointer;transition:all .2s;}
-.sav:active{transform:scale(.98);}
-.sav.ok{background:#1a2e1a;color:#27ae60;border:2px solid #27ae60;}
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 24px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--green);
+    color: #111111;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 30px;
+    z-index: 999;
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+    white-space: nowrap;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
 
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1a2e1a;color:#27ae60;font-weight:900;font-size:.78rem;padding:10px 22px;border-radius:50px;border:1.5px solid #27ae60;transition:transform .3s;z-index:999;white-space:nowrap;pointer-events:none;}
-.toast.show{transform:translateX(-50%) translateY(0);}
-.toast.warn{background:#2e1a1a;color:#e74c3c;border-color:#e74c3c;}
+  /* ── HISTORIQUE ── */
+  .hist-section { display: none; padding: 16px; max-width: 600px; margin: 0 auto 80px; }
+  .hist-section.active { display: block; }
+  .hist-filter {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .hist-filter-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #DDDDDD;
+    background: #FAFAFA;
+    color: #999999;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .hist-filter-btn.active { background: rgba(201,168,76,.12); border-color: var(--gold); color: var(--gold); }
+
+  .hist-entry {
+    background: #FAFAFA;
+    border: 1px solid #E8E8E8;
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color .2s;
+  }
+  .hist-entry:hover { border-left-color: var(--gold-light); }
+  .hist-entry-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .hist-entry-type {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+  }
+  .hist-entry-date { font-size: 11px; color: #999999; }
+  .hist-entry-summary { font-size: 12px; color: #444444; line-height: 1.5; }
+  .hist-badge {
+    display: inline-block;
+    background: #E0E0E0;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+  .hist-empty {
+    text-align: center;
+    color: #999999;
+    font-size: 13px;
+    padding: 40px 0;
+  }
+
+  /* ── MODULE COLORS ── */
+  .hist-entry.type-entrainement { border-left-color: var(--blue); }
+  .hist-entry.type-entrainement .hist-entry-type { color: var(--blue); }
+  .hist-entry.type-match { border-left-color: var(--green); }
+  .hist-entry.type-match .hist-entry-type { color: var(--green); }
+  .hist-entry.type-mental { border-left-color: var(--purple); }
+  .hist-entry.type-mental .hist-entry-type { color: var(--purple); }
+  .hist-entry.type-nutrition { border-left-color: var(--orange); }
+  .hist-entry.type-nutrition .hist-entry-type { color: var(--orange); }
+  .hist-entry.type-sommeil { border-left-color: #6dd5fa; }
+  .hist-entry.type-sommeil .hist-entry-type { color: #6dd5fa; }
+  .hist-entry.type-objectifs { border-left-color: var(--red); }
+  .hist-entry.type-objectifs .hist-entry-type { color: var(--red); }
+
+  /* ── OBJECTIFS SPECIAL ── */
+  .obj-item {
+    background: #F0F0F0;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .obj-check {
+    width: 20px; height: 20px;
+    border-radius: 4px;
+    border: 2px solid #444;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all .15s;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    color: #111111;
+  }
+  .obj-check.done { background: var(--gold); border-color: var(--gold); }
+  .obj-text { flex: 1; font-size: 13px; line-height: 1.5; color: #444444; }
+  .obj-text.done { text-decoration: line-through; color: #999999; }
+  .obj-delete { color: #BBBBBB; cursor: pointer; font-size: 16px; transition: color .15s; }
+  .obj-delete:hover { color: var(--red); }
+
+  /* ── STATS DASHBOARD ── */
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+  .stat-box {
+    background: #FAFAFA;
+    border: 1px solid #E8E8E8;
+    border-radius: 8px;
+    padding: 14px 10px;
+    text-align: center;
+  }
+  .stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-lbl { font-size: 10px; color: #999999; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+  /* ── DELETE BTN ── */
+  .btn-danger {
+    background: transparent;
+    border: 1px solid #DDDDDD;
+    color: #999999;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-danger:hover { border-color: var(--red); color: var(--red); }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: #E8E8E8; margin: 20px 0; }
+
+  /* ── DATE TODAY HELPER ── */
+  .date-today {
+    font-size: 10px;
+    color: #999999;
+    text-align: right;
+    margin-top: 4px;
+  }
+
+  /* ── PILIERS YESI ── */
+  .pilier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pilier-btn {
+    background: #F0F0F0;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .15s;
+    user-select: none;
+  }
+  .pilier-btn .pilier-letter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--gold-dim);
+    transition: color .15s;
+  }
+  .pilier-btn .pilier-name { font-size: 10px; color: #999999; letter-spacing: 1px; margin-top: 2px; }
+  .pilier-btn.selected { background: rgba(201,168,76,.1); border-color: var(--gold); }
+  .pilier-btn.selected .pilier-letter { color: var(--gold); }
+
+  /* ── MODAL DETAIL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 200;
+    display: none;
+    align-items: flex-end;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: #FAFAFA;
+    border-top: 1px solid #E8E8E8;
+    border-radius: 16px 16px 0 0;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 20px 16px 40px;
+  }
+  .modal-handle {
+    width: 40px; height: 4px;
+    background: #DDDDDD;
+    border-radius: 2px;
+    margin: 0 auto 16px;
+  }
+  .modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: none;
+    border: none;
+    color: #999999;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .modal-row { margin-bottom: 12px; }
+  .modal-lbl { font-size: 10px; color: #999999; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+  .modal-val { font-size: 14px; color: #111111; }
+
+  /* ── CONFIRM MODAL ── */
+  .confirm-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 300;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .confirm-modal.open { display: flex; }
+  .confirm-box {
+    background: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    border-radius: 12px;
+    padding: 24px;
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+  }
+  .confirm-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--red); margin-bottom: 8px; }
+  .confirm-text { font-size: 13px; color: #444444; margin-bottom: 20px; line-height: 1.5; }
+  .confirm-btns { display: flex; gap: 10px; }
+  .confirm-btns button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn-cancel { background: #F0F0F0; color: #444444; border: 1px solid #DDDDDD !important; }
+  .btn-confirm-del { background: var(--red); color: white; }
 </style>
 </head>
 <body>
 
-<div class="hdr">
-  <h1>SUIVI JOUEUR Y.E.S.I</h1>
-  <p>Entra&icirc;nement &middot; Match &middot; Mental &middot; Nutrition</p>
+<!-- HEADER -->
+<div class="header">
+  <div class="header-brand">Y.E.S.I</div>
+  <div class="header-right">
+    <button class="btn-history" id="histBtn" onclick="toggleHistorique()">HISTORIQUE</button>
+  </div>
 </div>
 
-<div class="pband">
-  <input type="text" id="nom" placeholder="Pr&eacute;nom Nom du joueur">
+<!-- NAV TABS -->
+<div class="nav-tabs" id="navTabs">
+  <button class="tab-btn active" onclick="showTab('entrainement', this)"><span class="tab-icon">⚡</span>ENTRAÎN.</button>
+  <button class="tab-btn" onclick="showTab('match', this)"><span class="tab-icon">🏆</span>MATCH</button>
+  <button class="tab-btn" onclick="showTab('mental', this)"><span class="tab-icon">🧠</span>MENTAL</button>
+  <button class="tab-btn" onclick="showTab('nutrition', this)"><span class="tab-icon">🍽</span>NUTRITION</button>
+  <button class="tab-btn" onclick="showTab('sommeil', this)"><span class="tab-icon">🌙</span>SOMMEIL</button>
+  <button class="tab-btn" onclick="showTab('objectifs', this)"><span class="tab-icon">🎯</span>OBJECTIFS</button>
 </div>
 
-<div class="tabs">
-  <div class="tab on" data-m="train">Entra&icirc;nement</div>
-  <div class="tab" data-m="match">Match</div>
-  <div class="tab" data-m="mental">Mental</div>
-  <div class="tab" data-m="nutri">Nutrition</div>
-  <div class="tab" data-m="hist">Historique</div>
-</div>
+<!-- ═══════════════════════════════════════ ENTRAÎNEMENT ══ -->
+<div class="section active" id="s-entrainement">
 
-<!-- ENTRAINEMENT -->
-<div class="mod on" id="mod-train">
   <div class="card">
-    <div class="ch"><span class="i">&#128197;</span><span class="t">SESSION</span></div>
-    <div class="cb">
-      <div class="fi"><label class="lbl">Date</label><input type="date" id="t-dt"></div>
-      <div class="r2">
-        <div class="fi"><label class="lbl">Type</label>
-          <select id="t-ty"><option value="">-</option><option>Technique</option><option>Tactique</option><option>Physique</option><option>Mixte</option><option>R&eacute;cup&eacute;ration</option></select>
-        </div>
-        <div class="fi"><label class="lbl">Dur&eacute;e</label>
-          <select id="t-du"><option value="">-</option><option>30 min</option><option>45 min</option><option>1h</option><option>1h30</option><option>2h+</option></select>
-        </div>
+    <div class="card-title"><span class="dot"></span>SESSION</div>
+    <label>Date</label>
+    <input type="date" id="e-date">
+    <div class="date-today" id="e-date-today"></div>
+
+    <label>Type de séance</label>
+    <div class="check-group" id="e-type">
+      <div class="check-item" onclick="toggleCheck(this,'e-type')">Technique</div>
+      <div class="check-item" onclick="toggleCheck(this,'e-type')">Tactique</div>
+      <div class="check-item" onclick="toggleCheck(this,'e-type')">Physique</div>
+      <div class="check-item" onclick="toggleCheck(this,'e-type')">Mixte</div>
+      <div class="check-item" onclick="toggleCheck(this,'e-type')">Récupération</div>
+      <div class="check-item" onclick="toggleCheck(this,'e-type')">Match amical</div>
+    </div>
+
+    <label>Durée</label>
+    <div class="radio-group" id="e-duree">
+      <div class="radio-item" onclick="selectRadio(this,'e-duree')">30 min</div>
+      <div class="radio-item" onclick="selectRadio(this,'e-duree')">45 min</div>
+      <div class="radio-item" onclick="selectRadio(this,'e-duree')">1h</div>
+      <div class="radio-item" onclick="selectRadio(this,'e-duree')">1h30</div>
+      <div class="radio-item" onclick="selectRadio(this,'e-duree')">2h+</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>Q.F.A.C — ATTITUDE</div>
+
+    <label>Attitude générale</label>
+    <div class="radio-group" id="e-attitude">
+      <div class="radio-item" onclick="selectRadio(this,'e-attitude')">🔥 Très investie</div>
+      <div class="radio-item" onclick="selectRadio(this,'e-attitude')">✅ Investie</div>
+      <div class="radio-item" onclick="selectRadio(this,'e-attitude')">😐 Neutre</div>
+      <div class="radio-item" onclick="selectRadio(this,'e-attitude')">⬇️ Peu investie</div>
+      <div class="radio-item" onclick="selectRadio(this,'e-attitude')">❌ Désengagée</div>
+    </div>
+
+    <label>Comportement</label>
+    <div class="radio-group" id="e-comportement">
+      <div class="radio-item" onclick="selectRadio(this,'e-comportement')">⭐ Exemplaire</div>
+      <div class="radio-item" onclick="selectRadio(this,'e-comportement')">👍 Bon</div>
+      <div class="radio-item" onclick="selectRadio(this,'e-comportement')">😐 Neutre</div>
+      <div class="radio-item" onclick="selectRadio(this,'e-comportement')">⚠️ Tensions</div>
+      <div class="radio-item" onclick="selectRadio(this,'e-comportement')">🚫 Négatif</div>
+    </div>
+
+    <label>Concentration (0–10)</label>
+    <div class="slider-wrap">
+      <div class="slider-row">
+        <input type="range" min="0" max="10" value="5" id="e-concentration" oninput="updateSlider(this,'e-concentration-val')">
+        <div class="slider-value" id="e-concentration-val">5</div>
+      </div>
+    </div>
+
+    <label>Intensité physique (0–10)</label>
+    <div class="slider-wrap">
+      <div class="slider-row">
+        <input type="range" min="0" max="10" value="5" id="e-intensite" oninput="updateSlider(this,'e-intensite-val')">
+        <div class="slider-value" id="e-intensite-val">5</div>
       </div>
     </div>
   </div>
+
   <div class="card">
-    <div class="ch"><span class="i">&#127919;</span><span class="t">OBJECTIFS</span></div>
-    <div class="cb" id="t-ob"></div>
+    <div class="card-title"><span class="dot"></span>BILAN</div>
+    <label>Points forts de la séance</label>
+    <textarea id="e-positif" placeholder="Ce qui a bien fonctionné..."></textarea>
+    <label>Points à travailler</label>
+    <textarea id="e-negatif" placeholder="Ce qui reste à améliorer..."></textarea>
+    <label>Notes libres</label>
+    <textarea id="e-notes" placeholder="Observations, ressentis..."></textarea>
   </div>
-  <div class="card">
-    <div class="ch"><span class="i">&#128161;</span><span class="t">Q.F.A.C</span></div>
-    <div class="cb">
-      <div class="fi"><label class="lbl">Attitude</label>
-        <select id="t-at"><option value="">-</option><option>Tr&egrave;s investie</option><option>Investie</option><option>Neutre</option><option>Peu investie</option><option>D&eacute;sengag&eacute;e</option></select>
-      </div>
-      <div class="fi"><label class="lbl">Comportement</label>
-        <select id="t-co"><option value="">-</option><option>Exemplaire</option><option>Bon</option><option>Neutre</option><option>Tensions</option><option>N&eacute;gatif</option></select>
-      </div>
-      <div class="fi">
-        <label class="lbl">Concentration (0-10)</label>
-        <div class="slr"><input type="range" min="0" max="10" value="5" id="t-cn"><span class="slv" id="t-cn-v">5</span></div>
-        <div class="sl-labels"><span>Absent</span><span>Moyen</span><span>Laser</span></div>
-      </div>
-      <div class="fi">
-        <label class="lbl">Intensit&eacute; physique (0-10)</label>
-        <div class="slr"><input type="range" min="0" max="10" value="5" id="t-in"><span class="slv" id="t-in-v">5</span></div>
-        <div class="sl-labels"><span>Faible</span><span>Moyen</span><span>Maximal</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="ch"><span class="i">&#128221;</span><span class="t">NOTES</span></div>
-    <div class="cb"><div class="fi"><textarea id="t-no" placeholder="Observations, ressentis, points &agrave; retenir..."></textarea></div></div>
-  </div>
-  <button class="sav" id="t-sv">&#128190; VALIDER LA SESSION</button>
+
+  <button class="btn-submit" onclick="saveEntrainement()">💾 VALIDER LA SESSION</button>
 </div>
 
-<!-- MATCH -->
-<div class="mod" id="mod-match">
+<!-- ═══════════════════════════════════════ MATCH ══ -->
+<div class="section" id="s-match">
+
   <div class="card">
-    <div class="ch"><span class="i">&#128197;</span><span class="t">MATCH</span></div>
-    <div class="cb">
-      <div class="fi"><label class="lbl">Date</label><input type="date" id="m-dt"></div>
-      <div class="r2">
-        <div class="fi"><label class="lbl">Adversaire</label><input type="text" id="m-ad" placeholder="&Eacute;quipe adverse"></div>
-        <div class="fi"><label class="lbl">Score</label><input type="text" id="m-sc" placeholder="2 - 1"></div>
+    <div class="card-title"><span class="dot"></span>INFOS MATCH</div>
+    <label>Date</label>
+    <input type="date" id="m-date">
+
+    <label>Compétition / Contexte</label>
+    <input type="text" id="m-competition" placeholder="ex: Championnat R1, Coupe...">
+
+    <label>Adversaire</label>
+    <input type="text" id="m-adversaire" placeholder="Nom de l'équipe adverse">
+
+    <label>Score</label>
+    <input type="text" id="m-score" placeholder="ex: 2-1">
+
+    <label>Résultat</label>
+    <div class="radio-group" id="m-resultat">
+      <div class="radio-item" onclick="selectRadio(this,'m-resultat')">🏆 Victoire</div>
+      <div class="radio-item" onclick="selectRadio(this,'m-resultat')">🤝 Nul</div>
+      <div class="radio-item" onclick="selectRadio(this,'m-resultat')">❌ Défaite</div>
+    </div>
+
+    <label>Temps de jeu</label>
+    <div class="radio-group" id="m-tps">
+      <div class="radio-item" onclick="selectRadio(this,'m-tps')">Titulaire complet</div>
+      <div class="radio-item" onclick="selectRadio(this,'m-tps')">Titulaire partiel</div>
+      <div class="radio-item" onclick="selectRadio(this,'m-tps')">Remplaçant entré</div>
+      <div class="radio-item" onclick="selectRadio(this,'m-tps')">Non utilisé</div>
+    </div>
+
+    <label>Poste joué</label>
+    <input type="text" id="m-poste" placeholder="ex: Milieu défensif, Ailier gauche...">
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>Q.F.A.C — PERFORMANCE</div>
+
+    <label>Attitude sous pression</label>
+    <div class="radio-group" id="m-attitude">
+      <div class="radio-item" onclick="selectRadio(this,'m-attitude')">🔥 Exemplaire sous pression</div>
+      <div class="radio-item" onclick="selectRadio(this,'m-attitude')">✅ Bonne attitude</div>
+      <div class="radio-item" onclick="selectRadio(this,'m-attitude')">😐 Neutre</div>
+      <div class="radio-item" onclick="selectRadio(this,'m-attitude')">⬇️ Perdu mentalement</div>
+      <div class="radio-item" onclick="selectRadio(this,'m-attitude')">❌ Attitude négative</div>
+    </div>
+
+    <label>Comportement collectif</label>
+    <div class="radio-group" id="m-collectif">
+      <div class="radio-item" onclick="selectRadio(this,'m-collectif')">⭐ Leader positif</div>
+      <div class="radio-item" onclick="selectRadio(this,'m-collectif')">👍 Bon coéquipier</div>
+      <div class="radio-item" onclick="selectRadio(this,'m-collectif')">😐 Neutre</div>
+      <div class="radio-item" onclick="selectRadio(this,'m-collectif')">⚠️ Individualismes</div>
+      <div class="radio-item" onclick="selectRadio(this,'m-collectif')">🚫 Conflits</div>
+    </div>
+
+    <label>Performance globale (0–10)</label>
+    <div class="slider-wrap">
+      <div class="slider-row">
+        <input type="range" min="0" max="10" value="5" id="m-perf" oninput="updateSlider(this,'m-perf-val')">
+        <div class="slider-value" id="m-perf-val">5</div>
       </div>
-      <div class="r2">
-        <div class="fi"><label class="lbl">R&eacute;sultat</label>
-          <select id="m-re"><option value="">-</option><option>Victoire</option><option>Nul</option><option>D&eacute;faite</option></select>
-        </div>
-        <div class="fi"><label class="lbl">Temps de jeu</label>
-          <select id="m-tp"><option value="">-</option><option>Titulaire complet</option><option>Titulaire partiel</option><option>Rempla&ccedil;ant</option><option>Non utilis&eacute;</option></select>
-        </div>
+    </div>
+
+    <label>Gestion du stress (0–10)</label>
+    <div class="slider-wrap">
+      <div class="slider-row">
+        <input type="range" min="0" max="10" value="5" id="m-stress" oninput="updateSlider(this,'m-stress-val')">
+        <div class="slider-value" id="m-stress-val">5</div>
       </div>
-      <div class="fi"><label class="lbl">Comp&eacute;tition / Niveau</label><input type="text" id="m-cp" placeholder="N3, R&eacute;gional 1, U19..."></div>
     </div>
   </div>
+
   <div class="card">
-    <div class="ch"><span class="i">&#127919;</span><span class="t">OBJECTIFS DU MATCH</span></div>
-    <div class="cb" id="m-ob"></div>
+    <div class="card-title"><span class="dot"></span>ANALYSE POST-MATCH</div>
+    <label>Points forts</label>
+    <textarea id="m-forts" placeholder="Ce que tu as bien réussi..."></textarea>
+    <label>Points à améliorer</label>
+    <textarea id="m-amelio" placeholder="Ce qu'il faut corriger..."></textarea>
+    <label>Ressenti général</label>
+    <textarea id="m-ressenti" placeholder="Comment tu t'es senti pendant ce match ?"></textarea>
   </div>
-  <div class="card">
-    <div class="ch"><span class="i">&#128161;</span><span class="t">Q.F.A.C PERFORMANCE</span></div>
-    <div class="cb">
-      <div class="fi"><label class="lbl">Attitude sous pression</label>
-        <select id="m-at"><option value="">-</option><option>Exemplaire sous pression</option><option>Bonne attitude</option><option>Neutre</option><option>Perdu mentalement</option><option>Attitude n&eacute;gative</option></select>
-      </div>
-      <div class="fi"><label class="lbl">Comportement collectif</label>
-        <select id="m-co"><option value="">-</option><option>Leader positif</option><option>Bon co&eacute;quipier</option><option>Neutre</option><option>Individualismes</option><option>Conflits</option></select>
-      </div>
-      <div class="fi">
-        <label class="lbl">Performance globale (0-10)</label>
-        <div class="slr"><input type="range" min="0" max="10" value="5" id="m-pf"><span class="slv" id="m-pf-v">5</span></div>
-        <div class="sl-labels"><span>Mauvaise</span><span>Correcte</span><span>Excellente</span></div>
-      </div>
-      <div class="fi">
-        <label class="lbl">Gestion du stress (0-10)</label>
-        <div class="slr"><input type="range" min="0" max="10" value="5" id="m-st"><span class="slv" id="m-st-v">5</span></div>
-        <div class="sl-labels"><span>Submerg&eacute;</span><span>G&eacute;r&eacute;</span><span>Ma&icirc;tris&eacute;</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="ch"><span class="i">&#128221;</span><span class="t">ANALYSE POST-MATCH</span></div>
-    <div class="cb">
-      <div class="fi"><label class="lbl">Points forts</label><textarea id="m-fo" placeholder="Ce que tu as bien r&eacute;ussi..."></textarea></div>
-      <div class="fi"><label class="lbl">Points &agrave; am&eacute;liorer</label><textarea id="m-ax" placeholder="Ce sur quoi progresser..."></textarea></div>
-    </div>
-  </div>
-  <button class="sav" id="m-sv">&#128190; VALIDER LE MATCH</button>
+
+  <button class="btn-submit" onclick="saveMatch()">💾 VALIDER LE MATCH</button>
 </div>
 
-<!-- MENTAL -->
-<div class="mod" id="mod-mental">
+<!-- ═══════════════════════════════════════ MENTAL ══ -->
+<div class="section" id="s-mental">
+
   <div class="card">
-    <div class="ch"><span class="i">&#128197;</span><span class="t">SESSION MENTALE</span></div>
-    <div class="cb">
-      <div class="fi"><label class="lbl">Date</label><input type="date" id="me-dt"></div>
-      <div class="fi">
-        <label class="lbl">&Eacute;tat mental du jour (0-10)</label>
-        <div class="slr"><input type="range" min="0" max="10" value="5" id="me-et"><span class="slv" id="me-et-v">5</span></div>
-        <div class="sl-labels"><span>En difficult&eacute;</span><span>Stable</span><span>Au top</span></div>
+    <div class="card-title"><span class="dot"></span>ÉTAT MENTAL</div>
+    <label>Date</label>
+    <input type="date" id="mn-date">
+
+    <label>État mental du jour (0–10)</label>
+    <div class="slider-wrap">
+      <div class="slider-row">
+        <input type="range" min="0" max="10" value="5" id="mn-etat" oninput="updateSlider(this,'mn-etat-val')">
+        <div class="slider-value" id="mn-etat-val">5</div>
+      </div>
+    </div>
+
+    <label>Énergie mentale (0–10)</label>
+    <div class="slider-wrap">
+      <div class="slider-row">
+        <input type="range" min="0" max="10" value="5" id="mn-energie" oninput="updateSlider(this,'mn-energie-val')">
+        <div class="slider-value" id="mn-energie-val">5</div>
+      </div>
+    </div>
+
+    <label>Niveau de stress / anxiété</label>
+    <div class="radio-group" id="mn-stress">
+      <div class="radio-item" onclick="selectRadio(this,'mn-stress')">🟢 Calme, serein(e)</div>
+      <div class="radio-item" onclick="selectRadio(this,'mn-stress')">🟡 Légèrement stressé(e)</div>
+      <div class="radio-item" onclick="selectRadio(this,'mn-stress')">🟠 Stressé(e)</div>
+      <div class="radio-item" onclick="selectRadio(this,'mn-stress')">🔴 Très stressé(e) / anxieux(se)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>AXE Y.E.S.I TRAVAILLÉ</div>
+    <div class="pilier-grid">
+      <div class="pilier-btn" onclick="togglePilier(this)">
+        <div class="pilier-letter">Y</div>
+        <div class="pilier-name">YES ATTITUDE</div>
+      </div>
+      <div class="pilier-btn" onclick="togglePilier(this)">
+        <div class="pilier-letter">E</div>
+        <div class="pilier-name">ESTIME DE SOI</div>
+      </div>
+      <div class="pilier-btn" onclick="togglePilier(this)">
+        <div class="pilier-letter">S</div>
+        <div class="pilier-name">SMART GOALS</div>
+      </div>
+      <div class="pilier-btn" onclick="togglePilier(this)">
+        <div class="pilier-letter">I</div>
+        <div class="pilier-name">INVESTISSEMENT</div>
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="ch"><span class="i">&#129504;</span><span class="t">EXERCICES R&Eacute;ALIS&Eacute;S</span></div>
-    <div class="cb"><div class="g2" id="me-ex"></div></div>
-  </div>
-  <div class="card">
-    <div class="ch"><span class="i">&#9889;</span><span class="t">AXE Y.E.S.I TRAVAILL&Eacute;</span></div>
-    <div class="cb"><div class="g2" id="me-ax"></div></div>
-  </div>
-  <div class="card">
-    <div class="ch"><span class="i">&#128221;</span><span class="t">RESSENTI</span></div>
-    <div class="cb"><div class="fi"><textarea id="me-re" placeholder="Tes ressentis, ce que tu as appris, ce que tu retiens..."></textarea></div></div>
-  </div>
-  <button class="sav" id="me-sv">&#128190; VALIDER LA SESSION</button>
-</div>
 
-<!-- NUTRITION -->
-<div class="mod" id="mod-nutri">
   <div class="card">
-    <div class="ch"><span class="i">&#128197;</span><span class="t">JOURN&Eacute;E</span></div>
-    <div class="cb"><div class="fi"><label class="lbl">Date</label><input type="date" id="n-dt"></div></div>
-  </div>
-  <div class="card">
-    <div class="ch"><span class="i">&#127869;</span><span class="t">3 REPAS DU JOUR</span></div>
-    <div class="cb" id="n-rp"></div>
-  </div>
-  <div class="card">
-    <div class="ch"><span class="i">&#128167;</span><span class="t">HYDRATATION</span></div>
-    <div class="cb"><div class="g4" id="n-ea"></div></div>
-  </div>
-  <div class="card">
-    <div class="ch"><span class="i">&#127769;</span><span class="t">R&Eacute;CUP&Eacute;RATION</span></div>
-    <div class="cb">
-      <label class="lbl">Sommeil de la nuit pr&eacute;c&eacute;dente</label>
-      <div class="sommeil-wrap" id="n-som"></div>
+    <div class="card-title"><span class="dot"></span>EXERCICES RÉALISÉS</div>
+    <div class="check-group" id="mn-exercices">
+      <div class="check-item" onclick="toggleCheck(this,'mn-exercices')">Visualisation</div>
+      <div class="check-item" onclick="toggleCheck(this,'mn-exercices')">Cohérence cardiaque</div>
+      <div class="check-item" onclick="toggleCheck(this,'mn-exercices')">Discours interne</div>
+      <div class="check-item" onclick="toggleCheck(this,'mn-exercices')">Routine pré-match</div>
+      <div class="check-item" onclick="toggleCheck(this,'mn-exercices')">Méditation</div>
+      <div class="check-item" onclick="toggleCheck(this,'mn-exercices')">Ancrage</div>
+      <div class="check-item" onclick="toggleCheck(this,'mn-exercices')">Journal de bord</div>
+      <div class="check-item" onclick="toggleCheck(this,'mn-exercices')">Lecture</div>
+      <div class="check-item" onclick="toggleCheck(this,'mn-exercices')">Concentration</div>
     </div>
   </div>
+
   <div class="card">
-    <div class="ch"><span class="i">&#128202;</span><span class="t">QUALIT&Eacute; GLOBALE</span></div>
-    <div class="cb">
-      <div class="fi">
-        <label class="lbl">Note nutrition (0-10)</label>
-        <div class="slr"><input type="range" min="0" max="10" value="5" id="n-sc"><span class="slv" id="n-sc-v">5</span></div>
-        <div class="sl-labels"><span>Mauvaise</span><span>Correcte</span><span>Optimale</span></div>
+    <div class="card-title"><span class="dot"></span>RESSENTI & ANALYSE</div>
+    <label>Ce qui m'a affecté aujourd'hui</label>
+    <textarea id="mn-affecte" placeholder="Événements, pensées, émotions..."></textarea>
+    <label>Ce que j'ai bien géré</label>
+    <textarea id="mn-bien" placeholder="Réussites mentales du jour..."></textarea>
+    <label>Intention pour demain</label>
+    <textarea id="mn-intention" placeholder="Ce sur quoi je vais me concentrer..."></textarea>
+  </div>
+
+  <button class="btn-submit" onclick="saveMental()">💾 VALIDER LA SESSION</button>
+</div>
+
+<!-- ═══════════════════════════════════════ NUTRITION ══ -->
+<div class="section" id="s-nutrition">
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>JOURNÉE ALIMENTAIRE</div>
+    <label>Date</label>
+    <input type="date" id="n-date">
+
+    <label>Petit-déjeuner</label>
+    <textarea id="n-pdj" placeholder="Composition du petit-déjeuner..." style="min-height:60px"></textarea>
+
+    <label>Déjeuner</label>
+    <textarea id="n-dejeuner" placeholder="Composition du déjeuner..." style="min-height:60px"></textarea>
+
+    <label>Dîner</label>
+    <textarea id="n-diner" placeholder="Composition du dîner..." style="min-height:60px"></textarea>
+
+    <label>Collations / encas</label>
+    <textarea id="n-collation" placeholder="Barres, fruits, shakers..." style="min-height:50px"></textarea>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>HYDRATATION</div>
+
+    <label>Eau consommée</label>
+    <div class="radio-group" id="n-eau">
+      <div class="radio-item" onclick="selectRadio(this,'n-eau')">💧 Moins d'1L</div>
+      <div class="radio-item" onclick="selectRadio(this,'n-eau')">💧💧 1L – 1.5L</div>
+      <div class="radio-item" onclick="selectRadio(this,'n-eau')">💧💧💧 1.5L – 2L</div>
+      <div class="radio-item" onclick="selectRadio(this,'n-eau')">🌊 2L+</div>
+    </div>
+
+    <label>Compléments / suppléments</label>
+    <div class="check-group" id="n-suppl">
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">Protéines</div>
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">Créatine</div>
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">Vitamines</div>
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">Magnésium</div>
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">Oméga 3</div>
+      <div class="check-item" onclick="toggleCheck(this,'n-suppl')">Aucun</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>ÉVALUATION</div>
+
+    <label>Qualité nutritionnelle globale (0–10)</label>
+    <div class="slider-wrap">
+      <div class="slider-row">
+        <input type="range" min="0" max="10" value="5" id="n-qualite" oninput="updateSlider(this,'n-qualite-val')">
+        <div class="slider-value" id="n-qualite-val">5</div>
       </div>
-      <div class="fi"><textarea id="n-no" placeholder="&Eacute;carts, contexte, ressenti &eacute;nerg&eacute;tique..."></textarea></div>
+    </div>
+
+    <label>Respect du plan alimentaire</label>
+    <div class="radio-group" id="n-respect">
+      <div class="radio-item" onclick="selectRadio(this,'n-respect')">✅ Totalement respecté</div>
+      <div class="radio-item" onclick="selectRadio(this,'n-respect')">🟡 Partiellement respecté</div>
+      <div class="radio-item" onclick="selectRadio(this,'n-respect')">❌ Non respecté</div>
+      <div class="radio-item" onclick="selectRadio(this,'n-respect')">— Pas de plan défini</div>
+    </div>
+
+    <label>Notes / contexte</label>
+    <textarea id="n-notes" placeholder="Repas extérieur, compétition, contrainte..."></textarea>
+  </div>
+
+  <button class="btn-submit" onclick="saveNutrition()">💾 VALIDER LA JOURNÉE</button>
+</div>
+
+<!-- ═══════════════════════════════════════ SOMMEIL ══ -->
+<div class="section" id="s-sommeil">
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>NUIT</div>
+    <label>Date (nuit du…)</label>
+    <input type="date" id="so-date">
+
+    <label>Heure de coucher</label>
+    <input type="text" id="so-coucher" placeholder="ex: 22h30">
+
+    <label>Heure de lever</label>
+    <input type="text" id="so-lever" placeholder="ex: 07h00">
+
+    <label>Durée estimée de sommeil</label>
+    <div class="radio-group" id="so-duree">
+      <div class="radio-item" onclick="selectRadio(this,'so-duree')">Moins de 6h</div>
+      <div class="radio-item" onclick="selectRadio(this,'so-duree')">6h – 7h</div>
+      <div class="radio-item" onclick="selectRadio(this,'so-duree')">7h – 8h</div>
+      <div class="radio-item" onclick="selectRadio(this,'so-duree')">8h – 9h</div>
+      <div class="radio-item" onclick="selectRadio(this,'so-duree')">9h+</div>
     </div>
   </div>
-  <button class="sav" id="n-sv">&#128190; VALIDER LA JOURN&Eacute;E</button>
-</div>
 
-<!-- HISTORIQUE -->
-<div class="mod" id="mod-hist">
-  <div class="hi-stats" id="hist-stats"></div>
-  <div class="hi-filters">
-    <div class="hi-f on" data-f="all">Tout</div>
-    <div class="hi-f" data-f="train">Entra&icirc;n.</div>
-    <div class="hi-f" data-f="match">Match</div>
-    <div class="hi-f" data-f="mental">Mental</div>
-    <div class="hi-f" data-f="nutri">Nutrition</div>
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>QUALITÉ & RÉCUPÉRATION</div>
+
+    <label>Qualité du sommeil (0–10)</label>
+    <div class="slider-wrap">
+      <div class="slider-row">
+        <input type="range" min="0" max="10" value="5" id="so-qualite" oninput="updateSlider(this,'so-qualite-val')">
+        <div class="slider-value" id="so-qualite-val">5</div>
+      </div>
+    </div>
+
+    <label>Niveau de récupération au réveil</label>
+    <div class="radio-group" id="so-recup">
+      <div class="radio-item" onclick="selectRadio(this,'so-recup')">⚡ Reposé(e), prêt(e)</div>
+      <div class="radio-item" onclick="selectRadio(this,'so-recup')">🟡 Correct</div>
+      <div class="radio-item" onclick="selectRadio(this,'so-recup')">😴 Fatigué(e)</div>
+      <div class="radio-item" onclick="selectRadio(this,'so-recup')">🔴 Très fatigué(e)</div>
+    </div>
+
+    <label>Perturbations</label>
+    <div class="check-group" id="so-perturbations">
+      <div class="check-item" onclick="toggleCheck(this,'so-perturbations')">Aucune</div>
+      <div class="check-item" onclick="toggleCheck(this,'so-perturbations')">Réveils nocturnes</div>
+      <div class="check-item" onclick="toggleCheck(this,'so-perturbations')">Difficultés endormissement</div>
+      <div class="check-item" onclick="toggleCheck(this,'so-perturbations')">Stress / rumination</div>
+      <div class="check-item" onclick="toggleCheck(this,'so-perturbations')">Bruit extérieur</div>
+      <div class="check-item" onclick="toggleCheck(this,'so-perturbations')">Écrans tardifs</div>
+    </div>
   </div>
-  <div id="hist-l"></div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>RÉCUPÉRATION ACTIVE</div>
+    <div class="check-group" id="so-recup-actif">
+      <div class="check-item" onclick="toggleCheck(this,'so-recup-actif')">Étirements</div>
+      <div class="check-item" onclick="toggleCheck(this,'so-recup-actif')">Massage / foam roller</div>
+      <div class="check-item" onclick="toggleCheck(this,'so-recup-actif')">Bain / douche froide</div>
+      <div class="check-item" onclick="toggleCheck(this,'so-recup-actif')">Sieste</div>
+      <div class="check-item" onclick="toggleCheck(this,'so-recup-actif')">Marche légère</div>
+      <div class="check-item" onclick="toggleCheck(this,'so-recup-actif')">Aucune</div>
+    </div>
+    <label style="margin-top:16px">Notes</label>
+    <textarea id="so-notes" placeholder="Douleurs, courbatures, ressentis..."></textarea>
+  </div>
+
+  <button class="btn-submit" onclick="saveSommeil()">💾 VALIDER LA NUIT</button>
 </div>
 
-<div class="toast" id="tst"></div>
+<!-- ═══════════════════════════════════════ OBJECTIFS ══ -->
+<div class="section" id="s-objectifs">
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>MES OBJECTIFS</div>
+
+    <div style="display:flex;gap:8px;margin-bottom:16px">
+      <input type="text" id="obj-input" placeholder="Ajouter un objectif..." style="flex:1">
+      <button onclick="addObjectif()" style="background:var(--gold);border:none;border-radius:6px;padding:0 16px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;color:var(--dark);cursor:pointer">ADD</button>
+    </div>
+
+    <div id="obj-list"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>OBJECTIF SMART</div>
+
+    <label>Mon objectif principal</label>
+    <textarea id="obj-smart-quoi" placeholder="Qu'est-ce que je veux accomplir ? (QUOI)" style="min-height:60px"></textarea>
+
+    <label>Pourquoi c'est important</label>
+    <textarea id="obj-smart-pourquoi" placeholder="Motivation profonde..." style="min-height:60px"></textarea>
+
+    <label>Deadline / Échéance</label>
+    <input type="date" id="obj-smart-date">
+
+    <label>Actions concrètes à mettre en place</label>
+    <textarea id="obj-smart-actions" placeholder="Étapes, habitudes, plan d'action..." style="min-height:80px"></textarea>
+
+    <button class="btn-submit" onclick="saveObjectif()">💾 ENREGISTRER L'OBJECTIF SMART</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ HISTORIQUE ══ -->
+<div class="hist-section" id="s-historique">
+
+  <div class="stats-grid" id="statsGrid"></div>
+
+  <div class="hist-filter">
+    <button class="hist-filter-btn active" onclick="filterHist('all', this)">TOUT</button>
+    <button class="hist-filter-btn" onclick="filterHist('entrainement', this)">ENTRAÎN.</button>
+    <button class="hist-filter-btn" onclick="filterHist('match', this)">MATCH</button>
+    <button class="hist-filter-btn" onclick="filterHist('mental', this)">MENTAL</button>
+    <button class="hist-filter-btn" onclick="filterHist('nutrition', this)">NUTRITION</button>
+    <button class="hist-filter-btn" onclick="filterHist('sommeil', this)">SOMMEIL</button>
+    <button class="hist-filter-btn" onclick="filterHist('objectifs', this)">OBJECTIFS</button>
+  </div>
+
+  <div id="hist-list"></div>
+
+  <div class="divider"></div>
+  <div style="text-align:center">
+    <button class="btn-danger" onclick="confirmClear()">🗑 Effacer toutes les données</button>
+  </div>
+</div>
+
+<!-- MODAL DETAIL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- CONFIRM MODAL -->
+<div class="confirm-modal" id="confirmModal">
+  <div class="confirm-box">
+    <div class="confirm-title">SUPPRIMER ?</div>
+    <div class="confirm-text">Cette action est irréversible. Toutes les données enregistrées seront effacées.</div>
+    <div class="confirm-btns">
+      <button class="btn-cancel" onclick="closeConfirm()">Annuler</button>
+      <button class="btn-confirm-del" onclick="clearAll()">Supprimer</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ Enregistré</div>
 
 <script>
-var NOM='', SESS=[], EAU_ST=null, SOM_ST=null;
-var REP={r1:null,r2:null,r3:null};
-var EXO_ST={}, AXE_ST='';
-var SK='yesi_v4';
-var HIST_FILTER='all';
-var FRIT_COUNT=0;
-
-function load(){
-  try{
-    var r=localStorage.getItem(SK);
-    if(!r) return;
-    var d=JSON.parse(r);
-    if(!d||typeof d!='object') return;
-    NOM=typeof d.nom=='string'?d.nom:'';
-    SESS=Array.isArray(d.sess)?d.sess:[];
-  }catch(e){NOM='';SESS=[];}
+// ── UTILS ──
+function today() {
+  return new Date().toISOString().split('T')[0];
+}
+function formatDate(d) {
+  if (!d) return '—';
+  var p = d.split('-');
+  return p[2]+'/'+p[1]+'/'+p[0];
+}
+function getStorage() {
+  try { return JSON.parse(localStorage.getItem('yesi_suivi') || '[]'); } catch(e) { return []; }
+}
+function setStorage(data) {
+  localStorage.setItem('yesi_suivi', JSON.stringify(data));
+}
+function getObjectifs() {
+  try { return JSON.parse(localStorage.getItem('yesi_objectifs') || '[]'); } catch(e) { return []; }
+}
+function setObjectifs(data) {
+  localStorage.setItem('yesi_objectifs', JSON.stringify(data));
+}
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg || '✅ Enregistré';
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2500);
 }
 
-function save(){
-  try{localStorage.setItem(SK,JSON.stringify({nom:NOM,sess:SESS}));}catch(e){}
+// ── INIT DATES ──
+window.addEventListener('DOMContentLoaded', function(){
+  var t = today();
+  ['e-date','m-date','mn-date','n-date','so-date'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.value = t;
+  });
+  renderObjectifs();
+  renderHistorique('all');
+  renderStats();
+});
+
+// ── TABS ──
+function showTab(name, btn) {
+  document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('s-'+name).classList.add('active');
+  btn.classList.add('active');
+  // hide historique
+  document.getElementById('s-historique').classList.remove('active');
+  document.getElementById('histBtn').classList.remove('active');
+  document.getElementById('navTabs').style.display = 'flex';
 }
 
-function pad(n){return n<10?'0'+n:''+n;}
-function today(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
-function fmt(s){if(!s)return '-';var p=s.split('-');return p[2]+'/'+p[1]+'/'+p[0];}
-function g(id){return document.getElementById(id);}
-function v(id){var e=g(id);return e?e.value:'';}
-
-var toastTimer=null;
-function toast(msg,warn){
-  var t=g('tst');
-  t.textContent=msg;
-  t.className='toast'+(warn?' warn':'')+' show';
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(function(){t.classList.remove('show');},2300);
-}
-
-function sl(id,vid){
-  var e=g(id),vv=g(vid);
-  if(e&&vv) e.oninput=function(){vv.textContent=this.value;};
-}
-
-function mkObjs(cid,pfx){
-  var c=g(cid);if(!c)return;c.innerHTML='';
-  for(var i=1;i<=3;i++){
-    var d=document.createElement('div');d.className='obj';
-    var op='<option value="">-</option>';
-    for(var j=1;j<=10;j++) op+='<option>'+j+'/10</option>';
-    d.innerHTML='<div class="obj-n">OBJECTIF '+i+'</div><div class="obj-r"><input type="text" class="oi" id="'+pfx+'o'+i+'" placeholder="D&eacute;cris ton objectif..."><select class="os" id="'+pfx+'os'+i+'">'+op+'</select></div>';
-    c.appendChild(d);
+function toggleHistorique() {
+  var h = document.getElementById('s-historique');
+  var btn = document.getElementById('histBtn');
+  var active = h.classList.contains('active');
+  if (active) {
+    h.classList.remove('active');
+    btn.classList.remove('active');
+    document.getElementById('navTabs').style.display = 'flex';
+    // restore first tab
+    var firstTab = document.querySelector('.tab-btn');
+    if (firstTab) firstTab.click();
+  } else {
+    document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    h.classList.add('active');
+    btn.classList.add('active');
+    renderHistorique('all');
+    renderStats();
   }
 }
 
-var EX=[
-  {v:'conc',e:'&#127183;',l:'Table Shuffle'},
-  {v:'rout',e:'&#9889;',l:'Routine pr&eacute;-match'},
-  {v:'disc',e:'&#128172;',l:'Discours int&eacute;rieur'},
-  {v:'axe', e:'&#128295;',l:'Renforcement axe'},
-  {v:'visu',e:'&#127919;',l:'Visualisation'},
-  {v:'resp',e:'&#129755;',l:'Coh&eacute;rence cardiaque'}
-];
-
-var AX=[
-  {v:'YES',   e:'&#128293;',l:'YES ATTITUDE'},
-  {v:'ESTIME',e:'&#128142;',l:'ESTIME DE SOI'},
-  {v:'SMART', e:'&#127919;',l:'SMART GOALS'},
-  {v:'INVEST',e:'&#9881;',  l:'INVESTISSEMENT'}
-];
-
-var RO=[
-  {v:'legumes',  e:'&#129382;',l:'L&eacute;gumes'},
-  {v:'salade',   e:'&#129361;',l:'Salade'},
-  {v:'feculent', e:'&#127834;',l:'F&eacute;culent'},
-  {v:'frit',     e:'🍟',l:'Frit'},
-  {v:'proteine', e:'&#127831;',l:'Prot&eacute;ines'},
-  {v:'fruit',    e:'&#127822;',l:'Fruit'},
-  {v:'autre',    e:'&#127869;',l:'Autre'}
-];
-
-var SL=[
-  {k:'r1',l:'MATIN',   rule:'Aucune restriction'},
-  {k:'r2',l:'MIDI',    rule:'Max <span>1 f&eacute;culent</span> autoris&eacute;'},
-  {k:'r3',l:'SOIR',    rule:'Pas de f&eacute;culent &middot; Pas de frit'}
-];
-
-var EA=[
-  {v:'m1',e:'&#128167;',      l:'&lt; 1L'},
-  {v:'1l',e:'&#128167;&#128167;',    l:'1 - 1.5L'},
-  {v:'v5',e:'&#128167;&#128167;&#128167;',  l:'1.5 - 2L'},
-  {v:'p5',e:'&#127754;',      l:'&gt; 2L'}
-];
-
-var SOM=['< 5h','5-6h','6-7h','7-8h','8-9h','> 9h'];
-
-function mkChips(cid,items,mode){
-  var c=g(cid);if(!c)return;c.innerHTML='';
-  items.forEach(function(it){
-    var d=document.createElement('div');d.className='chip';
-    d.innerHTML='<span class="ce">'+(it.e||'&#128313;')+'</span><span class="cl">'+it.l+'</span>';
-    d.onclick=function(){
-      if(mode==='axe'){
-        AXE_ST=(AXE_ST===it.v)?'':it.v;
-        c.querySelectorAll('.chip').forEach(function(b){b.classList.remove('on-r');});
-        if(AXE_ST===it.v) d.classList.add('on-r');
-      } else {
-        EXO_ST[it.v]=!EXO_ST[it.v];
-        d.classList.toggle('on',!!EXO_ST[it.v]);
-      }
-    };
-    c.appendChild(d);
-  });
+// ── FORM CONTROLS ──
+function updateSlider(el, valId) {
+  document.getElementById(valId).textContent = el.value;
 }
-
-function mkNutri(){
-  var c=g('n-rp');if(!c)return;c.innerHTML='';
-  SL.forEach(function(sl,si){
-    if(si>0){var sep=document.createElement('div');sep.className='sep';c.appendChild(sep);}
-    var lb=document.createElement('div');lb.className='slbl';lb.textContent=sl.l;c.appendChild(lb);
-    var rule=document.createElement('div');rule.className='nutri-rule';rule.innerHTML='&rarr; '+sl.rule;c.appendChild(rule);
-    var gr=document.createElement('div');gr.className='g3';
-    RO.forEach(function(r){
-      var b=document.createElement('div');b.className='chip';
-      b.innerHTML='<span class="ce">'+r.e+'</span><span class="cl">'+r.l+'</span>';
-      b.onclick=function(){
-        if(sl.k==='r3'&&(r.v==='feculent'||r.v==='frit')){
-          toast('Pas de '+r.l.replace('&eacute;','e')+' le soir !',true);return;
-        }
-        if(r.v==='frit'&&REP[sl.k]!=='frit'&&FRIT_COUNT>=1){
-          toast('Limite : 1 frit par jour max !',true);return;
-        }
-        var prev=REP[sl.k];
-        var wasOn=(REP[sl.k]===r.v);
-        REP[sl.k]=wasOn?null:r.v;
-        if(prev==='frit') FRIT_COUNT--;
-        if(!wasOn&&r.v==='frit') FRIT_COUNT++;
-        gr.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');});
-        if(REP[sl.k]) b.classList.add('on');
-      };
-      gr.appendChild(b);
-    });
-    c.appendChild(gr);
-  });
+function toggleCheck(el, group) {
+  el.classList.toggle('selected');
 }
-
-function mkEau(){
-  var c=g('n-ea');if(!c)return;c.innerHTML='';
-  EA.forEach(function(e){
-    var b=document.createElement('div');b.className='chip';
-    b.innerHTML='<span class="ce">'+e.e+'</span><span class="cl">'+e.l+'</span>';
-    b.onclick=function(){
-      EAU_ST=(EAU_ST===e.v)?null:e.v;
-      c.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on-b');});
-      if(EAU_ST) b.classList.add('on-b');
-    };
-    c.appendChild(b);
-  });
+function selectRadio(el, group) {
+  document.querySelectorAll('#'+group+' .radio-item').forEach(function(r){ r.classList.remove('selected'); });
+  el.classList.add('selected');
 }
-
-function mkSommeil(){
-  var c=g('n-som');if(!c)return;c.innerHTML='';
-  SOM.forEach(function(s){
-    var b=document.createElement('div');b.className='s-chip';b.textContent=s;
-    b.onclick=function(){
-      SOM_ST=(SOM_ST===s)?null:s;
-      c.querySelectorAll('.s-chip').forEach(function(x){x.classList.remove('on');});
-      if(SOM_ST) b.classList.add('on');
-    };
-    c.appendChild(b);
-  });
+function togglePilier(el) {
+  el.classList.toggle('selected');
 }
+function getChecked(groupId) {
+  var items = [];
+  document.querySelectorAll('#'+groupId+' .check-item.selected').forEach(function(i){ items.push(i.textContent); });
+  return items;
+}
+function getRadio(groupId) {
+  var sel = document.querySelector('#'+groupId+' .radio-item.selected');
+  return sel ? sel.textContent.trim() : '';
+}
+function getPiliers() {
+  var items = [];
+  document.querySelectorAll('.pilier-btn.selected .pilier-name').forEach(function(i){ items.push(i.textContent); });
+  return items;
+}
+function resetChecks(groupId) {
+  document.querySelectorAll('#'+groupId+' .check-item.selected').forEach(function(i){ i.classList.remove('selected'); });
+}
+function resetRadios(groupId) {
+  document.querySelectorAll('#'+groupId+' .radio-item.selected').forEach(function(i){ i.classList.remove('selected'); });
+}
+function resetPiliers() {
+  document.querySelectorAll('.pilier-btn.selected').forEach(function(i){ i.classList.remove('selected'); });
+}
+function resetSlider(id, valId, def) {
+  document.getElementById(id).value = def;
+  document.getElementById(valId).textContent = def;
+}
+function val(id) { return document.getElementById(id).value.trim(); }
+function clearVal(id) { document.getElementById(id).value = ''; }
 
-function mkSav(id,type,lbl){
-  var b=g(id);if(!b)return;
-  b.onclick=function(){
-    var prefix=type==='train'?'t':type==='match'?'m':type==='mental'?'me':'n';
-    var s={type:type,ts:Date.now(),date:v(prefix+'-dt')||today()};
-    if(type==='train'){
-      s.ty=v('t-ty');s.du=v('t-du');
-      s.o1=v('t-o1');s.o1s=v('t-os1');s.o2=v('t-o2');s.o2s=v('t-os2');s.o3=v('t-o3');s.o3s=v('t-os3');
-      s.at=v('t-at');s.co=v('t-co');s.cn=v('t-cn');s.ins=v('t-in');s.no=v('t-no');
-    } else if(type==='match'){
-      s.ad=v('m-ad');s.sc=v('m-sc');s.re=v('m-re');s.tp=v('m-tp');s.cp=v('m-cp');
-      s.o1=v('m-o1');s.o1s=v('m-os1');s.o2=v('m-o2');s.o2s=v('m-os2');s.o3=v('m-o3');s.o3s=v('m-os3');
-      s.at=v('m-at');s.co=v('m-co');s.pf=v('m-pf');s.st=v('m-st');s.fo=v('m-fo');s.ax=v('m-ax');
-    } else if(type==='mental'){
-      s.et=v('me-et');
-      s.ex=Object.keys(EXO_ST).filter(function(k){return EXO_ST[k];});
-      s.ax=AXE_ST;s.re=v('me-re');
-    } else if(type==='nutri'){
-      s.r1=REP.r1;s.r2=REP.r2;s.r3=REP.r3;s.ea=EAU_ST;s.som=SOM_ST;s.sc=v('n-sc');s.no=v('n-no');
-    }
-    SESS.push(s);save();
-    b.textContent='VALIDE !';b.classList.add('ok');
-    setTimeout(function(){b.textContent=lbl;b.classList.remove('ok');},2000);
-    toast('Session du '+fmt(s.date)+' sauvegardee !');
+// ── SAVE ENTRAINEMENT ──
+function saveEntrainement() {
+  var entry = {
+    type: 'entrainement',
+    date: val('e-date'),
+    seanceType: getChecked('e-type'),
+    duree: getRadio('e-duree'),
+    attitude: getRadio('e-attitude'),
+    comportement: getRadio('e-comportement'),
+    concentration: val('e-concentration'),
+    intensite: val('e-intensite'),
+    positif: val('e-positif'),
+    negatif: val('e-negatif'),
+    notes: val('e-notes'),
+    ts: Date.now()
   };
+  var data = getStorage(); data.unshift(entry); setStorage(data);
+  // reset
+  resetChecks('e-type'); resetRadios('e-duree'); resetRadios('e-attitude'); resetRadios('e-comportement');
+  resetSlider('e-concentration','e-concentration-val',5);
+  resetSlider('e-intensite','e-intensite-val',5);
+  ['e-positif','e-negatif','e-notes'].forEach(clearVal);
+  showToast('✅ Session enregistrée');
 }
 
-function renderStats(){
-  var c=g('hist-stats');if(!c)return;
-  var ct={train:0,match:0,mental:0,nutri:0};
-  SESS.forEach(function(s){if(ct[s.type]!==undefined)ct[s.type]++;});
-  c.innerHTML=
-    '<div class="stat-box"><div class="stat-n">'+SESS.length+'</div><div class="stat-l">Total sessions</div></div>'+
-    '<div class="stat-box"><div class="stat-n">'+ct.match+'</div><div class="stat-l">Matchs</div></div>'+
-    '<div class="stat-box"><div class="stat-n">'+ct.train+'</div><div class="stat-l">Entra&icirc;nements</div></div>'+
-    '<div class="stat-box"><div class="stat-n">'+ct.mental+'</div><div class="stat-l">Mentales</div></div>';
+// ── SAVE MATCH ──
+function saveMatch() {
+  var entry = {
+    type: 'match',
+    date: val('m-date'),
+    competition: val('m-competition'),
+    adversaire: val('m-adversaire'),
+    score: val('m-score'),
+    resultat: getRadio('m-resultat'),
+    tempsJeu: getRadio('m-tps'),
+    poste: val('m-poste'),
+    attitude: getRadio('m-attitude'),
+    collectif: getRadio('m-collectif'),
+    performance: val('m-perf'),
+    stress: val('m-stress'),
+    forts: val('m-forts'),
+    amelio: val('m-amelio'),
+    ressenti: val('m-ressenti'),
+    ts: Date.now()
+  };
+  var data = getStorage(); data.unshift(entry); setStorage(data);
+  resetRadios('m-resultat'); resetRadios('m-tps'); resetRadios('m-attitude'); resetRadios('m-collectif');
+  resetSlider('m-perf','m-perf-val',5); resetSlider('m-stress','m-stress-val',5);
+  ['m-competition','m-adversaire','m-score','m-poste','m-forts','m-amelio','m-ressenti'].forEach(clearVal);
+  showToast('✅ Match enregistré');
 }
 
-function renderHist(){
+// ── SAVE MENTAL ──
+function saveMental() {
+  var entry = {
+    type: 'mental',
+    date: val('mn-date'),
+    etat: val('mn-etat'),
+    energie: val('mn-energie'),
+    stress: getRadio('mn-stress'),
+    piliers: getPiliers(),
+    exercices: getChecked('mn-exercices'),
+    affecte: val('mn-affecte'),
+    bien: val('mn-bien'),
+    intention: val('mn-intention'),
+    ts: Date.now()
+  };
+  var data = getStorage(); data.unshift(entry); setStorage(data);
+  resetRadios('mn-stress'); resetPiliers(); resetChecks('mn-exercices');
+  resetSlider('mn-etat','mn-etat-val',5); resetSlider('mn-energie','mn-energie-val',5);
+  ['mn-affecte','mn-bien','mn-intention'].forEach(clearVal);
+  showToast('✅ Session mentale enregistrée');
+}
+
+// ── SAVE NUTRITION ──
+function saveNutrition() {
+  var entry = {
+    type: 'nutrition',
+    date: val('n-date'),
+    pdj: val('n-pdj'),
+    dejeuner: val('n-dejeuner'),
+    diner: val('n-diner'),
+    collation: val('n-collation'),
+    eau: getRadio('n-eau'),
+    suppl: getChecked('n-suppl'),
+    qualite: val('n-qualite'),
+    respect: getRadio('n-respect'),
+    notes: val('n-notes'),
+    ts: Date.now()
+  };
+  var data = getStorage(); data.unshift(entry); setStorage(data);
+  resetRadios('n-eau'); resetChecks('n-suppl'); resetRadios('n-respect');
+  resetSlider('n-qualite','n-qualite-val',5);
+  ['n-pdj','n-dejeuner','n-diner','n-collation','n-notes'].forEach(clearVal);
+  showToast('✅ Journée nutritionnelle enregistrée');
+}
+
+// ── SAVE SOMMEIL ──
+function saveSommeil() {
+  var entry = {
+    type: 'sommeil',
+    date: val('so-date'),
+    coucher: val('so-coucher'),
+    lever: val('so-lever'),
+    duree: getRadio('so-duree'),
+    qualite: val('so-qualite'),
+    recup: getRadio('so-recup'),
+    perturbations: getChecked('so-perturbations'),
+    recupActif: getChecked('so-recup-actif'),
+    notes: val('so-notes'),
+    ts: Date.now()
+  };
+  var data = getStorage(); data.unshift(entry); setStorage(data);
+  resetRadios('so-duree'); resetRadios('so-recup'); resetChecks('so-perturbations'); resetChecks('so-recup-actif');
+  resetSlider('so-qualite','so-qualite-val',5);
+  ['so-coucher','so-lever','so-notes'].forEach(clearVal);
+  showToast('✅ Nuit enregistrée');
+}
+
+// ── OBJECTIFS ──
+function addObjectif() {
+  var txt = document.getElementById('obj-input').value.trim();
+  if (!txt) return;
+  var obj = getObjectifs();
+  obj.push({ id: Date.now(), text: txt, done: false });
+  setObjectifs(obj);
+  clearVal('obj-input');
+  renderObjectifs();
+}
+function toggleObj(id) {
+  var obj = getObjectifs();
+  obj = obj.map(function(o){ if(o.id===id) o.done=!o.done; return o; });
+  setObjectifs(obj);
+  renderObjectifs();
+}
+function deleteObj(id) {
+  var obj = getObjectifs().filter(function(o){ return o.id!==id; });
+  setObjectifs(obj);
+  renderObjectifs();
+}
+function saveObjectif() {
+  var entry = {
+    type: 'objectifs',
+    date: today(),
+    quoi: val('obj-smart-quoi'),
+    pourquoi: val('obj-smart-pourquoi'),
+    deadline: val('obj-smart-date'),
+    actions: val('obj-smart-actions'),
+    ts: Date.now()
+  };
+  var data = getStorage(); data.unshift(entry); setStorage(data);
+  ['obj-smart-quoi','obj-smart-pourquoi','obj-smart-actions'].forEach(clearVal);
+  document.getElementById('obj-smart-date').value = '';
+  showToast('✅ Objectif SMART enregistré');
+}
+function renderObjectifs() {
+  var list = getObjectifs();
+  var container = document.getElementById('obj-list');
+  if (!list.length) {
+    container.innerHTML = '<div style="color:var(--text-muted);font-size:12px;text-align:center;padding:12px 0">Aucun objectif ajouté</div>';
+    return;
+  }
+  container.innerHTML = list.map(function(o){
+    return '<div class="obj-item">' +
+      '<div class="obj-check '+(o.done?'done':'')+'" onclick="toggleObj('+o.id+')">'+(o.done?'✓':'')+'</div>' +
+      '<div class="obj-text '+(o.done?'done':'')+'">'+escHtml(o.text)+'</div>' +
+      '<div class="obj-delete" onclick="deleteObj('+o.id+')">×</div>' +
+    '</div>';
+  }).join('');
+}
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── HISTORIQUE ──
+var currentFilter = 'all';
+function filterHist(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll('.hist-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderHistorique(type);
+}
+function renderHistorique(type) {
+  var data = getStorage();
+  if (type !== 'all') data = data.filter(function(d){ return d.type===type; });
+  var container = document.getElementById('hist-list');
+  if (!data.length) {
+    container.innerHTML = '<div class="hist-empty">Aucune entrée enregistrée</div>';
+    return;
+  }
+  container.innerHTML = data.map(function(e, i){
+    return '<div class="hist-entry type-'+e.type+'" onclick="openModal('+JSON.stringify(i)+')">' +
+      '<div class="hist-entry-head">' +
+        '<div class="hist-entry-type">'+typeLabel(e.type)+'</div>' +
+        '<div class="hist-entry-date">'+formatDate(e.date)+'</div>' +
+      '</div>' +
+      '<div class="hist-entry-summary">'+entrySummary(e)+'</div>' +
+    '</div>';
+  }).join('');
+}
+function typeLabel(t) {
+  var map = {entrainement:'⚡ ENTRAÎN.',match:'🏆 MATCH',mental:'🧠 MENTAL',nutrition:'🍽 NUTRITION',sommeil:'🌙 SOMMEIL',objectifs:'🎯 OBJECTIFS'};
+  return map[t]||t.toUpperCase();
+}
+function entrySummary(e) {
+  if (e.type==='entrainement') {
+    var parts = [];
+    if (e.seanceType && e.seanceType.length) parts.push('<span class="hist-badge">'+e.seanceType.join(' · ')+'</span>');
+    if (e.duree) parts.push('<span class="hist-badge">'+e.duree+'</span>');
+    if (e.concentration) parts.push('Conc. '+e.concentration+'/10');
+    return parts.join(' ');
+  }
+  if (e.type==='match') {
+    var parts = [];
+    if (e.adversaire) parts.push('<span class="hist-badge">vs '+escHtml(e.adversaire)+'</span>');
+    if (e.score) parts.push('<span class="hist-badge">'+escHtml(e.score)+'</span>');
+    if (e.resultat) parts.push(e.resultat);
+    return parts.join(' ');
+  }
+  if (e.type==='mental') {
+    return 'État '+e.etat+'/10 · Énergie '+e.energie+'/10'+(e.piliers&&e.piliers.length?' · '+e.piliers.join(', '):'');
+  }
+  if (e.type==='nutrition') {
+    return 'Qualité '+e.qualite+'/10'+(e.eau?' · '+e.eau:'');
+  }
+  if (e.type==='sommeil') {
+    return 'Qualité '+e.qualite+'/10'+(e.duree?' · '+e.duree:'')+(e.recup?' · '+e.recup:'');
+  }
+  if (e.type==='objectifs') {
+    return escHtml(e.quoi||'Objectif SMART')+(e.deadline?' · '+formatDate(e.deadline):'');
+  }
+  return '';
+}
+function renderStats() {
+  var data = getStorage();
+  var counts = {entrainement:0,match:0,mental:0,nutrition:0,sommeil:0,objectifs:0};
+  data.forEach(function(e){ if(counts[e.type]!==undefined) counts[e.type]++; });
+  document.getElementById('statsGrid').innerHTML =
+    statBox(counts.entrainement,'ENTRAÎN.') +
+    statBox(counts.match,'MATCHS') +
+    statBox(counts.mental,'MENTAL') +
+    statBox(counts.nutrition,'NUTRITION') +
+    statBox(counts.sommeil,'NUITS') +
+    statBox(counts.objectifs,'OBJECTIFS');
+}
+function statBox(val, lbl) {
+  return '<div class="stat-box"><div class="stat-val">'+val+'</div><div class="stat-lbl">'+lbl+'</div></div>';
+}
+
+// ── MODAL DETAIL ──
+function openModal(idx) {
+  var data = getStorage();
+  if (currentFilter!=='all') data = data.filter(function(d){ return d.type===currentFilter; });
+  var e = data[idx];
+  if (!e) return;
+  document.getElementById('modalTitle').textContent = typeLabel(e.type)+' — '+formatDate(e.date);
+  document.getElementById('modalContent').innerHTML = buildModalContent(e);
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function closeModal(ev) {
+  if (!ev || ev.target===document.getElementById('modalOverlay')) {
+    document.getElementById('modalOverlay').classList.remove('open');
+  }
+}
+function buildModalContent(e) {
+  var rows = '';
+  function row(lbl, val) {
+    if (!val || val==='' || (Array.isArray(val)&&!val.length)) return '';
+    return '<div class="modal-row"><div class="modal-lbl">'+lbl+'</div><div class="modal-val">'+(Array.isArray(val)?val.join(', '):escHtml(String(val)))+'</div></div>';
+  }
+  if (e.type==='entrainement') {
+    rows += row('Type',e.seanceType)+row('Durée',e.duree)+row('Attitude',e.attitude)+row('Comportement',e.comportement)+row('Concentration',e.concentration+'/10')+row('Intensité',e.intensite+'/10')+row('Points forts',e.positif)+row('À améliorer',e.negatif)+row('Notes',e.notes);
+  } else if (e.type==='match') {
+    rows += row('Compétition',e.competition)+row('Adversaire',e.adversaire)+row('Score',e.score)+row('Résultat',e.resultat)+row('Temps de jeu',e.tempsJeu)+row('Poste',e.poste)+row('Attitude',e.attitude)+row('Collectif',e.collectif)+row('Performance',e.performance+'/10')+row('Gestion stress',e.stress+'/10')+row('Points forts',e.forts)+row('À améliorer',e.amelio)+row('Ressenti',e.ressenti);
+  } else if (e.type==='mental') {
+    rows += row('État mental',e.etat+'/10')+row('Énergie',e.energie+'/10')+row('Stress',e.stress)+row('Axes Y.E.S.I',e.piliers)+row('Exercices',e.exercices)+row('Ce qui m\'a affecté',e.affecte)+row('Bien géré',e.bien)+row('Intention',e.intention);
+  } else if (e.type==='nutrition') {
+    rows += row('Petit-déjeuner',e.pdj)+row('Déjeuner',e.dejeuner)+row('Dîner',e.diner)+row('Collations',e.collation)+row('Eau',e.eau)+row('Suppléments',e.suppl)+row('Qualité',e.qualite+'/10')+row('Respect plan',e.respect)+row('Notes',e.notes);
+  } else if (e.type==='sommeil') {
+    rows += row('Coucher',e.coucher)+row('Lever',e.lever)+row('Durée',e.duree)+row('Qualité',e.qualite+'/10')+row('Récupération',e.recup)+row('Perturbations',e.perturbations)+row('Récupération active',e.recupActif)+row('Notes',e.notes);
+  } else if (e.type==='objectifs') {
+    rows += row('Objectif',e.quoi)+row('Pourquoi',e.pourquoi)+row('Deadline',formatDate(e.deadline))+row('Actions',e.actions);
+  }
+  return rows || '<div style="color:var(--text-muted);font-size:13px">Aucune donnée</div>';
+}
+
+// ── CLEAR DATA ──
+function confirmClear() {
+  document.getElementById('confirmModal').classList.add('open');
+}
+function closeConfirm() {
+  document.getElementById('confirmModal').classList.remove('open');
+}
+function clearAll() {
+  localStorage.removeItem('yesi_suivi');
+  localStorage.removeItem('yesi_objectifs');
+  closeConfirm();
+  renderHistorique('all');
   renderStats();
-  var c=g('hist-l');if(!c)return;
-  var filtered=SESS.filter(function(s){return HIST_FILTER==='all'||s.type===HIST_FILTER;});
-  if(!filtered.length){c.innerHTML='<div class="empty">Aucune session enregistr&eacute;e.<br>Remplis tes modules !</div>';return;}
-  c.innerHTML='';
-  var TL={train:'Entra&icirc;nement',match:'Match',mental:'Mental',nutri:'Nutrition'};
-  filtered.slice().sort(function(a,b){return b.ts-a.ts;}).forEach(function(s){
-    var d=document.createElement('div');d.className='hi';
-    var badge='<span class="hi-badge '+s.type+'">'+TL[s.type]+'</span>';
-    var det='';
-    if(s.type==='train'){
-      det='<strong>'+(s.ty||'?')+'</strong> &middot; '+(s.du||'?')+' &middot; Conc: <strong>'+(s.cn||'-')+'/10</strong>';
-      if(s.at) det+=' &middot; '+s.at;
-    } else if(s.type==='match'){
-      det='Vs <strong>'+(s.ad||'?')+'</strong> &middot; '+(s.sc||'-')+' &middot; <strong>'+(s.re||'?')+'</strong>';
-      if(s.pf) det+=' &middot; Perf: <strong>'+s.pf+'/10</strong>';
-      if(s.cp) det+=' &middot; '+s.cp;
-    } else if(s.type==='mental'){
-      det='&Eacute;tat: <strong>'+(s.et||'-')+'/10</strong>';
-      if(s.ax) det+=' &middot; <strong>'+s.ax+'</strong>';
-      if(s.ex&&s.ex.length) det+=' &middot; '+s.ex.length+' ex.';
-    } else if(s.type==='nutri'){
-      det='Note: <strong>'+(s.sc||'-')+'/10</strong> &middot; Eau: '+(s.ea||'-');
-      if(s.som) det+=' &middot; Sommeil: <strong>'+s.som+'</strong>';
-    }
-    var realIdx=SESS.indexOf(s);
-    d.innerHTML=
-      '<div class="hi-top">'+badge+'<span class="hi-date">'+fmt(s.date)+'</span></div>'+
-      '<div class="hi-det">'+det+'</div>'+
-      '<div class="hi-actions"><button class="hi-del" data-i="'+realIdx+'">Supprimer</button></div>';
-    c.appendChild(d);
-  });
-  c.querySelectorAll('.hi-del').forEach(function(btn){
-    btn.onclick=function(){
-      var i=parseInt(this.getAttribute('data-i'));
-      if(!isNaN(i)&&i>=0&&i<SESS.length){SESS.splice(i,1);save();renderHist();toast('Session supprim&eacute;e');}
-    };
-  });
+  renderObjectifs();
+  showToast('🗑 Données effacées');
 }
 
-document.querySelectorAll('.tab').forEach(function(t){
-  t.onclick=function(){
-    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
-    document.querySelectorAll('.mod').forEach(function(x){x.classList.remove('on');});
-    t.classList.add('on');
-    var m=g('mod-'+t.getAttribute('data-m'));
-    if(m) m.classList.add('on');
-    if(t.getAttribute('data-m')==='hist') renderHist();
-  };
+// ── KEYBOARD for objectif input ──
+document.addEventListener('DOMContentLoaded', function(){
+  var inp = document.getElementById('obj-input');
+  if (inp) inp.addEventListener('keydown', function(e){ if(e.key==='Enter'){ addObjectif(); } });
 });
-
-document.querySelectorAll('.hi-f').forEach(function(f){
-  f.onclick=function(){
-    document.querySelectorAll('.hi-f').forEach(function(x){x.classList.remove('on');});
-    f.classList.add('on');
-    HIST_FILTER=f.getAttribute('data-f');
-    renderHist();
-  };
-});
-
-load();
-g('nom').value=NOM;
-g('nom').oninput=function(){NOM=this.value;save();};
-
-var td=today();
-['t-dt','m-dt','me-dt','n-dt'].forEach(function(id){var e=g(id);if(e)e.value=td;});
-
-mkObjs('t-ob','t-');
-mkObjs('m-ob','m-');
-mkChips('me-ex',EX,'exo');
-mkChips('me-ax',AX,'axe');
-mkNutri();mkEau();mkSommeil();
-sl('t-cn','t-cn-v');sl('t-in','t-in-v');
-sl('m-pf','m-pf-v');sl('m-st','m-st-v');
-sl('me-et','me-et-v');sl('n-sc','n-sc-v');
-mkSav('t-sv','train','&#128190; VALIDER LA SESSION');
-mkSav('m-sv','match','&#128190; VALIDER LE MATCH');
-mkSav('me-sv','mental','&#128190; VALIDER LA SESSION');
-mkSav('n-sv','nutri','&#128190; VALIDER LA JOURN&Eacute;E');
 </script>
 </body>
 </html>

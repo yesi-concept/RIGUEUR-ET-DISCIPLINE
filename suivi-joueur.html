@@ -879,26 +879,31 @@
 
 <!-- ══════════════════════════ OBJECTIFS ══ -->
 <div class="section" id="s-objectifs">
+
+  <!-- ── OBJECTIFS DE RÉSULTATS ── -->
   <div class="card">
-    <div class="card-title"><span class="dot"></span>MES OBJECTIFS</div>
-    <div style="display:flex;gap:8px;margin-bottom:16px">
-      <input type="text" id="obj-input" placeholder="Ajouter un objectif..." style="flex:1">
-      <button onclick="addObjectif()" style="background:var(--gold);border:none;border-radius:6px;padding:0 16px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;color:var(--dark);cursor:pointer">ADD</button>
+    <div class="card-title"><span class="dot"></span>OBJECTIFS DE RÉSULTATS</div>
+    <div style="display:flex;gap:8px;margin-bottom:14px">
+      <input type="text" id="obj-res-input" placeholder="ex: Signer en N2 d'ici juin...">
+      <button onclick="addObjResultat()" style="background:var(--gold);border:none;border-radius:6px;padding:0 16px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;color:#111;cursor:pointer;white-space:nowrap">ADD</button>
     </div>
-    <div id="obj-list"></div>
+    <div id="obj-res-list"></div>
   </div>
+
+  <!-- ── OBJECTIF DE MOYEN ── -->
   <div class="card">
-    <div class="card-title"><span class="dot"></span>OBJECTIF SMART</div>
-    <label>Mon objectif principal</label>
-    <textarea id="obj-smart-quoi" placeholder="Qu'est-ce que je veux accomplir ? (QUOI)" style="min-height:60px"></textarea>
-    <label>Pourquoi c'est important</label>
-    <textarea id="obj-smart-pourquoi" placeholder="Motivation profonde..." style="min-height:60px"></textarea>
-    <label>Deadline / Échéance</label>
-    <input type="date" id="obj-smart-date">
-    <label>Actions concrètes à mettre en place</label>
-    <textarea id="obj-smart-actions" placeholder="Étapes, habitudes, plan d'action..." style="min-height:80px"></textarea>
-    <button class="btn-submit" onclick="saveObjectif()">💾 ENREGISTRER L'OBJECTIF SMART</button>
+    <div class="card-title"><span class="dot"></span>OBJECTIF DE MOYEN</div>
+    <label>Deadline</label>
+    <input type="date" id="obj-moyen-date">
+    <label style="margin-top:16px">Actions concrètes</label>
+    <div style="display:flex;gap:8px;margin-bottom:10px">
+      <input type="text" id="obj-action-input" placeholder="ex: 2 séances technique / semaine...">
+      <button onclick="addObjAction()" style="background:var(--orange);border:none;border-radius:6px;padding:0 14px;font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fff;cursor:pointer;white-space:nowrap">ADD</button>
+    </div>
+    <div id="obj-action-list"></div>
+    <button class="btn-submit" onclick="saveObjMoyen()" style="margin-top:16px;background:var(--orange)">💾 ENREGISTRER</button>
   </div>
+
 </div>
 
 <!-- ══════════════════════════ HISTORIQUE ══ -->
@@ -975,7 +980,6 @@ window.addEventListener('DOMContentLoaded', function(){
     var el = document.getElementById(id);
     if (el) el.value = t;
   });
-  renderObjectifs();
   renderHistorique('all');
   renderStats();
 });
@@ -1250,38 +1254,90 @@ function saveSommeil() {
   showToast('✅ Nuit enregistrée');
 }
 
-function addObjectif() {
-  var txt = document.getElementById('obj-input').value.trim();
+// ── OBJECTIFS DE RÉSULTATS ──
+function getObjResultats() { try { return JSON.parse(localStorage.getItem('yesi_obj_res') || '[]'); } catch(e) { return []; } }
+function setObjResultats(d) { localStorage.setItem('yesi_obj_res', JSON.stringify(d)); }
+
+function addObjResultat() {
+  var txt = document.getElementById('obj-res-input').value.trim();
   if (!txt) return;
-  var obj = getObjectifs();
-  obj.push({ id: Date.now(), text: txt, done: false });
-  setObjectifs(obj); clearVal('obj-input'); renderObjectifs();
+  var list = getObjResultats();
+  list.push({ id: Date.now(), text: txt, done: false });
+  setObjResultats(list);
+  clearVal('obj-res-input');
+  renderObjResultats();
 }
-function toggleObj(id) {
-  var obj = getObjectifs();
-  obj = obj.map(function(o){ if(o.id===id) o.done=!o.done; return o; });
-  setObjectifs(obj); renderObjectifs();
+function toggleObjResultat(id) {
+  var list = getObjResultats().map(function(o){ if(o.id===id) o.done=!o.done; return o; });
+  setObjResultats(list); renderObjResultats();
 }
-function deleteObj(id) {
-  setObjectifs(getObjectifs().filter(function(o){ return o.id!==id; }));
-  renderObjectifs();
+function deleteObjResultat(id) {
+  setObjResultats(getObjResultats().filter(function(o){ return o.id!==id; }));
+  renderObjResultats();
 }
-function saveObjectif() {
-  var entry = { type:'objectifs', date:today(), quoi:val('obj-smart-quoi'), pourquoi:val('obj-smart-pourquoi'), deadline:val('obj-smart-date'), actions:val('obj-smart-actions'), ts:Date.now() };
-  var data = getStorage(); data.unshift(entry); setStorage(data);
-  ['obj-smart-quoi','obj-smart-pourquoi','obj-smart-actions'].forEach(clearVal);
-  document.getElementById('obj-smart-date').value = '';
-  showToast('✅ Objectif SMART enregistré');
-}
-function renderObjectifs() {
-  var list = getObjectifs();
-  var container = document.getElementById('obj-list');
-  if (!list.length) { container.innerHTML = '<div style="color:var(--text-muted);font-size:12px;text-align:center;padding:12px 0">Aucun objectif ajouté</div>'; return; }
-  container.innerHTML = list.map(function(o){
-    return '<div class="obj-item"><div class="obj-check '+(o.done?'done':'')+'" onclick="toggleObj('+o.id+')">'+(o.done?'✓':'')+'</div><div class="obj-text '+(o.done?'done':'')+'">'+escHtml(o.text)+'</div><div class="obj-delete" onclick="deleteObj('+o.id+')">×</div></div>';
+function renderObjResultats() {
+  var list = getObjResultats();
+  var c = document.getElementById('obj-res-list');
+  if (!c) return;
+  if (!list.length) { c.innerHTML = '<div style="color:#999;font-size:12px;text-align:center;padding:10px 0">Aucun objectif ajouté</div>'; return; }
+  c.innerHTML = list.map(function(o){
+    return '<div class="obj-item"><div class="obj-check '+(o.done?'done':'')+'" onclick="toggleObjResultat('+o.id+')">'+(o.done?'✓':'')+'</div>'
+      +'<div class="obj-text '+(o.done?'done':'')+'">'+escHtml(o.text)+'</div>'
+      +'<div class="obj-delete" onclick="deleteObjResultat('+o.id+')">×</div></div>';
   }).join('');
 }
+
+// ── OBJECTIF DE MOYEN — ACTIONS ──
+function getObjActions() { try { return JSON.parse(localStorage.getItem('yesi_obj_actions') || '[]'); } catch(e) { return []; } }
+function setObjActions(d) { localStorage.setItem('yesi_obj_actions', JSON.stringify(d)); }
+
+function addObjAction() {
+  var txt = document.getElementById('obj-action-input').value.trim();
+  if (!txt) return;
+  var list = getObjActions();
+  list.push({ id: Date.now(), text: txt, done: false });
+  setObjActions(list);
+  clearVal('obj-action-input');
+  renderObjActions();
+}
+function toggleObjAction(id) {
+  var list = getObjActions().map(function(o){ if(o.id===id) o.done=!o.done; return o; });
+  setObjActions(list); renderObjActions();
+}
+function deleteObjAction(id) {
+  setObjActions(getObjActions().filter(function(o){ return o.id!==id; }));
+  renderObjActions();
+}
+function renderObjActions() {
+  var list = getObjActions();
+  var c = document.getElementById('obj-action-list');
+  if (!c) return;
+  if (!list.length) { c.innerHTML = '<div style="color:#999;font-size:12px;text-align:center;padding:10px 0">Aucune action ajoutée</div>'; return; }
+  c.innerHTML = list.map(function(o){
+    var doneSty = o.done ? 'background:var(--orange);border-color:var(--orange)' : '';
+    return '<div class="obj-item" style="border-left:3px solid var(--orange)">'
+      +'<div class="obj-check '+(o.done?'done':'')+'" onclick="toggleObjAction('+o.id+')" style="'+doneSty+'">'+(o.done?'✓':'')+'</div>'
+      +'<div class="obj-text '+(o.done?'done':'')+'">'+escHtml(o.text)+'</div>'
+      +'<div class="obj-delete" onclick="deleteObjAction('+o.id+')">×</div></div>';
+  }).join('');
+}
+function saveObjMoyen() {
+  var titre = val('obj-moyen-titre');
+  var actions = getObjActions().map(function(o){ return o.text; });
+  if (!titre && !actions.length) { showToast('⚠️ Remplis au moins un champ'); return; }
+  var entry = { type:'objectifs', sousType:'moyen', date:today(), deadline:val('obj-moyen-date'), actions:actions, ts:Date.now() };
+  var data = getStorage(); data.unshift(entry); setStorage(data);
+  setObjActions([]);
+  document.getElementById('obj-moyen-date').value = '';
+  renderObjActions();
+  showToast('✅ Objectif de moyen enregistré');
+}
+function renderObjectifs() {
+  renderObjResultats();
+  renderObjActions();
+}
 function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
 
 var currentFilter = 'all';
 function filterHist(type, btn) {
@@ -1308,7 +1364,7 @@ function entrySummary(e) {
   if (e.type==='mental') { return 'État '+e.etat+'/10 · Énergie '+e.energie+'/10'+(e.piliers&&e.piliers.length?' · '+e.piliers.join(', '):''); }
   if (e.type==='nutrition') { return 'Score '+(e.qualite !== undefined ? e.qualite : '—')+'/10'+(e.eau?' · '+e.eau:'')+(e.supplements&&e.supplements.length?' · '+e.supplements.length+' suppl.':''); }
   if (e.type==='sommeil') { return 'Qualité '+e.qualite+'/10'+(e.duree?' · '+e.duree:'')+(e.recup?' · '+e.recup:''); }
-  if (e.type==='objectifs') { return escHtml(e.quoi||'Objectif SMART')+(e.deadline?' · '+formatDate(e.deadline):''); }
+  if (e.type==='objectifs') { if(e.sousType==='moyen') return '🔧 '+(e.titre?escHtml(e.titre.substring(0,40)):'Moyen')+(e.actions&&e.actions.length?' · '+e.actions.length+' action(s)':'')+(e.deadline?' · '+formatDate(e.deadline):''); return '🎯 '+(e.quoi?escHtml(e.quoi.substring(0,60)):'Objectif résultat')+(e.deadline?' · '+formatDate(e.deadline):''); }
   return '';
 }
 
@@ -1417,7 +1473,7 @@ function buildModalContent(e) {
   }
   else if (e.type==='nutrition') { rows += row('Matin',e.matin)+row('Collation',e.collation)+row('Midi',e.midi)+row('Soir',e.soir)+row('Eau',e.eau)+row('Compléments',e.supplements)+row('Score qualité',e.qualite !== undefined ? e.qualite+'/10' : '—')+row('Notes',e.notes); }
   else if (e.type==='sommeil') { rows += row('Coucher',e.coucher)+row('Lever',e.lever)+row('Durée',e.duree)+row('Qualité',e.qualite+'/10')+row('Récupération',e.recup)+row('Perturbations',e.perturbations)+row('Récupération active',e.recupActif)+row('Notes',e.notes); }
-  else if (e.type==='objectifs') { rows += row('Objectif',e.quoi)+row('Pourquoi',e.pourquoi)+row('Deadline',formatDate(e.deadline))+row('Actions',e.actions); }
+  else if (e.type==='objectifs') { if(e.sousType==='moyen') { rows += row('Objectif de moyen',e.titre)+row('Pourquoi',e.pourquoi)+row('Deadline',formatDate(e.deadline))+row('Actions',e.actions); } else { rows += row('Objectif de résultat',e.quoi); } }
   return rows || '<div style="color:var(--text-muted);font-size:13px">Aucune donnée</div>';
 }
 
@@ -1430,8 +1486,12 @@ function clearAll() {
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-  var inp = document.getElementById('obj-input');
-  if (inp) inp.addEventListener('keydown', function(e){ if(e.key==='Enter'){ addObjectif(); } });
+  renderObjResultats();
+  renderObjActions();
+  var r = document.getElementById('obj-res-input');
+  if (r) r.addEventListener('keydown', function(e){ if(e.key==='Enter'){ addObjResultat(); } });
+  var a = document.getElementById('obj-action-input');
+  if (a) a.addEventListener('keydown', function(e){ if(e.key==='Enter'){ addObjAction(); } });
 });
 </script>
 </body>

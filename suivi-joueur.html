@@ -164,7 +164,6 @@
   }
   .hist-filter-btn.active { background: rgba(201,168,76,.12); border-color: var(--gold); color: var(--gold); }
 
-  /* ── TOGGLE STATS / LISTE ── */
   .hist-view-toggle {
     display: flex; background: #F0F0F0; border-radius: 8px; padding: 3px;
     margin-bottom: 16px; gap: 3px;
@@ -177,23 +176,19 @@
   }
   .hist-view-btn.active { background: #FFFFFF; color: var(--gold); box-shadow: 0 1px 4px rgba(0,0,0,.08); }
 
-  /* ── COURBES SVG ── */
   .chart-card {
     background: #FAFAFA; border: 1px solid #E8E8E8; border-radius: 10px;
     padding: 16px; margin-bottom: 14px;
   }
   .chart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
   .chart-title { font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 2px; }
-  .chart-avg {
-    font-family: 'Bebas Neue', sans-serif; font-size: 22px; line-height: 1;
-  }
+  .chart-avg { font-family: 'Bebas Neue', sans-serif; font-size: 22px; line-height: 1; }
   .chart-avg-lbl { font-size: 9px; color: #999999; letter-spacing: 1px; text-transform: uppercase; text-align: right; margin-top: 1px; }
   .chart-wrap { position: relative; width: 100%; }
   .chart-wrap svg { display: block; width: 100%; overflow: visible; }
   .chart-labels { display: flex; justify-content: space-between; margin-top: 4px; }
   .chart-label { font-size: 9px; color: #BBBBBB; }
   .chart-empty { font-size: 12px; color: #BBBBBB; text-align: center; padding: 24px 0; font-style: italic; }
-  .chart-dots-row { display: flex; justify-content: space-between; margin-top: 2px; }
 
   .stats-panel { display: none; }
   .stats-panel.active { display: block; }
@@ -256,34 +251,16 @@
     opacity: 0; transition: opacity .2s;
   }
   .pilier-btn.selected::before { opacity: 1; }
-  .pilier-btn .pilier-letter {
-    font-family: 'Bebas Neue', sans-serif; font-size: 32px; line-height: 1;
-    color: var(--gold-dim); transition: all .2s; display: block;
-  }
-  .pilier-btn .pilier-name {
-    font-size: 9px; color: #999999; letter-spacing: 1.5px;
-    text-transform: uppercase; margin-top: 4px; line-height: 1.3;
-  }
-  .pilier-btn .pilier-desc {
-    font-size: 10px; color: #bbbbbb; margin-top: 3px; font-style: italic;
-    line-height: 1.3;
-  }
-  .pilier-btn.selected {
-    background: rgba(201,168,76,.08); border-color: var(--gold);
-    box-shadow: 0 2px 10px rgba(184,146,42,.15);
-  }
+  .pilier-btn .pilier-letter { font-family: 'Bebas Neue', sans-serif; font-size: 32px; line-height: 1; color: var(--gold-dim); transition: all .2s; display: block; }
+  .pilier-btn .pilier-name { font-size: 9px; color: #999999; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px; line-height: 1.3; }
+  .pilier-btn .pilier-desc { font-size: 10px; color: #bbbbbb; margin-top: 3px; font-style: italic; line-height: 1.3; }
+  .pilier-btn.selected { background: rgba(201,168,76,.08); border-color: var(--gold); box-shadow: 0 2px 10px rgba(184,146,42,.15); }
   .pilier-btn.selected .pilier-letter { color: var(--gold); }
   .pilier-btn.selected .pilier-name { color: var(--gold-dim); }
 
-  .pilier-note-wrap {
-    overflow: hidden; max-height: 0; transition: max-height .3s ease, opacity .25s;
-    opacity: 0;
-  }
+  .pilier-note-wrap { overflow: hidden; max-height: 0; transition: max-height .3s ease, opacity .25s; opacity: 0; }
   .pilier-note-wrap.open { max-height: 120px; opacity: 1; }
-  .pilier-note-wrap textarea {
-    margin-top: 8px; min-height: 60px; font-size: 12px;
-    border-color: rgba(184,146,42,.3); background: rgba(201,168,76,.04);
-  }
+  .pilier-note-wrap textarea { margin-top: 8px; min-height: 60px; font-size: 12px; border-color: rgba(184,146,42,.3); background: rgba(201,168,76,.04); }
   .pilier-note-wrap textarea:focus { border-color: var(--gold-dim); }
 
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 200; display: none; align-items: flex-end; }
@@ -306,44 +283,22 @@
   .btn-cancel { background: #F0F0F0; color: #444444; border: 1px solid #DDDDDD !important; }
   .btn-confirm-del { background: var(--red); color: white; }
 
-  /* ── CHECK MATCH (AV.MATCH) ── */
   .cm-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
   .cm-score { font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 2px; color: var(--orange); }
   .cm-progress { width: 100%; height: 5px; background: #E0E0E0; border-radius: 3px; margin-bottom: 4px; overflow: hidden; }
   .cm-bar { height: 100%; background: var(--orange); border-radius: 3px; transition: width .3s ease; width: 0%; }
   .cm-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .cm-item {
-    display: flex; align-items: flex-start; gap: 10px;
-    padding: 10px 12px; background: #F0F0F0; border: 1px solid #DDDDDD;
-    border-radius: 6px; cursor: pointer; transition: all .15s; user-select: none;
-  }
+  .cm-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; background: #F0F0F0; border: 1px solid #DDDDDD; border-radius: 6px; cursor: pointer; transition: all .15s; user-select: none; }
   .cm-item.done { background: rgba(58,158,95,.07); border-color: rgba(58,158,95,.35); }
-  .cm-cb {
-    width: 18px; height: 18px; border: 2px solid #CCCCCC; border-radius: 4px;
-    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-    font-size: 11px; color: var(--green); transition: all .15s; margin-top: 1px;
-  }
+  .cm-cb { width: 18px; height: 18px; border: 2px solid #CCCCCC; border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--green); transition: all .15s; margin-top: 1px; }
   .cm-item.done .cm-cb { background: rgba(58,158,95,.15); border-color: var(--green); }
   .cm-text { font-size: 12px; color: #444444; line-height: 1.45; transition: color .15s; }
   .cm-item.done .cm-text { color: var(--green); text-decoration: line-through; opacity: .65; }
-  .cm-reset {
-    background: none; border: 1px solid #DDDDDD; border-radius: 4px;
-    color: #999999; font-family: 'DM Sans', sans-serif; font-size: 10px;
-    font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-    padding: 4px 10px; cursor: pointer; transition: all .15s;
-  }
+  .cm-reset { background: none; border: 1px solid #DDDDDD; border-radius: 4px; color: #999999; font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; cursor: pointer; transition: all .15s; }
   .cm-reset:hover { border-color: var(--orange); color: var(--orange); }
-  .cm-phase-title {
-    font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 2px;
-    color: var(--orange); margin-bottom: 8px; padding-bottom: 5px;
-    border-bottom: 1px solid rgba(201,106,32,.2);
-  }
+  .cm-phase-title { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 2px; color: var(--orange); margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid rgba(201,106,32,.2); }
 
-  /* ── NUTRITION SPECIFIQUE ── */
-  .nutri-section-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
-    text-transform: uppercase; margin: 12px 0 8px;
-  }
+  .nutri-section-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin: 12px 0 8px; }
   .nutri-section-label.label-prot { color: #2F72D4; }
   .nutri-section-label.label-fec { color: #C96A20; }
   .nutri-section-label.label-veg { color: #3A9E5F; }
@@ -351,30 +306,13 @@
   .nutri-section-label.label-supp { color: #6B4EC4; }
   .nutri-section-label:first-child { margin-top: 0; }
 
-  .repas-qualite-bar {
-    height: 4px; border-radius: 2px; margin-top: 12px;
-    background: #E0E0E0; overflow: hidden; transition: all .3s;
-  }
+  .repas-qualite-bar { height: 4px; border-radius: 2px; margin-top: 12px; background: #E0E0E0; overflow: hidden; transition: all .3s; }
   .repas-qualite-fill { height: 100%; border-radius: 2px; transition: all .3s; width: 0%; }
+  .repas-qualite-label { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-top: 5px; text-align: right; transition: color .3s; }
 
-  .repas-qualite-label {
-    font-size: 10px; font-weight: 600; letter-spacing: 1px;
-    text-transform: uppercase; margin-top: 5px; text-align: right;
-    transition: color .3s;
-  }
-
-  .pas-repas-toggle {
-    display: flex; align-items: center; gap: 10px;
-    padding: 10px 14px; background: #F0F0F0; border: 1px solid #DDDDDD;
-    border-radius: 8px; cursor: pointer; transition: all .15s; user-select: none;
-    margin-top: 10px;
-  }
+  .pas-repas-toggle { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #F0F0F0; border: 1px solid #DDDDDD; border-radius: 8px; cursor: pointer; transition: all .15s; user-select: none; margin-top: 10px; }
   .pas-repas-toggle.active { background: rgba(153,153,153,.12); border-color: #999; }
-  .pas-repas-toggle-icon {
-    width: 18px; height: 18px; border: 2px solid #CCCCCC; border-radius: 4px;
-    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-    font-size: 11px; transition: all .15s;
-  }
+  .pas-repas-toggle-icon { width: 18px; height: 18px; border: 2px solid #CCCCCC; border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all .15s; }
   .pas-repas-toggle.active .pas-repas-toggle-icon { background: #999; border-color: #999; color: #fff; }
   .pas-repas-toggle-text { font-size: 12px; color: #666; font-weight: 500; }
   .pas-repas-toggle.active .pas-repas-toggle-text { color: #444; }
@@ -382,20 +320,13 @@
   .repas-body { transition: opacity .2s, max-height .3s; overflow: hidden; }
   .repas-body.hidden { opacity: .3; pointer-events: none; max-height: 0 !important; }
 
-  .score-display-wrap {
-    padding: 16px; background: #F5F5F5; border-radius: 10px;
-    text-align: center; border: 2px solid #E0E0E0; transition: border-color .3s;
-    margin-bottom: 16px;
-  }
+  .score-display-wrap { padding: 16px; background: #F5F5F5; border-radius: 10px; text-align: center; border: 2px solid #E0E0E0; transition: border-color .3s; margin-bottom: 16px; }
   .score-display-wrap.score-bad { border-color: var(--red); }
   .score-display-wrap.score-moyen { border-color: var(--orange); }
   .score-display-wrap.score-bien { border-color: #B8922A; }
   .score-display-wrap.score-top { border-color: var(--green); }
 
-  .n-score-big {
-    font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1;
-    transition: color .3s;
-  }
+  .n-score-big { font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1; transition: color .3s; }
   .score-bad .n-score-big { color: var(--red); }
   .score-moyen .n-score-big { color: var(--orange); }
   .score-bien .n-score-big { color: var(--gold); }
@@ -412,11 +343,11 @@
   </div>
 </div>
 
-<!-- NAV TABS -->
+<!-- NAV TABS — AV.MATCH avant MATCH -->
 <div class="nav-tabs" id="navTabs">
   <button class="tab-btn active" onclick="showTab('entrainement', this)"><span class="tab-icon">⚡</span>ENTRAÎN.</button>
-  <button class="tab-btn" onclick="showTab('match', this)"><span class="tab-icon">🏆</span>MATCH</button>
   <button class="tab-btn" onclick="showTab('avmatch', this)"><span class="tab-icon">📋</span>AV.MATCH</button>
+  <button class="tab-btn" onclick="showTab('match', this)"><span class="tab-icon">🏆</span>MATCH</button>
   <button class="tab-btn" onclick="showTab('mental', this)"><span class="tab-icon">🧠</span>MENTAL</button>
   <button class="tab-btn" onclick="showTab('nutrition', this)"><span class="tab-icon">🍽</span>NUTRITION</button>
   <button class="tab-btn" onclick="showTab('sommeil', this)"><span class="tab-icon">🌙</span>SOMMEIL</button>
@@ -489,6 +420,63 @@
   <button class="btn-submit" onclick="saveEntrainement()">💾 VALIDER LA SESSION</button>
 </div>
 
+<!-- ══════════════════════════ AV.MATCH ══ -->
+<div class="section" id="s-avmatch">
+  <div style="margin-bottom:18px">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,12vw,58px);line-height:0.9;margin-bottom:8px">
+      <span style="color:var(--orange)">Av.</span>Match
+    </div>
+    <div style="font-size:12px;color:#999999;border-left:3px solid var(--orange);padding-left:12px;line-height:1.65">
+      Protocole nutrition match. À cocher dès <strong style="color:#444">J-2</strong> avant chaque rencontre.
+    </div>
+  </div>
+  <div class="card">
+    <div class="cm-header">
+      <div class="cm-score" id="cm-score">0 / 18 complétés</div>
+      <button class="cm-reset" onclick="resetCheckMatch()">Réinitialiser</button>
+    </div>
+    <div class="cm-progress"><div class="cm-bar" id="cm-bar"></div></div>
+  </div>
+  <div class="card">
+    <div class="cm-phase-title">J-2 / J-1</div>
+    <ul class="cm-list">
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Augmenter les glucides complexes (pâtes, riz, pain complet)</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Limiter graisses saturées et aliments difficiles à digérer</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Zéro alcool dans les 48h avant le match</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Hydratation régulière toute la journée</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Préparer la boisson d'attente et/ou le Gâteau Sport</span></li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="cm-phase-title">Jour du match</div>
+    <ul class="cm-list">
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Repas pré-compétitif 3h avant (IG bas, digeste, connu)</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Hydratation : 150–200 ml toutes les 15–20 min dès H-2</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Zéro aliment nouveau ou non testé</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Boisson d'attente dans la dernière heure</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Boisson énergétique disponible pour la mi-temps</span></li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="cm-phase-title">Post-match — 30 min</div>
+    <ul class="cm-list">
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Boisson de récupération dans les 30 min (fenêtre métabolique)</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Hydratation intensive — eau ou boisson bicarbonatée</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Fruits secs ou frais en attendant le repas</span></li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="cm-phase-title">Repas récupération</div>
+    <ul class="cm-list">
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Légumes + féculents (riz, quinoa, pâtes) + protéines maigres</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Matières grasses de qualité (olive, noix, amandes)</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Dessert fruité ou yaourt</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Continuer à s'hydrater</span></li>
+      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Zéro alcool, soda ou boisson énergisante</span></li>
+    </ul>
+  </div>
+</div>
+
 <!-- ══════════════════════════ MATCH ══ -->
 <div class="section" id="s-match">
   <div class="card">
@@ -558,63 +546,6 @@
   <button class="btn-submit" onclick="saveMatch()">💾 VALIDER LE MATCH</button>
 </div>
 
-<!-- ══════════════════════════ AV.MATCH ══ -->
-<div class="section" id="s-avmatch">
-  <div style="margin-bottom:18px">
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,12vw,58px);line-height:0.9;margin-bottom:8px">
-      <span style="color:var(--orange)">Av.</span>Match
-    </div>
-    <div style="font-size:12px;color:#999999;border-left:3px solid var(--orange);padding-left:12px;line-height:1.65">
-      Protocole nutrition match. À cocher dès <strong style="color:#444">J-2</strong> avant chaque rencontre.
-    </div>
-  </div>
-  <div class="card">
-    <div class="cm-header">
-      <div class="cm-score" id="cm-score">0 / 18 complétés</div>
-      <button class="cm-reset" onclick="resetCheckMatch()">Réinitialiser</button>
-    </div>
-    <div class="cm-progress"><div class="cm-bar" id="cm-bar"></div></div>
-  </div>
-  <div class="card">
-    <div class="cm-phase-title">J-2 / J-1</div>
-    <ul class="cm-list">
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Augmenter les glucides complexes (pâtes, riz, pain complet)</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Limiter graisses saturées et aliments difficiles à digérer</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Zéro alcool dans les 48h avant le match</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Hydratation régulière toute la journée</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Préparer la boisson d'attente et/ou le Gâteau Sport</span></li>
-    </ul>
-  </div>
-  <div class="card">
-    <div class="cm-phase-title">Jour du match</div>
-    <ul class="cm-list">
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Repas pré-compétitif 3h avant (IG bas, digeste, connu)</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Hydratation : 150–200 ml toutes les 15–20 min dès H-2</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Zéro aliment nouveau ou non testé</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Boisson d'attente dans la dernière heure</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Boisson énergétique disponible pour la mi-temps</span></li>
-    </ul>
-  </div>
-  <div class="card">
-    <div class="cm-phase-title">Post-match — 30 min</div>
-    <ul class="cm-list">
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Boisson de récupération dans les 30 min (fenêtre métabolique)</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Hydratation intensive — eau ou boisson bicarbonatée</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Fruits secs ou frais en attendant le repas</span></li>
-    </ul>
-  </div>
-  <div class="card">
-    <div class="cm-phase-title">Repas récupération</div>
-    <ul class="cm-list">
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Légumes + féculents (riz, quinoa, pâtes) + protéines maigres</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Matières grasses de qualité (olive, noix, amandes)</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Dessert fruité ou yaourt</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Continuer à s'hydrater</span></li>
-      <li class="cm-item" onclick="toggleCM(this)"><div class="cm-cb"></div><span class="cm-text">Zéro alcool, soda ou boisson énergisante</span></li>
-    </ul>
-  </div>
-</div>
-
 <!-- ══════════════════════════ MENTAL ══ -->
 <div class="section" id="s-mental">
   <div class="card">
@@ -663,7 +594,6 @@
         <div class="pilier-desc">Effort & régularité</div>
       </div>
     </div>
-    <!-- Champs contextuels par axe -->
     <div class="pilier-note-wrap" id="note-wrap-Y">
       <textarea id="mn-note-Y" placeholder="Y — Ce que tu as concrètement travaillé aujourd'hui sur ton attitude..."></textarea>
     </div>
@@ -705,14 +635,10 @@
 
 <!-- ══════════════════════════ NUTRITION ══ -->
 <div class="section" id="s-nutrition">
-
-  <!-- DATE -->
   <div class="card">
     <div class="card-title"><span class="dot"></span>DATE</div>
     <input type="date" id="n-date">
   </div>
-
-  <!-- MATIN -->
   <div class="card" id="card-matin">
     <div class="card-title"><span class="dot"></span>🌅 MATIN</div>
     <div class="pas-repas-toggle" id="toggle-matin" onclick="togglePasRepas('matin')">
@@ -743,8 +669,6 @@
       <div class="repas-qualite-label" id="label-matin" style="color:#999"></div>
     </div>
   </div>
-
-  <!-- COLLATION -->
   <div class="card" id="card-collation">
     <div class="card-title"><span class="dot"></span>🔋 COLLATION</div>
     <div class="pas-repas-toggle" id="toggle-collation" onclick="togglePasRepas('collation')">
@@ -775,8 +699,6 @@
       <div class="repas-qualite-label" id="label-collation" style="color:#999"></div>
     </div>
   </div>
-
-  <!-- MIDI -->
   <div class="card" id="card-midi">
     <div class="card-title"><span class="dot"></span>☀️ MIDI</div>
     <div class="pas-repas-toggle" id="toggle-midi" onclick="togglePasRepas('midi')">
@@ -818,8 +740,6 @@
       <div class="repas-qualite-label" id="label-midi" style="color:#999"></div>
     </div>
   </div>
-
-  <!-- SOIR -->
   <div class="card" id="card-soir">
     <div class="card-title"><span class="dot"></span>🌙 SOIR</div>
     <div class="pas-repas-toggle" id="toggle-soir" onclick="togglePasRepas('soir')">
@@ -860,8 +780,6 @@
       <div class="repas-qualite-label" id="label-soir" style="color:#999"></div>
     </div>
   </div>
-
-  <!-- HYDRATATION -->
   <div class="card">
     <div class="card-title"><span class="dot"></span>💧 HYDRATATION</div>
     <div class="radio-group" id="n-eau">
@@ -871,8 +789,6 @@
       <div class="radio-item" data-pts="3" onclick="selectRadio(this,'n-eau');calcNutriScore()">🌊 2L+</div>
     </div>
   </div>
-
-  <!-- COMPLÉMENTS -->
   <div class="card">
     <div class="card-title"><span class="dot"></span>💊 COMPLÉMENTS</div>
     <p style="font-size:11px;color:#999999;margin-bottom:12px">Suppléments pris aujourd'hui (optionnel)</p>
@@ -887,8 +803,6 @@
       <div class="check-item" onclick="toggleCheck(this,'n-suppl')">🍃 Fer</div>
     </div>
   </div>
-
-  <!-- SCORE -->
   <div class="card" id="n-eval-card">
     <div class="card-title"><span class="dot"></span>SCORE NUTRITION</div>
     <label>Notes (optionnel)</label>
@@ -901,7 +815,6 @@
       <div style="font-size:13px;color:#444444;margin-top:8px;font-weight:600" id="n-score-label">Complète tes repas</div>
     </div>
   </div>
-
   <button class="btn-submit" onclick="saveNutrition()">💾 VALIDER LA JOURNÉE</button>
 </div>
 
@@ -990,25 +903,17 @@
 
 <!-- ══════════════════════════ HISTORIQUE ══ -->
 <div class="hist-section" id="s-historique">
-
-  <!-- Compteurs -->
   <div class="stats-grid" id="statsGrid"></div>
-
-  <!-- Toggle STATS / LISTE -->
   <div class="hist-view-toggle">
     <button class="hist-view-btn active" id="viewBtnStats" onclick="switchHistView('stats')">📊 STATS</button>
     <button class="hist-view-btn" id="viewBtnListe" onclick="switchHistView('liste')">📋 LISTE</button>
   </div>
-
-  <!-- PANEL STATS -->
   <div class="stats-panel active" id="panelStats">
     <div class="chart-card" id="chart-mental"></div>
     <div class="chart-card" id="chart-nutrition"></div>
     <div class="chart-card" id="chart-sommeil"></div>
     <div class="chart-card" id="chart-concentration"></div>
   </div>
-
-  <!-- PANEL LISTE -->
   <div class="list-panel" id="panelListe">
     <div class="hist-filter">
       <button class="hist-filter-btn active" onclick="filterHist('all', this)">TOUT</button>
@@ -1021,7 +926,6 @@
     </div>
     <div id="hist-list"></div>
   </div>
-
   <div class="divider"></div>
   <div style="text-align:center">
     <button class="btn-danger" onclick="confirmClear()">🗑 Effacer toutes les données</button>
@@ -1158,7 +1062,6 @@ function resetSlider(id, valId, def) { document.getElementById(id).value = def; 
 function val(id) { return document.getElementById(id).value.trim(); }
 function clearVal(id) { document.getElementById(id).value = ''; }
 
-// ── CHECK MATCH ──
 function toggleCM(li) {
   li.classList.toggle('done');
   li.querySelector('.cm-cb').textContent = li.classList.contains('done') ? '✓' : '';
@@ -1179,7 +1082,6 @@ function resetCheckMatch() {
   updateCMProgress();
 }
 
-// ── SAVE ENTRAINEMENT ──
 function saveEntrainement() {
   var entry = { type:'entrainement', date:val('e-date'), seanceType:getChecked('e-type'), duree:getRadio('e-duree'), attitude:getRadio('e-attitude'), comportement:getRadio('e-comportement'), concentration:val('e-concentration'), intensite:val('e-intensite'), positif:val('e-positif'), negatif:val('e-negatif'), notes:val('e-notes'), ts:Date.now() };
   var data = getStorage(); data.unshift(entry); setStorage(data);
@@ -1189,7 +1091,6 @@ function saveEntrainement() {
   showToast('✅ Session enregistrée');
 }
 
-// ── SAVE MATCH ──
 function saveMatch() {
   var entry = { type:'match', date:val('m-date'), competition:val('m-competition'), adversaire:val('m-adversaire'), score:val('m-score'), resultat:getRadio('m-resultat'), tempsJeu:getRadio('m-tps'), poste:val('m-poste'), attitude:getRadio('m-attitude'), collectif:getRadio('m-collectif'), performance:val('m-perf'), stress:val('m-stress'), forts:val('m-forts'), amelio:val('m-amelio'), ressenti:val('m-ressenti'), ts:Date.now() };
   var data = getStorage(); data.unshift(entry); setStorage(data);
@@ -1199,7 +1100,6 @@ function saveMatch() {
   showToast('✅ Match enregistré');
 }
 
-// ── SAVE MENTAL ──
 function saveMental() {
   var entry = { type:'mental', date:val('mn-date'), etat:val('mn-etat'), energie:val('mn-energie'), stress:getRadio('mn-stress'), piliers:getPiliers(), piliersNotes:getPiliersNotes(), exercices:getChecked('mn-exercices'), affecte:val('mn-affecte'), bien:val('mn-bien'), intention:val('mn-intention'), ts:Date.now() };
   var data = getStorage(); data.unshift(entry); setStorage(data);
@@ -1209,12 +1109,9 @@ function saveMental() {
   showToast('✅ Session mentale enregistrée');
 }
 
-// ══════════════════════════ NUTRITION JS ══════════════════════════
-
 var nutriLocked = false;
 var nutriScoreVal = null;
 var pasRepasState = { matin: false, collation: false, midi: false, soir: false };
-
 var NUTRI_WEIGHTS = { prot: 2, veg: 2, fec: 1, bad: -2 };
 
 function togglePasRepas(repas) {
@@ -1224,17 +1121,10 @@ function togglePasRepas(repas) {
   var icon = document.getElementById('icon-' + repas);
   var body = document.getElementById('body-' + repas);
   if (pasRepasState[repas]) {
-    toggle.classList.add('active');
-    icon.textContent = '✓';
-    body.classList.add('hidden');
-    // Déselectionner tous les items de ce repas
-    document.querySelectorAll('.check-item[data-repas="'+repas+'"]').forEach(function(el){
-      el.classList.remove('selected');
-    });
+    toggle.classList.add('active'); icon.textContent = '✓'; body.classList.add('hidden');
+    document.querySelectorAll('.check-item[data-repas="'+repas+'"]').forEach(function(el){ el.classList.remove('selected'); });
   } else {
-    toggle.classList.remove('active');
-    icon.textContent = '';
-    body.classList.remove('hidden');
+    toggle.classList.remove('active'); icon.textContent = ''; body.classList.remove('hidden');
   }
   calcNutriScore();
 }
@@ -1250,9 +1140,7 @@ function updateRepasBar(repas) {
   if (!repas) return;
   var items = document.querySelectorAll('.check-item[data-repas="'+repas+'"].selected');
   var score = 0;
-  items.forEach(function(el){
-    score += (NUTRI_WEIGHTS[el.getAttribute('data-cat')] || 0);
-  });
+  items.forEach(function(el){ score += (NUTRI_WEIGHTS[el.getAttribute('data-cat')] || 0); });
   var pct = Math.max(0, Math.min(100, 50 + score * 10));
   var bar = document.getElementById('bar-' + repas);
   var lbl = document.getElementById('label-' + repas);
@@ -1263,29 +1151,20 @@ function updateRepasBar(repas) {
   else if (score === 0) { color = '#999999'; text = ''; }
   else if (score >= -1) { color = '#C96A20'; text = '🟠 À améliorer'; }
   else { color = '#D94040'; text = '🔴 Attention'; }
-  bar.style.width = pct + '%';
-  bar.style.background = color;
-  lbl.style.color = color;
-  lbl.textContent = text;
+  bar.style.width = pct + '%'; bar.style.background = color;
+  lbl.style.color = color; lbl.textContent = text;
 }
 
 function calcNutriScore() {
   var allItems = document.querySelectorAll('.n-repas .check-item.selected');
   var raw = 0;
   allItems.forEach(function(el){ raw += (NUTRI_WEIGHTS[el.getAttribute('data-cat')] || 0); });
-
-  // Malus repas sautés (hors collation qui est optionnelle)
   var repasOblig = ['matin','midi','soir'];
-  repasOblig.forEach(function(r){
-    if (pasRepasState[r]) raw -= 2;
-  });
-
+  repasOblig.forEach(function(r){ if (pasRepasState[r]) raw -= 2; });
   var eauSel = document.querySelector('#n-eau .radio-item.selected');
   var eauPts = eauSel ? parseInt(eauSel.getAttribute('data-pts') || 0) : 0;
-
   var score = Math.max(0, Math.min(10, 4 + raw + eauPts));
   nutriScoreVal = score;
-
   var wrap = document.getElementById('n-score-display');
   wrap.className = 'score-display-wrap';
   var label, cls;
@@ -1295,7 +1174,6 @@ function calcNutriScore() {
   else if (score >= 3) { label = '🟠 À améliorer'; cls = 'score-moyen'; }
   else { label = '🔴 Insuffisant'; cls = 'score-bad'; }
   wrap.classList.add(cls);
-
   document.getElementById('n-score-val').textContent = score;
   document.getElementById('n-score-label').textContent = label;
 }
@@ -1330,9 +1208,7 @@ function resetNutri() {
     document.querySelectorAll('.pas-repas-toggle').forEach(function(el){ el.style.pointerEvents = ''; });
   });
   document.querySelectorAll('.n-repas .check-item').forEach(function(el){
-    el.classList.remove('selected');
-    el.style.pointerEvents = '';
-    el.style.opacity = '';
+    el.classList.remove('selected'); el.style.pointerEvents = ''; el.style.opacity = '';
   });
   var wrap = document.getElementById('n-score-display');
   wrap.className = 'score-display-wrap';
@@ -1349,27 +1225,22 @@ function saveNutrition() {
     return items;
   }
   var entry = {
-    type: 'nutrition',
-    date: val('n-date'),
+    type: 'nutrition', date: val('n-date'),
     matin: pasRepasState.matin ? ['(sauté)'] : getRepas(['nm-prot','nm-fec','nm-bad']),
     collation: pasRepasState.collation ? ['(pas de collation)'] : getRepas(['nc-prot','nc-fec','nc-bad']),
     midi: pasRepasState.midi ? ['(sauté)'] : getRepas(['nd-prot','nd-fec','nd-leg','nd-bad']),
     soir: pasRepasState.soir ? ['(sauté)'] : getRepas(['ns-prot','ns-fec','ns-leg','ns-bad']),
-    eau: getRadio('n-eau'),
-    supplements: getChecked('n-suppl'),
+    eau: getRadio('n-eau'), supplements: getChecked('n-suppl'),
     qualite: nutriScoreVal !== null ? nutriScoreVal : '—',
-    notes: val('n-notes'),
-    ts: Date.now()
+    notes: val('n-notes'), ts: Date.now()
   };
   lockNutri();
   var data = getStorage(); data.unshift(entry); setStorage(data);
-  resetChecks('n-suppl');
-  clearVal('n-notes');
+  resetChecks('n-suppl'); clearVal('n-notes');
   showToast('✅ Journée enregistrée — score verrouillé 🔒');
   setTimeout(function(){ resetNutri(); resetRadios('n-eau'); document.getElementById('n-date').value = today(); }, 1500);
 }
 
-// ── SAVE SOMMEIL ──
 function saveSommeil() {
   var entry = { type:'sommeil', date:val('so-date'), coucher:val('so-coucher'), lever:val('so-lever'), duree:getRadio('so-duree'), qualite:val('so-qualite'), recup:getRadio('so-recup'), perturbations:getChecked('so-perturbations'), recupActif:getChecked('so-recup-actif'), notes:val('so-notes'), ts:Date.now() };
   var data = getStorage(); data.unshift(entry); setStorage(data);
@@ -1379,7 +1250,6 @@ function saveSommeil() {
   showToast('✅ Nuit enregistrée');
 }
 
-// ── OBJECTIFS ──
 function addObjectif() {
   var txt = document.getElementById('obj-input').value.trim();
   if (!txt) return;
@@ -1413,7 +1283,6 @@ function renderObjectifs() {
 }
 function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-// ── HISTORIQUE ──
 var currentFilter = 'all';
 function filterHist(type, btn) {
   currentFilter = type;
@@ -1442,7 +1311,7 @@ function entrySummary(e) {
   if (e.type==='objectifs') { return escHtml(e.quoi||'Objectif SMART')+(e.deadline?' · '+formatDate(e.deadline):''); }
   return '';
 }
-// ── HIST VIEW TOGGLE ──
+
 var currentHistView = 'stats';
 function switchHistView(view) {
   currentHistView = view;
@@ -1463,22 +1332,12 @@ function renderStats() {
 }
 function statBox(val, lbl) { return '<div class="stat-box"><div class="stat-val">'+val+'</div><div class="stat-lbl">'+lbl+'</div></div>'; }
 
-// ── COURBES SVG ──
 function renderCharts() {
   var data = getStorage();
-  var mental = data.filter(function(e){ return e.type==='mental' && e.etat; })
-    .sort(function(a,b){ return a.date<b.date?-1:1 }).slice(-30)
-    .map(function(e){ return {d:e.date, v:parseFloat(e.etat)}; });
-  var nutrition = data.filter(function(e){ return e.type==='nutrition' && e.qualite!==undefined && e.qualite!=='—'; })
-    .sort(function(a,b){ return a.date<b.date?-1:1 }).slice(-30)
-    .map(function(e){ return {d:e.date, v:parseFloat(e.qualite)}; });
-  var sommeil = data.filter(function(e){ return e.type==='sommeil' && e.qualite; })
-    .sort(function(a,b){ return a.date<b.date?-1:1 }).slice(-30)
-    .map(function(e){ return {d:e.date, v:parseFloat(e.qualite)}; });
-  var concentration = data.filter(function(e){ return e.type==='entrainement' && e.concentration; })
-    .sort(function(a,b){ return a.date<b.date?-1:1 }).slice(-30)
-    .map(function(e){ return {d:e.date, v:parseFloat(e.concentration)}; });
-
+  var mental = data.filter(function(e){ return e.type==='mental' && e.etat; }).sort(function(a,b){ return a.date<b.date?-1:1; }).slice(-30).map(function(e){ return {d:e.date, v:parseFloat(e.etat)}; });
+  var nutrition = data.filter(function(e){ return e.type==='nutrition' && e.qualite!==undefined && e.qualite!=='—'; }).sort(function(a,b){ return a.date<b.date?-1:1; }).slice(-30).map(function(e){ return {d:e.date, v:parseFloat(e.qualite)}; });
+  var sommeil = data.filter(function(e){ return e.type==='sommeil' && e.qualite; }).sort(function(a,b){ return a.date<b.date?-1:1; }).slice(-30).map(function(e){ return {d:e.date, v:parseFloat(e.qualite)}; });
+  var concentration = data.filter(function(e){ return e.type==='entrainement' && e.concentration; }).sort(function(a,b){ return a.date<b.date?-1:1; }).slice(-30).map(function(e){ return {d:e.date, v:parseFloat(e.concentration)}; });
   buildChart('chart-mental', '🧠 ÉTAT MENTAL', mental, '#6B4EC4', 10);
   buildChart('chart-nutrition', '🍽 NUTRITION', nutrition, '#C96A20', 10);
   buildChart('chart-sommeil', '🌙 SOMMEIL', sommeil, '#6dd5fa', 10);
@@ -1488,93 +1347,48 @@ function renderCharts() {
 function buildChart(containerId, title, points, color, maxVal) {
   var el = document.getElementById(containerId);
   if (!el) return;
-
   if (!points.length) {
     el.innerHTML = '<div class="chart-header"><div class="chart-title" style="color:'+color+'">'+title+'</div></div><div class="chart-empty">Aucune donnée enregistrée</div>';
     return;
   }
-
   var avg = (points.reduce(function(s,p){ return s+p.v; },0)/points.length).toFixed(1);
   var W = 320, H = 80, pad = 10;
   var vals = points.map(function(p){ return p.v; });
-  var minV = 0, maxV = maxVal;
   var n = points.length;
-
   function xp(i) { return n===1 ? W/2 : pad + (i/(n-1))*(W-pad*2); }
-  function yp(v) { return H - pad - ((v-minV)/(maxV-minV))*(H-pad*2); }
-
-  // Path courbe lissée
-  var pathD = '';
-  if (n === 1) {
-    pathD = 'M '+xp(0)+' '+yp(vals[0]);
-  } else {
-    pathD = 'M '+xp(0)+' '+yp(vals[0]);
-    for (var i=1; i<n; i++) {
-      var x0=xp(i-1), y0=yp(vals[i-1]), x1=xp(i), y1=yp(vals[i]);
-      var cx=(x0+x1)/2;
-      pathD += ' C '+cx+' '+y0+' '+cx+' '+y1+' '+x1+' '+y1;
-    }
+  function yp(v) { return H - pad - (v/maxVal)*(H-pad*2); }
+  var pathD = 'M '+xp(0)+' '+yp(vals[0]);
+  for (var i=1; i<n; i++) {
+    var x0=xp(i-1), y0=yp(vals[i-1]), x1=xp(i), y1=yp(vals[i]), cx=(x0+x1)/2;
+    pathD += ' C '+cx+' '+y0+' '+cx+' '+y1+' '+x1+' '+y1;
   }
-
-  // Area fill
   var areaD = pathD + ' L '+xp(n-1)+' '+H+' L '+xp(0)+' '+H+' Z';
-
-  // Grilles horizontales
   var gridLines = '';
   [0,5,10].forEach(function(v){
     var y = yp(v);
     gridLines += '<line x1="'+pad+'" y1="'+y+'" x2="'+(W-pad)+'" y2="'+y+'" stroke="#EEEEEE" stroke-width="1"/>';
     gridLines += '<text x="'+(W-pad+3)+'" y="'+(y+3)+'" font-size="8" fill="#CCCCCC">'+v+'</text>';
   });
-
-  // Points dots
   var dots = '';
-  points.forEach(function(p,i){
-    dots += '<circle cx="'+xp(i)+'" cy="'+yp(p.v)+'" r="3" fill="'+color+'" stroke="#FAFAFA" stroke-width="1.5"/>';
-  });
-
-  // Labels dates (max 5 labels)
+  points.forEach(function(p,i){ dots += '<circle cx="'+xp(i)+'" cy="'+yp(p.v)+'" r="3" fill="'+color+'" stroke="#FAFAFA" stroke-width="1.5"/>'; });
   var labelIdxs = [];
-  if (n <= 5) { for(var i=0;i<n;i++) labelIdxs.push(i); }
+  if (n <= 5) { for(var j=0;j<n;j++) labelIdxs.push(j); }
   else { labelIdxs = [0, Math.round(n/4), Math.round(n/2), Math.round(3*n/4), n-1]; }
-  var dateLabels = labelIdxs.map(function(i){
-    var d = points[i].d; var p2=d.split('-'); return p2[2]+'/'+p2[1];
-  });
-
-  // Dernière valeur mise en avant
+  var dateLabels = labelIdxs.map(function(i){ var d=points[i].d; var p2=d.split('-'); return p2[2]+'/'+p2[1]; });
   var lastVal = vals[vals.length-1];
   var lastDot = '<circle cx="'+xp(n-1)+'" cy="'+yp(lastVal)+'" r="5" fill="'+color+'" stroke="#FAFAFA" stroke-width="2"/>';
-
   var colorAvg = parseFloat(avg) >= 7 ? '#3A9E5F' : parseFloat(avg) >= 5 ? color : '#D94040';
-
   el.innerHTML =
-    '<div class="chart-header">'+
-      '<div>'+
-        '<div class="chart-title" style="color:'+color+'">'+title+'</div>'+
-      '</div>'+
-      '<div style="text-align:right">'+
-        '<div class="chart-avg" style="color:'+colorAvg+'">'+avg+'</div>'+
-        '<div class="chart-avg-lbl">moy. /10</div>'+
-      '</div>'+
-    '</div>'+
-    '<div class="chart-wrap">'+
-      '<svg viewBox="0 0 '+W+' '+H+'" height="'+H+'" preserveAspectRatio="none">'+
-        '<defs>'+
-          '<linearGradient id="grad-'+containerId+'" x1="0" y1="0" x2="0" y2="1">'+
-            '<stop offset="0%" stop-color="'+color+'" stop-opacity="0.15"/>'+
-            '<stop offset="100%" stop-color="'+color+'" stop-opacity="0.01"/>'+
-          '</linearGradient>'+
-        '</defs>'+
-        gridLines+
-        '<path d="'+areaD+'" fill="url(#grad-'+containerId+')" />'+
-        '<path d="'+pathD+'" fill="none" stroke="'+color+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
-        dots+
-        lastDot+
-      '</svg>'+
-    '</div>'+
-    '<div class="chart-labels">'+
-      labelIdxs.map(function(i,j){ return '<span class="chart-label">'+dateLabels[j]+'</span>'; }).join('')+
-    '</div>';
+    '<div class="chart-header"><div><div class="chart-title" style="color:'+color+'">'+title+'</div></div>'+
+    '<div style="text-align:right"><div class="chart-avg" style="color:'+colorAvg+'">'+avg+'</div><div class="chart-avg-lbl">moy. /10</div></div></div>'+
+    '<div class="chart-wrap"><svg viewBox="0 0 '+W+' '+H+'" height="'+H+'" preserveAspectRatio="none">'+
+    '<defs><linearGradient id="grad-'+containerId+'" x1="0" y1="0" x2="0" y2="1">'+
+    '<stop offset="0%" stop-color="'+color+'" stop-opacity="0.15"/><stop offset="100%" stop-color="'+color+'" stop-opacity="0.01"/>'+
+    '</linearGradient></defs>'+gridLines+
+    '<path d="'+areaD+'" fill="url(#grad-'+containerId+')" />'+
+    '<path d="'+pathD+'" fill="none" stroke="'+color+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
+    dots+lastDot+'</svg></div>'+
+    '<div class="chart-labels">'+labelIdxs.map(function(i,j){ return '<span class="chart-label">'+dateLabels[j]+'</span>'; }).join('')+'</div>';
 }
 
 function openModal(idx) {
@@ -1595,7 +1409,7 @@ function buildModalContent(e) {
   if (e.type==='entrainement') { rows += row('Type',e.seanceType)+row('Durée',e.duree)+row('Attitude',e.attitude)+row('Comportement',e.comportement)+row('Concentration',e.concentration+'/10')+row('Intensité',e.intensite+'/10')+row('Points forts',e.positif)+row('À améliorer',e.negatif)+row('Notes',e.notes); }
   else if (e.type==='match') { rows += row('Compétition',e.competition)+row('Adversaire',e.adversaire)+row('Score',e.score)+row('Résultat',e.resultat)+row('Temps de jeu',e.tempsJeu)+row('Poste',e.poste)+row('Attitude',e.attitude)+row('Collectif',e.collectif)+row('Performance',e.performance+'/10')+row('Gestion stress',e.stress+'/10')+row('Points forts',e.forts)+row('À améliorer',e.amelio)+row('Ressenti',e.ressenti); }
   else if (e.type==='mental') {
-    rows += row('État mental',e.etat+'/10')+row('Énergie',e.energie+'/10')+row('Stress',e.stress)+row('Axes Y.E.S.I',e.piliers)+row('Exercices',e.exercices)+row('Ce qui m\'a affecté',e.affecte)+row('Bien géré',e.bien)+row('Intention',e.intention);
+    rows += row('État mental',e.etat+'/10')+row('Énergie',e.energie+'/10')+row('Stress',e.stress)+row('Axes Y.E.S.I',e.piliers)+row('Exercices',e.exercices)+row("Ce qui m'a affecté",e.affecte)+row('Bien géré',e.bien)+row('Intention',e.intention);
     if (e.piliersNotes && Object.keys(e.piliersNotes).length) {
       var axeLabels = {Y:'Yes Attitude',E:'Estime de Soi',S:'Smart Goals',I:'Investissement'};
       Object.keys(e.piliersNotes).forEach(function(axe){ rows += row('Axe '+axe+' — '+(axeLabels[axe]||''), e.piliersNotes[axe]); });

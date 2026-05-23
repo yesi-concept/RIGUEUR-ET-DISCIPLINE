@@ -71,12 +71,12 @@ body::before {
   width: 100%;
 }
 
-/* Logo — agrandi 64px → 96px */
+/* Logo */
 .hero-logo-wrap { margin-bottom: 48px; }
 .hero-logo {
   height: 96px;
   display: block;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) saturate(100%) invert(63%) sepia(55%) saturate(400%) hue-rotate(5deg) brightness(95%);
   opacity: 0.9;
 }
 
@@ -188,7 +188,7 @@ body::before {
 .cta-arrow { font-size: 20px; transition: transform .2s; }
 .main-cta:hover .cta-arrow { transform: translateX(4px); }
 
-/* Note CTA — rendue lisible */
+/* Note CTA */
 .cta-note {
   margin-top: 12px;
   font-size: 11px;

@@ -25,6 +25,22 @@
     --orange: #C96A20;
   }
 
+  /* ── FORCE THÈME CLAIR même en dark mode système ── */
+  @media (prefers-color-scheme: dark) {
+    html, body { background: #FFFFFF !important; color: #111111 !important; }
+    .header { background: #F5F5F5 !important; }
+    .nav-tabs { background: #F5F5F5 !important; }
+    .card { background: #FAFAFA !important; }
+    input, select, textarea { background: #F0F0F0 !important; color: #111111 !important; }
+    .check-item, .radio-item, .score-btn, .cm-item, .obj-item, .pilier-btn { background: #F0F0F0 !important; color: #444444 !important; }
+    .hist-entry { background: #FAFAFA !important; }
+    .stat-box { background: #FAFAFA !important; }
+    .chart-card { background: #FAFAFA !important; }
+    .modal-box { background: #FAFAFA !important; }
+    .confirm-box { background: #FAFAFA !important; }
+    .score-display-wrap { background: #F5F5F5 !important; }
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
   body {
@@ -879,8 +895,6 @@
 
 <!-- ══════════════════════════ OBJECTIFS ══ -->
 <div class="section" id="s-objectifs">
-
-  <!-- ── OBJECTIFS DE RÉSULTATS ── -->
   <div class="card">
     <div class="card-title"><span class="dot"></span>OBJECTIFS DE RÉSULTATS</div>
     <div style="display:flex;gap:8px;margin-bottom:14px">
@@ -889,8 +903,6 @@
     </div>
     <div id="obj-res-list"></div>
   </div>
-
-  <!-- ── OBJECTIF DE MOYEN ── -->
   <div class="card">
     <div class="card-title"><span class="dot"></span>OBJECTIF DE MOYEN</div>
     <label>Deadline</label>
@@ -903,7 +915,6 @@
     <div id="obj-action-list"></div>
     <button class="btn-submit" onclick="saveObjMoyen()" style="margin-top:16px;background:var(--orange)">💾 ENREGISTRER</button>
   </div>
-
 </div>
 
 <!-- ══════════════════════════ HISTORIQUE ══ -->
@@ -1254,7 +1265,6 @@ function saveSommeil() {
   showToast('✅ Nuit enregistrée');
 }
 
-// ── OBJECTIFS DE RÉSULTATS ──
 function getObjResultats() { try { return JSON.parse(localStorage.getItem('yesi_obj_res') || '[]'); } catch(e) { return []; } }
 function setObjResultats(d) { localStorage.setItem('yesi_obj_res', JSON.stringify(d)); }
 
@@ -1287,7 +1297,6 @@ function renderObjResultats() {
   }).join('');
 }
 
-// ── OBJECTIF DE MOYEN — ACTIONS ──
 function getObjActions() { try { return JSON.parse(localStorage.getItem('yesi_obj_actions') || '[]'); } catch(e) { return []; } }
 function setObjActions(d) { localStorage.setItem('yesi_obj_actions', JSON.stringify(d)); }
 
@@ -1337,7 +1346,6 @@ function renderObjectifs() {
   renderObjActions();
 }
 function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
 
 var currentFilter = 'all';
 function filterHist(type, btn) {
